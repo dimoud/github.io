@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical ExpertEase Software — Expertease Designs</title>
+<meta name="description" content="Mechanical ExpertEase — engineering software for special-purpose vehicle technical studies. Automated calculations, diagrams, A3 drawings, Word reports.">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.sw-page {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 70px;
+  background: linear-gradient(135deg, #0d1828 0%, #122040 100%);
+  position: relative; overflow: hidden;
+}
+.sw-page::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 25% 60%, rgba(30,79,160,.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(58,120,212,.12) 0%, transparent 45%),
+    linear-gradient(rgba(58,120,212,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58,120,212,.05) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+.sw-page-inner {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  padding: 70px 56px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.sw-page-label {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--blue-lt); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sw-page-label::before { content: ''; width: 18px; height: 1px; background: var(--blue-lt); }
+.sw-page-title {
+  font-family: var(--font-display); font-size: clamp(52px, 5.5vw, 78px);
+  letter-spacing: 1px; color: #fff; line-height: .95; margin-bottom: 22px;
+}
+.sw-page-desc {
+  font-size: 16px; line-height: 1.82; color: rgba(255,255,255,.62); margin-bottom: 30px;
+}
+.sw-page-features {
+  list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.sw-page-features li {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .5px;
+  color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 7px;
+}
+.sw-page-features li::before { content: '▸'; color: var(--blue-lt); font-size: 9px; }
+.sw-page-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.sw-page-right {
+  display: flex; align-items: center; justify-content: center;
+}
+.sw-page-img {
+  width: 100%; border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.55);
+  border: 1px solid rgba(58,120,212,.3);
+}
+@media (max-width: 900px) {
+  .sw-page-inner { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
+  .sw-page-right { order: -1; }
+  .sw-page-img { max-width: 500px; margin: 0 auto; display: block; }
+}
+@media (max-width: 640px) {
+  .sw-page-inner { padding: 40px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Expertease" fetchpriority="high"></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#about"    id="nav-about">About</a></li>
+      <li><a href="index.html#projects" id="nav-projects">Work</a></li>
+      <li><a href="software.html"       id="nav-software" class="active">Software</a></li>
+      <li><a href="team.html"           id="nav-experience">Team</a></li>
+      <li><a href="index.html#contact"  id="nav-contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn"        data-lang="el">ΕΛ</button>
+      <button class="lang-btn active" data-lang="en">EN</button>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="index.html#about"    id="mnav-about"      onclick="closeMobileNav()">About</a></li>
+    <li><a href="index.html#projects" id="mnav-projects"   onclick="closeMobileNav()">Work</a></li>
+    <li><a href="software.html"       id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
+    <li><a href="team.html"           id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
+    <li><a href="index.html#contact"  id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══ SOFTWARE PAGE ═════════════════════════════════════════════ -->
+<div class="sw-page">
+  <div class="sw-page-inner">
+
+    <div class="sw-page-left">
+      <div class="sw-page-label" id="sw-label">Active Product · easemanual.eu</div>
+      <h1 class="sw-page-title">Mechanical<br>ExpertEase</h1>
+      <p class="sw-page-desc" id="sw-desc">Powerful software automating the creation of technical studies for special-purpose vehicle licensing — per Greek regulation YA 80255/4693/19/2020. Built by engineers for engineers.</p>
+      <ul class="sw-page-features">
+        <li id="sw-f1">Technical calculations</li>
+        <li id="sw-f2">Load diagrams</li>
+        <li id="sw-f3">A3 vehicle drawings</li>
+        <li id="sw-f4">Auto Word report</li>
+        <li id="sw-f5">Shafts &amp; bearings</li>
+        <li id="sw-f6">Stability &amp; braking</li>
+        <li id="sw-f7">Welds &amp; springs</li>
+        <li id="sw-f8">Cranes &amp; platforms</li>
+      </ul>
+      <div class="sw-page-cta">
+        <a href="https://www.easemanual.eu" target="_blank" rel="noopener" class="btn-primary" id="sw-cta1">Open easemanual.eu →</a>
+        <a href="https://www.easemanual.eu/pricing" target="_blank" rel="noopener" class="btn-outline" id="sw-cta2">Pricing</a>
+      </div>
+    </div>
+
+    <div class="sw-page-right">
+      <img src="images/mec_expertaease.png" alt="Mechanical ExpertEase Software screenshot" class="sw-page-img">
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Expertease"></a>
+  <div class="footer-text" id="footer-copy">© 2026 Expertease Designs</div>
+  <div class="footer-text" id="footer-loc">Athens, Greece</div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

@@ -23,8 +23,8 @@
     <ul class="nav-links">
       <li><a href="#about"    id="nav-about">About</a></li>
       <li><a href="#projects" id="nav-projects">Work</a></li>
-      <li><a href="#software" id="nav-software">Software</a></li>
-      <li><a href="#team"     id="nav-experience">Team</a></li>
+      <li><a href="software.html" id="nav-software">Software</a></li>
+      <li><a href="team.html"     id="nav-experience">Team</a></li>
       <li><a href="#contact"  id="nav-contact">Contact</a></li>
     </ul>
     <div class="lang-toggle">
@@ -40,11 +40,11 @@
 <!-- Mobile nav drawer -->
 <div class="nav-mobile" id="navMobile">
   <ul>
-    <li><a href="#about"    id="mnav-about"      onclick="closeMobileNav()">About</a></li>
-    <li><a href="#projects" id="mnav-projects"   onclick="closeMobileNav()">Work</a></li>
-    <li><a href="#software" id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
-    <li><a href="#team"     id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
-    <li><a href="#contact"  id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
+    <li><a href="#about"        id="mnav-about"      onclick="closeMobileNav()">About</a></li>
+    <li><a href="#projects"     id="mnav-projects"   onclick="closeMobileNav()">Work</a></li>
+    <li><a href="software.html" id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
+    <li><a href="team.html"     id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
+    <li><a href="#contact"      id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
   </ul>
 </div>
 
@@ -136,12 +136,6 @@
     <span class="section-num">02</span>
     <h2 class="section-title" id="projects-heading">Work</h2>
     <div class="section-line"></div>
-  </div>
-  <div class="portfolio-filter">
-    <button class="filter-btn active" data-filter="all"      id="filter-all">All</button>
-    <button class="filter-btn"        data-filter="robotics" id="filter-robotics">Robotics</button>
-    <button class="filter-btn"        data-filter="safety"   id="filter-safety">Safety</button>
-    <button class="filter-btn"        data-filter="metal"    id="filter-metal">Sheet Metal</button>
   </div>
   <div class="projects-grid">
 
@@ -267,124 +261,6 @@
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- ══ SOFTWARE ══════════════════════════════════════════════════ -->
-<section id="software">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2 class="section-title" id="sw-heading">Software</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="software-card">
-    <div class="sw-left">
-      <div class="sw-label" id="sw-label">Active Product · easemanual.eu</div>
-      <div class="sw-title">Mechanical<br>ExpertEase</div>
-      <p class="sw-desc" id="sw-desc"></p>
-      <ul class="sw-features">
-        <li id="sw-f1">Technical calculations</li><li id="sw-f2">Load diagrams</li>
-        <li id="sw-f3">A3 vehicle drawings</li><li id="sw-f4">Auto Word report</li>
-        <li id="sw-f5">Shafts &amp; bearings</li><li id="sw-f6">Stability &amp; braking</li>
-        <li id="sw-f7">Welds &amp; springs</li><li id="sw-f8">Cranes &amp; platforms</li>
-      </ul>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="https://www.easemanual.eu" target="_blank" rel="noopener" class="btn-primary" id="sw-cta1">View Product →</a>
-        <a href="https://www.easemanual.eu/pricing" target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border:2px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s;"
-           id="sw-cta2">Pricing</a>
-      </div>
-    </div>
-    <div class="sw-right">
-      <div class="sw-screenshot">
-        <div class="ss-bar">
-          <div class="ss-dot" style="background:#d45a4a"></div>
-          <div class="ss-dot" style="background:#e8b840"></div>
-          <div class="ss-dot" style="background:#42a84a"></div>
-        </div>
-        <div class="ss-body">
-          <div class="ss-sidebar">
-            <div class="ss-item active"></div><div class="ss-item"></div><div class="ss-item"></div>
-            <div class="ss-item"></div><div class="ss-item"></div><div class="ss-item"></div>
-            <div class="ss-item"></div><div class="ss-item"></div>
-          </div>
-          <div class="ss-main">
-            <div class="ss-row accent"></div>
-            <div class="ss-row short"></div>
-            <div class="ss-table">
-              <div class="ss-thead"><div class="ss-th"></div><div class="ss-th"></div><div class="ss-th"></div><div class="ss-th"></div></div>
-              <div class="ss-rows"><div class="ss-r"></div><div class="ss-r"></div><div class="ss-r"></div><div class="ss-r"></div><div class="ss-r"></div></div>
-            </div>
-            <div class="ss-row accent" style="width:38%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TEAM ══════════════════════════════════════════════════════ -->
-<section id="team">
-  <p class="edu-strip-title" id="edu-strip-title">Founder — Dimitrios Moudiotis · 5 Universities in 3 Countries</p>
-  <div class="edu-cards">
-
-    <!-- AUTH -->
-    <div class="edu-card blue">
-      <div class="edu-logo-wrap" style="background:rgba(0,80,160,.18);">
-        <img src="images/LogoAUTH.png" alt="AUTH">
-      </div>
-      <div class="edu-degree" id="edu1-deg">BEng</div>
-      <div class="edu-name" id="edu1-name">Mechanical Engineering</div>
-      <div class="edu-country">AUTH · Greece</div>
-    </div>
-
-    <!-- Ecole Centrale Paris -->
-    <div class="edu-card red">
-      <div class="edu-logo-wrap" style="background:rgba(160,0,0,.15);">
-        <img src="images/ecole_centrale_paris_logo.png" alt="ECP">
-      </div>
-      <div class="edu-degree" id="edu2-deg">MSc</div>
-      <div class="edu-name" id="edu2-name">École Centrale Paris</div>
-      <div class="edu-country">Paris · France</div>
-    </div>
-
-    <!-- IFP School -->
-    <div class="edu-card green">
-      <div class="edu-logo-wrap" style="background:rgba(0,120,60,.15);">
-        <img src="images/IFP_Logo.png" alt="IFP">
-      </div>
-      <div class="edu-degree" id="edu3-deg">MSc</div>
-      <div class="edu-name" id="edu3-name">IFP School</div>
-      <div class="edu-country">Paris · France</div>
-    </div>
-
-    <!-- IHU -->
-    <div class="edu-card purple">
-      <div class="edu-logo-wrap" style="background:rgba(100,0,150,.15);">
-        <img src="images/ihu_logo.png" alt="IHU">
-      </div>
-      <div class="edu-degree" id="edu4-deg">MSc</div>
-      <div class="edu-name" id="edu4-name">Int'l Hellenic University</div>
-      <div class="edu-country">Thessaloniki · Greece</div>
-    </div>
-
-    <!-- WUST -->
-    <div class="edu-card navy">
-      <div class="edu-logo-wrap" style="background:rgba(0,40,120,.2);">
-        <img src="images/wust_logo.png" alt="WUST" onerror="this.parentElement.innerHTML='🎓'">
-      </div>
-      <div class="edu-degree" id="edu5-deg">MBA</div>
-      <div class="edu-name" id="edu5-name">Washington Univ. of Science &amp; Technology</div>
-      <div class="edu-country">Washington · USA</div>
-    </div>
-
-  </div>
-
-  <div class="team-linkedin">
-    <a href="https://www.linkedin.com/in/moudiotis/" target="_blank" rel="noopener" class="team-linkedin-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
-      Connect on LinkedIn
-    </a>
   </div>
 </section>
 
