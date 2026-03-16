@@ -135,17 +135,31 @@ function applyLang(lang) {
    CURSOR — minimal circle
 ═══════════════════════════════════════════════════════════════ */
 function initCursor() {
-  const dot = document.getElementById('cursor');
+  const dot  = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
   if (!dot) return;
 
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
   document.addEventListener('mousemove', e => {
-    dot.style.left = e.clientX + 'px';
-    dot.style.top  = e.clientY + 'px';
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
   });
 
+  if (ring) {
+    (function lerpRing() {
+      rx += (mx - rx) * 0.14;
+      ry += (my - ry) * 0.14;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(lerpRing);
+    })();
+  }
+
   document.querySelectorAll('a, button, .project-card, .skill-item, .vctrl, .edu-card').forEach(el => {
-    el.addEventListener('mouseenter', () => dot.classList.add('hover'));
-    el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
+    el.addEventListener('mouseenter', () => { dot.classList.add('hover'); if (ring) ring.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); if (ring) ring.classList.remove('hover'); });
   });
 
   document.addEventListener('mousedown', () => {
@@ -153,8 +167,8 @@ function initCursor() {
     setTimeout(() => dot.classList.remove('click'), 200);
   });
 
-  document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; });
-  document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; });
+  document.addEventListener('mouseleave', () => { dot.style.opacity='0'; if (ring) ring.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity='1'; if (ring) ring.style.opacity='1'; });
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -234,37 +248,38 @@ function initThree() {
   camera.lookAt(0, 0.5, 0);
   clock = new THREE.Clock();
 
-  /* Lights — brighter for lighter theme */
-  scene.add(new THREE.AmbientLight(0x9ab8d8, 1.1));
-  const key = new THREE.DirectionalLight(0xffffff, 2.4);
+  /* Lights — metallic with dark red rim */
+  scene.add(new THREE.AmbientLight(0x606870, 0.85));
+  const key = new THREE.DirectionalLight(0xffffff, 3.4);
   key.position.set(8, 14, 10); key.castShadow = true;
   key.shadow.mapSize.set(2048,2048);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0x5090e8, 0.9);
+  const fill = new THREE.DirectionalLight(0x7090c0, 1.1);
   fill.position.set(-9, 4, -7);
   scene.add(fill);
-  const rim = new THREE.PointLight(0xe04040, 1.0, 55);
+  const rim = new THREE.PointLight(0xff1a1a, 1.6, 55);
   rim.position.set(-5, 9, -10);
   scene.add(rim);
-  const bot = new THREE.PointLight(0x2880e0, 0.7, 45);
+  const bot = new THREE.PointLight(0x1850c0, 0.9, 45);
   bot.position.set(5, -9, 5);
   scene.add(bot);
-  const top = new THREE.DirectionalLight(0xd0e8ff, 0.6);
-  top.position.set(0, 20, 0);
-  scene.add(top);
+  const spec = new THREE.DirectionalLight(0xffe8d0, 0.9);
+  spec.position.set(-2, -8, 14);
+  scene.add(spec);
 
   rotGroup = new THREE.Group();
   rotGroup.rotation.x = 0.32;
+  rotGroup.scale.set(0.7, 0.7, 0.7);
   scene.add(rotGroup);
 
-  /* Materials — brightened for lighter theme */
-  const mSteel = new THREE.MeshStandardMaterial({color:0x6a7888, metalness:.93, roughness:.14});
-  const mBlue  = new THREE.MeshStandardMaterial({color:0x2a50a0, metalness:.88, roughness:.16});
-  const mBrass = new THREE.MeshStandardMaterial({color:0xd4a860, metalness:.96, roughness:.08});
-  const mGold  = new THREE.MeshStandardMaterial({color:0xe8c070, metalness:.95, roughness:.07});
-  const mShaft = new THREE.MeshStandardMaterial({color:0x7080a0, metalness:.96, roughness:.10});
-  const mCase  = new THREE.MeshStandardMaterial({color:0x2e3f5e, metalness:.72, roughness:.32});
-  const mRing  = new THREE.MeshStandardMaterial({color:0x3a4d70, metalness:.86, roughness:.18});
+  /* Materials — metallic industrial with dark red */
+  const mSteel   = new THREE.MeshStandardMaterial({color:0x7c8c9a, metalness:.97, roughness:.09});
+  const mCrimson = new THREE.MeshStandardMaterial({color:0x6e1212, metalness:.86, roughness:.24});
+  const mBrass   = new THREE.MeshStandardMaterial({color:0xbe9228, metalness:.97, roughness:.09});
+  const mGold    = new THREE.MeshStandardMaterial({color:0xd4a820, metalness:.96, roughness:.07});
+  const mShaft   = new THREE.MeshStandardMaterial({color:0x6888aa, metalness:.98, roughness:.07});
+  const mCase    = new THREE.MeshStandardMaterial({color:0x1c2028, metalness:.82, roughness:.28});
+  const mRing    = new THREE.MeshStandardMaterial({color:0x521414, metalness:.89, roughness:.20});
 
   const extH = {depth:.75, bevelEnabled:true, bevelThickness:.05, bevelSize:.04, bevelSegments:4};
   const extM = {depth:.58, bevelEnabled:true, bevelThickness:.04, bevelSize:.03, bevelSegments:3};
@@ -277,7 +292,7 @@ function initThree() {
   /* SUN GEAR — 18 teeth, pitch radius 1.8 */
   const gSun = new THREE.Mesh(
     new THREE.ExtrudeGeometry(makeGear(18, 1.8, 0.46, 0.26, 6), extH),
-    mBlue
+    mCrimson
   );
   gSun.castShadow = true;
   rotGroup.add(gSun);
@@ -432,17 +447,26 @@ function initThree() {
   rotGroup.add(hRing);
   parts.push({mesh:hRing, o:hRing.position.clone(), d:new THREE.Vector3(0,0,0), spin:0});
 
-  /* Mouse / touch drag */
+  /* Mouse / touch drag + click to toggle explode */
+  let msx = 0, msy = 0, didDrag = false;
   canvas.addEventListener('mousedown', e => {
-    isDragging = true; prevMouse = {x:e.clientX, y:e.clientY};
+    isDragging = true; didDrag = false;
+    msx = e.clientX; msy = e.clientY;
+    prevMouse = {x:e.clientX, y:e.clientY};
   });
-  window.addEventListener('mouseup', () => isDragging = false);
+  window.addEventListener('mouseup', () => { isDragging = false; });
   window.addEventListener('mousemove', e => {
     if (!isDragging) return;
+    if (Math.abs(e.clientX-msx) > 4 || Math.abs(e.clientY-msy) > 4) didDrag = true;
     rotGroup.rotation.y += (e.clientX - prevMouse.x) * .010;
     rotGroup.rotation.x += (e.clientY - prevMouse.y) * .007;
     rotGroup.rotation.x = Math.max(-.9, Math.min(.9, rotGroup.rotation.x));
     prevMouse = {x:e.clientX, y:e.clientY};
+  });
+  canvas.addEventListener('click', () => {
+    if (didDrag) return;
+    if (currentMode !== 'explode') setMode('explode');
+    else resetModel();
   });
   canvas.addEventListener('touchstart', e => {
     isDragging = true; prevMouse = {x:e.touches[0].clientX, y:e.touches[0].clientY};
@@ -469,8 +493,8 @@ function animate() {
 
   if (!isDragging && currentMode === 'rotate') {
     rotGroup.rotation.y += .004;
-    rotGroup.position.y = Math.sin(floatT*.52) * .20;
-    rotGroup.position.x = Math.sin(floatT*.38) * .06;
+    rotGroup.position.y = Math.sin(floatT*.52) * .04;
+    rotGroup.position.x = 0;
   }
 
   parts.forEach(p => { if (p.spin !== 0) p.mesh.rotation.z += p.spin * dt; });
@@ -613,9 +637,11 @@ function initCarousel() {
       if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
     }, {passive:true});
 
-    // Auto-advance every 2 s
-    let timer = setInterval(() => goTo(current + 1), 2000);
-    function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 2000); }
+    // Auto-advance every 5s with random stagger so carousels don't all tick at once
+    let timer;
+    function startTimer() { timer = setInterval(() => goTo(current + 1), 5000); }
+    setTimeout(startTimer, Math.random() * 4000);
+    function resetTimer() { clearInterval(timer); setTimeout(startTimer, 300); }
   });
 }
 
