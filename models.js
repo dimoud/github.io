@@ -7,6 +7,8 @@ let scene, camera, renderer, clock;
 let rotGroup = null, parts = [];
 let explodeT = 0, exploding = false, isDragging = false;
 let prevMouse = { x: 0, y: 0 }, floatT = 0, crankT = 0;
+/* global crank/crank-rod defaults (used by piston kinematics) */
+let crankCenterY = -1.5, crankRadius = 0.72, conrodLen = 1.6;
 let currentMode = 'rotate';
 let currentModelIdx = 0;
 let modelCycleTimer = null;
@@ -321,18 +323,26 @@ function buildPistonEngine(group, m) {
     ps.push({mesh:head,o:head.position.clone(),d:new THREE.Vector3(cx*1.5,6.0,i*.5-.75),spin:0});
   });
 
-  /* 4 Pistons */
+  /* 4 Pistons + connecting rods (paired objects for correct kinematics) */
   CX.forEach((cx,i)=>{
     const piston=new THREE.Mesh(new THREE.CylinderGeometry(.44,.44,.65,24),m.chrome);
     piston.position.set(cx,.5,0); group.add(piston);
-    ps.push({mesh:piston,o:new THREE.Vector3(cx,.5,0),d:new THREE.Vector3(cx*1.5,5.5,i*.5-.75),spin:0,pistonPhase:(i/4)*Math.PI*2});
-  });
 
-  /* 4 Connecting rods */
-  CX.forEach((cx,i)=>{
-    const rod=new THREE.Mesh(new THREE.BoxGeometry(.12,1.4,.12),m.steel);
+    const rodGeom=new THREE.BoxGeometry(.12,1.4,.12);
+    const rod=new THREE.Mesh(rodGeom,m.steel);
     rod.position.set(cx,-.1,0); group.add(rod);
-    ps.push({mesh:rod,o:new THREE.Vector3(cx,-.1,0),d:new THREE.Vector3(cx*1.5,5.0,i*.5-.75),spin:0,conrodPhase:(i/4)*Math.PI*2});
+
+    ps.push({
+      pistonMesh: piston,
+      rodMesh: rod,
+      oP: piston.position.clone(),
+      oR: rod.position.clone(),
+      d: new THREE.Vector3(cx*1.5,5.5,i*.5-.75),
+      spin: 0,
+      pistonPhase: (i/4)*Math.PI*2,
+      conrodPhase: (i/4)*Math.PI*2,
+      cx: cx
+    });
   });
 
   /* Crankshaft main journal */
@@ -491,15 +501,27 @@ function animate() {
   }
 
   parts.forEach(p=>{
-    if (p.spin!==0) p.mesh.rotation.z+=p.spin*dt;
-    /* Piston / conrod animation (only when assembled) */
-    if (p.pistonPhase!==undefined && explodeT<.01) {
-      const y=Math.sin(crankT*3.0+p.pistonPhase)*0.65;
-      p.mesh.position.y=p.o.y+y;
-    }
-    if (p.conrodPhase!==undefined && explodeT<.01) {
-      const y=Math.sin(crankT*3.0+p.conrodPhase)*0.42;
-      p.mesh.position.y=p.o.y+y;
+    if (p.spin && p.mesh) p.mesh.rotation.z += p.spin * dt;
+
+    /* Piston + connecting-rod kinematics (only when assembled) */
+    if (p.pistonMesh !== undefined && explodeT < .01) {
+      const crankAngle = crankT * 3.0 + p.pistonPhase;
+      const pistonY = p.oP.y + Math.sin(crankAngle) * 0.65;
+      p.pistonMesh.position.y = pistonY;
+
+      /* simple crank pin position (small X offset to give rod an angle) */
+      const pinX = p.cx + Math.cos(crankAngle) * (crankRadius * 0.5);
+      const pinY = crankCenterY + Math.sin(crankAngle) * crankRadius;
+      const pistonPos = new THREE.Vector3(p.cx, pistonY, 0);
+      const pinPos = new THREE.Vector3(pinX, pinY, 0);
+
+      const rodVec = new THREE.Vector3().subVectors(pistonPos, pinPos);
+      const rodLen = rodVec.length();
+      const baseLen = 1.4; /* original rod geometry length */
+
+      p.rodMesh.position.set((pistonPos.x + pinPos.x) * 0.5, (pistonPos.y + pinPos.y) * 0.5, 0);
+      p.rodMesh.scale.y = rodLen / baseLen;
+      p.rodMesh.rotation.z = Math.atan2(rodVec.x, rodVec.y);
     }
   });
 
@@ -512,9 +534,18 @@ function animate() {
 function applyExplode(t) {
   const e=t<.5?2*t*t:-1+(4-2*t)*t;
   parts.forEach(p=>{
-    p.mesh.position.x=p.o.x+p.d.x*3.0*e;
-    p.mesh.position.y=p.o.y+p.d.y*3.0*e;
-    p.mesh.position.z=p.o.z+p.d.z*3.0*e;
+    if (p.mesh) {
+      p.mesh.position.x = p.o.x + p.d.x * 3.0 * e;
+      p.mesh.position.y = p.o.y + p.d.y * 3.0 * e;
+      p.mesh.position.z = p.o.z + p.d.z * 3.0 * e;
+    } else if (p.pistonMesh !== undefined) {
+      p.pistonMesh.position.x = p.oP.x + p.d.x * 3.0 * e;
+      p.pistonMesh.position.y = p.oP.y + p.d.y * 3.0 * e;
+      p.pistonMesh.position.z = p.oP.z + p.d.z * 3.0 * e;
+      p.rodMesh.position.x = p.oR.x + p.d.x * 3.0 * e;
+      p.rodMesh.position.y = p.oR.y + p.d.y * 3.0 * e;
+      p.rodMesh.position.z = p.oR.z + p.d.z * 3.0 * e;
+    }
   });
 }
 

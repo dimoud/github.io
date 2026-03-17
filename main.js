@@ -21,7 +21,7 @@ const LANG = {
     about_p1:'Η <strong>Expertease Designs</strong> είναι studio μηχανολογικού σχεδιασμού με επικεφαλής τον <strong>Δημήτριο Μουδιώτη</strong>, Μηχανολόγο Μηχανικό ΑΠΘ με 7 χρόνια εμπειρίας και 4 μεταπτυχιακούς τίτλους: MSc École Centrale Paris, MSc IFP School, MSc ΔΙΠαΕ, MBA ΗΠΑ.',
     about_quote:'«Η μηχανική είναι η τέχνη να μετατρέπεις μια ιδέα σε κάτι που μπορείς να κρατήσεις στα χέρια σου.»',
     about_p2:'Αναλαμβάνουμε τον πλήρη κύκλο ζωής ενός προϊόντος — από τον αρχικό σχεδιασμό και το BOM, μέχρι την τρισδιάστατη εκτύπωση, την κατεργασία φύλλων μετάλλου και τη διαχείριση έργου.',
-    about_p3:'Έδρα: <strong>Αθήνα, Ελλάδα</strong> — Αναλαμβάνουμε έργα σε Ελλάδα και εξωτερικό.',
+    about_p3:'Έδρα: <strong><span class="accent-red">Αθήνα, Ελλάδα</span></strong> — Αναλαμβάνουμε έργα σε Ελλάδα και εξωτερικό.',
     about_p4:'Πιστεύουμε ότι η μηχανική είναι δημιουργική πειθαρχία. Οι καλύτερες λύσεις είναι ακριβείς, κομψές και κατασκευάσιμες από την πρώτη μέρα.',
     val_1_title:'Ακρίβεια', val_1_text:'FEA, ανοχές, δοκιμές σε πραγματικές συνθήκες. Δεν προσεγγίζουμε ποτέ.',
     val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο σε συναρμολόγηση — σχεδιασμός, BOM, κατασκευή, παράδοση.',
@@ -31,6 +31,10 @@ const LANG = {
     proc_1_title:'Briefing', proc_1_text:'Μελετάμε περιορισμούς, υλικά, περιβάλλον και χρονοδιάγραμμα πριν σχεδιάσουμε την πρώτη γραμμή.',
     proc_2_title:'Σχεδιασμός', proc_2_text:'Πλήρες 3D μοντέλο σε SolidWorks, FEA, BOM και τεχνικά σχέδια — κάθε παραδοτέο έτοιμο για παραγωγή.',
     proc_3_title:'Παράδοση', proc_3_text:'Εποπτεία κατασκευής, διαχείριση προμηθευτών και παράδοση δοκιμασμένης συναρμολόγησης.',
+    principles_label:'Αρχές μας',
+    prin_1_title:'Ακρίβεια', prin_1_text:'Κάθε διάσταση έχει σημασία. Σχεδιάζουμε με ανοχές, επαληθεύουμε με πρωτότυπα και παραδίδουμε εξαρτήματα που <span class="accent-red">ταιριάζουν από την πρώτη φορά</span>.',
+    prin_2_title:'Ακεραιότητα', prin_2_text:'<span class="accent-red">Ειλικρινή χρονοδιαγράμματα, διαφανές κόστος</span> και άμεση επικοινωνία — χωρίς εκπλήξεις, μόνο αποτελέσματα.',
+    prin_3_title:'Καινοτομία', prin_3_text:'Εξερευνούμε συνεχώς νέα εργαλεία, υλικά και μεθόδους — FEA, <span class="accent-red">προηγμένη κατασκευή</span> και βελτιστοποίηση σχεδίου σε κάθε έργο.',
     projects_heading:'Έργα',
     sw_heading:'Λογισμικό', sw_label:'Ενεργό Προϊόν · easemanual.eu',
     sw_desc:'Ισχυρό λογισμικό που αυτοματοποιεί τη δημιουργία τεχνικής μελέτης για άδεια κυκλοφορίας οχημάτων ειδικής χρήσης — βάσει ΥΑ 80255/4693/19/2020. Φτιαγμένο από μηχανικούς για μηχανικούς.',
@@ -61,7 +65,7 @@ const LANG = {
     about_p1:'<strong>Expertease Designs</strong> is an Athens-based mechanical engineering studio led by <strong>Dimitrios Moudiotis</strong> — Mechanical Engineer (AUTH), with 7 years of experience and four postgraduate degrees: MSc École Centrale Paris, MSc IFP School, MSc IHU, and MBA (USA).',
     about_quote:'"Engineering is the art of turning an idea into something you can hold in your hands."',
     about_p2:'We cover the full product lifecycle — from initial design and BOM to 3D printing, sheet metal fabrication, and project management.',
-    about_p3:'Based in <strong>Athens, Greece</strong> — available for projects across Greece and internationally.',
+    about_p3:'Based in <strong><span class="accent-red">Athens, Greece</span></strong> — available for projects across Greece and internationally.',
     about_p4:'We believe engineering is a creative discipline. The best solutions are precise, elegant, and manufacturable from day one — no excess complexity, no unnecessary iterations.',
     val_1_title:'Precision', val_1_text:'FEA-verified, tolerance-stacked, tested in real conditions. We don\'t approximate.',
     val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.',
@@ -71,6 +75,10 @@ const LANG = {
     proc_1_title:'Brief', proc_1_text:'We study your constraints, material, environment, and timeline before drawing a single line.',
     proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings — every deliverable ready for production.',
     proc_3_title:'Deliver', proc_3_text:'We supervise fabrication, manage suppliers, and hand over a tested, production-ready assembly.',
+    principles_label:'How We Work',
+    prin_1_title:'Precision', prin_1_text:'Every dimension matters. We design to tolerance, prototype to verify, and deliver parts that <span class="accent-red">fit first time</span>.',
+    prin_2_title:'Integrity', prin_2_text:'<span class="accent-red">Honest timelines, transparent costs</span>, and direct communication — no surprises, just results.',
+    prin_3_title:'Innovation', prin_3_text:'We constantly explore new tools, materials, and methods to deliver smarter solutions — FEA, <span class="accent-red">advanced manufacturing</span>, and design optimisation built into every workflow.',
     projects_heading:'Work',
     sw_heading:'Software', sw_label:'Active Product · easemanual.eu',
     sw_desc:'Powerful software automating the creation of technical studies for special-purpose vehicle licensing — per Greek regulation YA 80255/4693/19/2020. Built by engineers for engineers.',
@@ -119,6 +127,10 @@ function applyLang(lang) {
   set('proc-1-title',t.proc_1_title); set('proc-1-text',t.proc_1_text);
   set('proc-2-title',t.proc_2_title); set('proc-2-text',t.proc_2_text);
   set('proc-3-title',t.proc_3_title); set('proc-3-text',t.proc_3_text);
+  set('principles-label',t.principles_label);
+  set('prin-1-title',t.prin_1_title); set('prin-1-text',t.prin_1_text,true);
+  set('prin-2-title',t.prin_2_title); set('prin-2-text',t.prin_2_text,true);
+  set('prin-3-title',t.prin_3_title); set('prin-3-text',t.prin_3_text,true);
   set('projects-heading',t.projects_heading);
   set('sw-heading',t.sw_heading); set('sw-label',t.sw_label);
   set('sw-desc',t.sw_desc);
@@ -369,11 +381,47 @@ function initPortDrag() {
   document.addEventListener('touchend',  onUp, {passive:true});
 }
 
+function addPortImageClickHandlers() {
+  ['portColLeft', 'portColRight'].forEach(colId => {
+    const colEl = document.getElementById(colId);
+    if (!colEl) return;
+    const imgWrap = colEl.querySelector('.port-image-wrap');
+    if (!imgWrap) return;
+    imgWrap.addEventListener('click', () => {
+      const projIdx = colId === 'portColLeft' ? portLeft : portRight;
+      const project = PORTFOLIO_DATA[projIdx];
+      if (project.images.length <= 1) return;
+      colImgIdx[colId] = (colImgIdx[colId] + 1) % project.images.length;
+      const img = colEl.querySelector('.port-img');
+      if (!img) return;
+      img.style.opacity = '0';
+      setTimeout(() => { img.src = project.images[colImgIdx[colId]]; img.style.opacity = '1'; }, 280);
+      clearInterval(colImgTimers[colId]);
+      startColImageCycle(colEl, project);
+    });
+  });
+}
+
 function initPortfolio() {
   initPortDots();
   renderPortfolio();
   initPortDrag();
+  addPortImageClickHandlers();
   setTimeout(startPortTimer, 1200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════════ */
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal-up');
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.10 });
+  els.forEach(el => io.observe(el));
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -429,5 +477,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initPortfolio();
   initMobileNav();
   initContactForm();
+  initScrollReveal();
   setTimeout(initThree, 120);
 });
