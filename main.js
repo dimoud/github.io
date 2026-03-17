@@ -31,7 +31,7 @@ const LANG = {
     proc_3_title:'Παράδοση', proc_3_text:'Συντονίζουμε υπεργολάβους, επιβλέπουμε την κατασκευή και διασφαλίζουμε τήρηση προτύπων ποιότητας, αξιοπιστίας και ασφάλειας — παραδίδοντας δοκιμασμένο, έτοιμο προς λειτουργία αποτέλεσμα.',
     principles_label:'Αρχές μας',
     prin_1_title:'Γνώση Κατασκευής', prin_1_text:'Σχεδιάζουμε γνωρίζοντας πώς κατασκευάζονται τα εξαρτήματα — κατεργασία, κοπή, συγκόλληση, εκτύπωση. Κάθε απόφαση αντικατοπτρίζει τους <span class="accent-red">πραγματικούς περιορισμούς</span> του εργαστηρίου, πριν το σχέδιο φτάσει εκεί.',
-    prin_2_title:'Μηδέν Επανεργασία', prin_2_text:'Τα σφάλματα κατασκευής είναι το <span class="accent-red">πραγματικό κόστος</span> — όχι τα υλικά. Σχεδιάζω για να τα εξαλείψω: ανοχές που τηρούνται, συναρμολογήσεις που ταιριάζουν από την πρώτη, προδιαγραφές ευθυγραμμισμένες με τις δυνατότητες του κατασκευαστή.',
+    prin_2_title:'Σωστά Εξαρχής', prin_2_text:'Τα λάθη στην κατασκευή είναι το <span class="accent-red">πραγματικό κόστος</span> — όχι τα υλικά. Σχεδιάζουμε ώστε να μην υπάρχουν: ανοχές που τηρούνται, εξαρτήματα που ταιριάζουν από την πρώτη φορά, προδιαγραφές που ανταποκρίνονται στο τι μπορεί να κάνει ο κατασκευαστής.',
     prin_3_title:'Πλήρης Ανάληψη', prin_3_text:'Από τον σχεδιασμό, τους υπολογισμούς και τις προσομοιώσεις ως τον συντονισμό κατασκευής, την επικοινωνία με προμηθευτές, την επίβλεψη συναρμολόγησης και τον <span class="accent-red">τελικό έλεγχο</span> — ένας μηχανικός, πλήρης υπευθυνότητα.',
     prin_4_title:'Web Design', prin_4_text:'Φτιάχνουμε <span class="accent-green">πλήρως custom ιστοσελίδες</span> — χειρόγραφο κώδικα, χωρίς templates, χωρίς builders. <a href="webdesign.html" class="principle-cta" id="prin-4-cta-el">Δείτε τις Υπηρεσίες Web Design →</a>',
     wd_label:'Αποκλειστικό Digital · Χωρίς Templates',
@@ -82,6 +82,12 @@ const LANG = {
     sw_f1:'Τεχνικοί υπολογισμοί', sw_f2:'Διαγράμματα φόρτισης', sw_f3:'Σχέδια A3', sw_f4:'Αυτόματη μελέτη Word',
     sw_f5:'Άξονες & εφεδρανισμοί', sw_f6:'Ευστάθεια & πέδηση', sw_f7:'Συγκολλήσεις & ελατήρια', sw_f8:'Γερανοί & καλαθοφόρα',
     sw_cta1:'Δείτε το Προϊόν →', sw_cta2:'Τιμολόγηση',
+    team_heading:'Ομάδα',
+    founder_name:'Δημήτρης<br>Μουδιώτης',
+    founder_label:'Ιδρυτής &amp; Επικεφαλής Μηχανικός',
+    founder_bio:'Μηχανολόγος Μηχανικός (ΑΠΘ) με 7+ χρόνια εμπειρίας σε ρομποτική, εξοπλισμό ασφαλείας, βιομηχανικά μηχανήματα και ακριβή κατασκευή. Σπούδασε σε πέντε πανεπιστήμια στην Ελλάδα, τη Γαλλία και τις ΗΠΑ.',
+    fcs_years:'Χρόνια', fcs_projects:'Έργα', fcs_degrees:'Μεταπτυχιακά', fcs_scholarships:'Υποτροφίες',
+    founder_profile_btn:'Πλήρες Προφίλ →',
     contact_label:'// Ας Δουλέψουμε Μαζί',
     contact_heading:'Έχετε κάποιο project;',
     contact_sub:'Ένα εξάρτημα ή ολόκληρο project — η Expertease είναι εδώ.',
@@ -167,6 +173,12 @@ const LANG = {
     sw_f1:'Technical calculations', sw_f2:'Load diagrams', sw_f3:'A3 vehicle drawings', sw_f4:'Auto Word report',
     sw_f5:'Shafts & bearings', sw_f6:'Stability & braking', sw_f7:'Welds & springs', sw_f8:'Cranes & platforms',
     sw_cta1:'View Product →', sw_cta2:'Pricing',
+    team_heading:'Team',
+    founder_name:'Dimitrios<br>Moudiotis',
+    founder_label:'Founder &amp; Lead Engineer',
+    founder_bio:'Mechanical Engineer (AUTH) with 7+ years of experience across robotics, safety equipment, industrial machinery, and precision fabrication. Studied at five universities in Greece, France, and the USA.',
+    fcs_years:'Years', fcs_projects:'Projects', fcs_degrees:'PG Degrees', fcs_scholarships:'Scholarships',
+    founder_profile_btn:'Full Profile →',
     contact_label:'// Let\'s Work Together',
     contact_heading:'Got a project in mind?',
     contact_sub:'From designing a single component to managing an entire project — Expertease is here.',
@@ -214,6 +226,12 @@ function applyLang(lang) {
   set('prin-2-title',t.prin_2_title); set('prin-2-text',t.prin_2_text,true);
   set('prin-3-title',t.prin_3_title); set('prin-3-text',t.prin_3_text,true);
   set('prin-4-title',t.prin_4_title); set('prin-4-text',t.prin_4_text,true);
+  set('team-heading',t.team_heading);
+  set('founder-name',t.founder_name,true);
+  set('founder-label',t.founder_label,true); set('founder-bio',t.founder_bio);
+  set('fcs-years',t.fcs_years); set('fcs-projects',t.fcs_projects);
+  set('fcs-degrees',t.fcs_degrees); set('fcs-scholarships',t.fcs_scholarships);
+  set('founder-profile-btn',t.founder_profile_btn);
   set('projects-heading',t.projects_heading);
   set('sw-heading',t.sw_heading); set('sw-label',t.sw_label);
   set('sw-desc',t.sw_desc);
