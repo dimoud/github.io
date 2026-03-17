@@ -9,68 +9,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>
-.sw-page {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding-top: 70px;
-  background: linear-gradient(135deg, #0d1828 0%, #122040 100%);
-  position: relative; overflow: hidden;
-}
-.sw-page::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse at 25% 60%, rgba(30,79,160,.28) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 30%, rgba(58,120,212,.12) 0%, transparent 45%),
-    linear-gradient(rgba(58,120,212,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(58,120,212,.05) 1px, transparent 1px);
-  background-size: auto, auto, 44px 44px, 44px 44px;
-}
-.sw-page-inner {
-  position: relative; z-index: 2;
-  width: 100%; max-width: 1400px; margin: 0 auto;
-  padding: 70px 56px;
-  display: grid; grid-template-columns: minmax(340px,420px) 1fr; gap: 72px; align-items: start;
-}
-.sw-page-label {
-  font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--blue-lt); margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-.sw-page-label::before { content: ''; width: 18px; height: 1px; background: var(--blue-lt); }
-.sw-page-title {
-  font-family: var(--font-display); font-size: clamp(52px, 5.5vw, 78px);
-  letter-spacing: 1px; color: #fff; line-height: .95; margin-bottom: 22px;
-}
-.sw-page-desc {
-  font-size: 16px; line-height: 1.82; color: rgba(255,255,255,.62); margin-bottom: 30px;
-}
-.sw-page-features {
-  list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
-}
-.sw-page-features li {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: .5px;
-  color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 7px;
-}
-.sw-page-features li::before { content: '▸'; color: var(--blue-lt); font-size: 9px; }
-.sw-page-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-.sw-page-right {
-  display: flex; align-items: center; justify-content: center;
-}
-.sw-page-img {
-  width: 100%; border-radius: 8px;
-  box-shadow: 0 32px 80px rgba(0,0,0,.65);
-  border: 1px solid rgba(58,120,212,.3);
-}
-@media (max-width: 960px) {
-  .sw-page-inner { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
-  .sw-page-right { order: -1; }
-  .sw-page-img { max-width: 100%; margin: 0 auto; display: block; }
-}
-@media (max-width: 640px) {
-  .sw-page-inner { padding: 40px 16px; }
-}
-</style>
 </head>
 <body>
 

@@ -1,4 +1,4 @@
-═══════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
 
    models.js — Three 3D models cycling every 10 s
 
@@ -26,37 +26,61 @@ let currentModelIdx = 0;
 
 let modelCycleTimer = null;
 
+function createMachinedTexture() {
+  const size = 256;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#c2c2c2';
+  ctx.fillRect(0, 0, size, size);
+  ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+  ctx.lineWidth = 1;
+  for (let i = -size; i < size * 2; i += 5) {
+    ctx.beginPath();
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i - size, size);
+    ctx.stroke();
+  }
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(8, 8);
+  tex.anisotropy = 8;
+  return tex;
+}
 
 
 /* ── Materials ──────────────────────────────────────────────── */
 
 function makeMats() {
 
+  const machinedTex = createMachinedTexture();
+
   return {
 
-    chrome:   new THREE.MeshStandardMaterial({ color: 0xe8f4ff, metalness: 1.00, roughness: .03 }),
+    chrome:   new THREE.MeshStandardMaterial({ color: 0xdce8ec, metalness: .95, roughness: .15, map: machinedTex, normalMap: machinedTex, roughnessMap: machinedTex }),
 
-    steel:    new THREE.MeshStandardMaterial({ color: 0xaac4d8, metalness: .97,  roughness: .07 }),
+    steel:    new THREE.MeshStandardMaterial({ color: 0x8c9298, metalness: .92,  roughness: .38, map: machinedTex, normalMap: machinedTex, roughnessMap: machinedTex }),
 
-    blue:     new THREE.MeshStandardMaterial({ color: 0x1a55d0, metalness: .88,  roughness: .18 }),
+    blue:     new THREE.MeshStandardMaterial({ color: 0x243a5e, metalness: .88,  roughness: .44, map: machinedTex, normalMap: machinedTex }),
 
-    blueB:    new THREE.MeshStandardMaterial({ color: 0x3a8aff, metalness: .85,  roughness: .16 }),
+    blueB:    new THREE.MeshStandardMaterial({ color: 0x2e5080, metalness: .88,  roughness: .40, map: machinedTex, normalMap: machinedTex }),
 
-    gold:     new THREE.MeshStandardMaterial({ color: 0xf0c030, metalness: .96,  roughness: .07 }),
+    gold:     new THREE.MeshStandardMaterial({ color: 0xcfa234, metalness: .96,  roughness: .28, map: machinedTex, normalMap: machinedTex }),
 
-    brass:    new THREE.MeshStandardMaterial({ color: 0xd4a030, metalness: .97,  roughness: .09 }),
+    brass:    new THREE.MeshStandardMaterial({ color: 0xa8783a, metalness: .94,  roughness: .38, map: machinedTex, normalMap: machinedTex }),
 
-    orange:   new THREE.MeshStandardMaterial({ color: 0xff6820, metalness: .65,  roughness: .38, emissive: 0x441500 }),
+    orange:   new THREE.MeshStandardMaterial({ color: 0xa05228, metalness: .92,  roughness: .42, map: machinedTex, normalMap: machinedTex }),
 
-    dark:     new THREE.MeshStandardMaterial({ color: 0x1e2a3c, metalness: .87,  roughness: .28 }),
+    dark:     new THREE.MeshStandardMaterial({ color: 0x1c2228, metalness: .90,  roughness: .50, map: machinedTex, normalMap: machinedTex }),
 
-    darkB:    new THREE.MeshStandardMaterial({ color: 0x0c1828, metalness: .90,  roughness: .22 }),
+    darkB:    new THREE.MeshStandardMaterial({ color: 0x10161c, metalness: .90,  roughness: .55, map: machinedTex, normalMap: machinedTex }),
 
-    titanium: new THREE.MeshStandardMaterial({ color: 0x8899aa, metalness: .95,  roughness: .12 }),
+    titanium: new THREE.MeshStandardMaterial({ color: 0x8a9298, metalness: .93,  roughness: .42, map: machinedTex, normalMap: machinedTex }),
 
-    silver:   new THREE.MeshStandardMaterial({ color: 0xddeeff, metalness: .99,  roughness: .04 }),
+    silver:   new THREE.MeshStandardMaterial({ color: 0xe0e6ea, metalness: .96,  roughness: .20, map: machinedTex, normalMap: machinedTex }),
 
-    red:      new THREE.MeshStandardMaterial({ color: 0xdd2020, metalness: .80,  roughness: .28 }),
+    red:      new THREE.MeshStandardMaterial({ color: 0x7a2020, metalness: .90,  roughness: .44, map: machinedTex, normalMap: machinedTex }),
 
   };
 
@@ -68,27 +92,27 @@ function makeMats() {
 
 function addLights(s) {
 
-  s.add(new THREE.AmbientLight(0x7090c0, 1.4));
+  s.add(new THREE.AmbientLight(0x7090c0, 2.6));
 
-  const key = new THREE.DirectionalLight(0xffffff, 5.5);
+  const key = new THREE.DirectionalLight(0xffffff, 8.0);
 
   key.position.set(10, 16, 12); key.castShadow = true;
 
   key.shadow.mapSize.set(2048, 2048); s.add(key);
 
-  const fill = new THREE.DirectionalLight(0x5090e0, 2.2);
+  const fill = new THREE.DirectionalLight(0x5090e0, 4.0);
 
   fill.position.set(-10, 6, -8); s.add(fill);
 
-  const rim = new THREE.PointLight(0x40b0ff, 3.5, 65);
+  const rim = new THREE.PointLight(0x40b0ff, 4.5, 65);
 
   rim.position.set(-6, 12, -12); s.add(rim);
 
-  const bot = new THREE.PointLight(0x3070ff, 1.8, 55);
+  const bot = new THREE.PointLight(0x3070ff, 2.5, 55);
 
   bot.position.set(6, -10, 6); s.add(bot);
 
-  const top = new THREE.DirectionalLight(0xe0f0ff, 1.8);
+  const top = new THREE.DirectionalLight(0xe0f0ff, 2.8);
 
   top.position.set(0, 20, 0); s.add(top);
 
@@ -174,13 +198,13 @@ function buildGearbox(group, m) {
 
   const eR={depth:.82,bevelEnabled:true,bevelThickness:.072,bevelSize:.062,bevelSegments:4};
 
-  const OR = 2.85, pA = [0, Math.PI*2/3, Math.PI*4/3], pM = [m.gold, m.brass, m.silver];
+  const OR = 2.85, pA = [0, Math.PI*2/3, Math.PI*4/3], pM = [m.red, m.red, m.red];
 
 
 
   /* Sun gear */
 
-  const gs = new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(20,1.9,.52,.29,6),eH), m.blueB);
+  const gs = new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(20,1.9,.52,.29,6),eH), m.red);
 
   gs.castShadow=true; group.add(gs); ps.push({mesh:gs,o:gs.position.clone(),d:new THREE.Vector3(0,0,0),spin:.58});
 
@@ -218,7 +242,7 @@ function buildGearbox(group, m) {
 
   const gc=new THREE.Mesh(new THREE.ExtrudeGeometry(cS,{depth:.28,bevelEnabled:false}),m.dark);
 
-  gc.position.z=-.60; group.add(gc); ps.push({mesh:gc,o:gc.position.clone(),d:new THREE.Vector3(0,0,-2.9),spin:.17});
+  gc.position.z=.04; group.add(gc); ps.push({mesh:gc,o:gc.position.clone(),d:new THREE.Vector3(0,0,-2.9),spin:.17});
 
 
 
@@ -232,7 +256,7 @@ function buildGearbox(group, m) {
 
   const gBack=new THREE.Mesh(new THREE.ExtrudeGeometry(bS,{depth:.38,bevelEnabled:false}),m.dark);
 
-  gBack.position.z=-.94; group.add(gBack); ps.push({mesh:gBack,o:gBack.position.clone(),d:new THREE.Vector3(0,0,-6.2),spin:0});
+  gBack.position.z=-.36; group.add(gBack); ps.push({mesh:gBack,o:gBack.position.clone(),d:new THREE.Vector3(0,0,-6.2),spin:0});
 
 
 
@@ -246,7 +270,7 @@ function buildGearbox(group, m) {
 
   const gFront=new THREE.Mesh(new THREE.ExtrudeGeometry(fS,{depth:.32,bevelEnabled:false}),m.dark);
 
-  gFront.position.z=.93; group.add(gFront); ps.push({mesh:gFront,o:gFront.position.clone(),d:new THREE.Vector3(0,0,5.4),spin:0});
+  gFront.position.z=.78; group.add(gFront); ps.push({mesh:gFront,o:gFront.position.clone(),d:new THREE.Vector3(0,0,5.4),spin:0});
 
 
 
@@ -256,15 +280,15 @@ function buildGearbox(group, m) {
 
     const a=(i/8)*Math.PI*2, bx=Math.cos(a)*4.76, by=Math.sin(a)*4.76;
 
-    const bolt=new THREE.Mesh(new THREE.CylinderGeometry(.135,.135,2.28,8),m.brass);
+    const bolt=new THREE.Mesh(new THREE.CylinderGeometry(.135,.135,1.52,8),m.brass);
 
-    bolt.rotation.x=Math.PI/2; bolt.position.set(bx,by,.1); group.add(bolt);
+    bolt.rotation.x=Math.PI/2; bolt.position.set(bx,by,.37); group.add(bolt);
 
     ps.push({mesh:bolt,o:bolt.position.clone(),d:new THREE.Vector3(bx*.14,by*.14,0),spin:0});
 
     const head=new THREE.Mesh(new THREE.CylinderGeometry(.23,.23,.21,6),m.gold);
 
-    head.rotation.x=Math.PI/2; head.position.set(bx,by,1.07); group.add(head);
+    head.rotation.x=Math.PI/2; head.position.set(bx,by,1.13); group.add(head);
 
     ps.push({mesh:head,o:head.position.clone(),d:new THREE.Vector3(bx*.14,by*.14,1.75),spin:0});
 
@@ -288,7 +312,7 @@ function buildGearbox(group, m) {
 
   /* Bearing rings */
 
-  [-.56,1.01].forEach(z=>{
+  [-.10,.72].forEach(z=>{
 
     const br=new THREE.Mesh(new THREE.TorusGeometry(.37,.12,14,36),m.gold);
 
@@ -302,7 +326,7 @@ function buildGearbox(group, m) {
 
   const fl=new THREE.Mesh(new THREE.CylinderGeometry(.94,.94,.48,24),m.chrome);
 
-  fl.rotation.x=Math.PI/2; fl.position.z=-1.62; group.add(fl);
+  fl.rotation.x=Math.PI/2; fl.position.z=-.62; group.add(fl);
 
   ps.push({mesh:fl,o:fl.position.clone(),d:new THREE.Vector3(0,0,-5.9),spin:.17});
 
@@ -312,7 +336,7 @@ function buildGearbox(group, m) {
 
   const kw=new THREE.Mesh(new THREE.BoxGeometry(.15,.11,.50),m.steel);
 
-  kw.position.set(.25,0,-1.62); group.add(kw);
+  kw.position.set(.25,0,-.62); group.add(kw);
 
   ps.push({mesh:kw,o:kw.position.clone(),d:new THREE.Vector3(.7,0,-5.9),spin:0});
 
@@ -322,7 +346,7 @@ function buildGearbox(group, m) {
 
   const sp=new THREE.Mesh(new THREE.TorusGeometry(1.34,.16,12,30),m.chrome);
 
-  sp.position.z=1.68; group.add(sp); ps.push({mesh:sp,o:sp.position.clone(),d:new THREE.Vector3(0,0,4.6),spin:.58});
+  sp.position.z=1.10; group.add(sp); ps.push({mesh:sp,o:sp.position.clone(),d:new THREE.Vector3(0,0,4.6),spin:.58});
 
 
 
@@ -866,7 +890,7 @@ function initThree() {
 
 
 
-  loadModel(0);
+  loadModel();
 
   setupDrag(canvas, parent);
 
@@ -874,21 +898,14 @@ function initThree() {
 
 
 
-  /* Cycle models every 10 s */
-
-  modelCycleTimer=setInterval(()=>{
-
-    currentModelIdx=(currentModelIdx+1)%3;
-
-    loadModel(currentModelIdx);
-
-  }, 10000);
+  // Cycle models disabled; keep only gearbox.
+  modelCycleTimer = null;
 
 }
 
 
 
-function loadModel(idx) {
+function loadModel() {
 
   scene=new THREE.Scene();
 
@@ -910,12 +927,8 @@ function loadModel(idx) {
 
   const m=makeMats();
 
-  if (idx===0)      parts=buildGearbox(rotGroup,m);
-
-  else if (idx===1) parts=buildTurbofan(rotGroup,m);
-
-  else              parts=buildPistonEngine(rotGroup,m);
-
+  // Keep only gearbox model for this site.
+  parts=buildGearbox(rotGroup,m);
 
 
   /* Reset controls UI */
@@ -928,11 +941,9 @@ function loadModel(idx) {
 
   /* Update model indicator */
 
-  const labels=['PLANETARY GEARBOX','TURBOFAN ENGINE','V4 PISTON ENGINE'];
-
   const ind=document.getElementById('model-indicator');
 
-  if (ind) ind.textContent=labels[idx];
+  if (ind) ind.textContent='PLANETARY GEARBOX';
 
 }
 

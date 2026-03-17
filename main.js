@@ -322,6 +322,84 @@ function startPortTimer() {
   }, 5000);
 }
 
+function nextProjectForColumn(colId) {
+  const current = colId === 'portColLeft' ? portLeft : portRight;
+  const other = colId === 'portColLeft' ? portRight : portLeft;
+  let available = PORTFOLIO_DATA.map((_, i) => i).filter(i => i !== current && i !== other);
+  if (available.length === 0) {
+    available = PORTFOLIO_DATA.map((_, i) => i).filter(i => i !== current);
+  }
+  const next = available[Math.floor(Math.random() * available.length)];
+  if (colId === 'portColLeft') portLeft = next;
+  else portRight = next;
+  renderPortfolio();
+  resetPortTimer();
+}
+
+function initCustomCursor() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const cursor = document.createElement('div');
+  const ring = document.createElement('div');
+  cursor.id = 'custom-cursor';
+  ring.id = 'custom-cursor-ring';
+  document.body.appendChild(ring);
+  document.body.appendChild(cursor);
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let currentX = targetX;
+  let currentY = targetY;
+  let ringX = targetX;
+  let ringY = targetY;
+
+  document.addEventListener('mousemove', e => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  });
+
+  function animate() {
+    currentX += (targetX - currentX) * 0.35;
+    currentY += (targetY - currentY) * 0.35;
+
+    // ring follows the visible dot with a slight lag, then snaps when close enough
+    ringX += (currentX - ringX) * 0.15;
+    ringY += (currentY - ringY) * 0.15;
+
+    if (Math.abs(currentX - ringX) + Math.abs(currentY - ringY) < 0.4) {
+      ringX = currentX;
+      ringY = currentY;
+    }
+
+    cursor.style.transform = `translate3d(${currentX - 4}px, ${currentY - 4}px, 0)`;
+    ring.style.transform = `translate3d(${ringX - 16}px, ${ringY - 16}px, 0)`;
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+
+  const interactiveSelector = 'a, button, .port-image-wrap, .project-link, .lang-btn, .nav-hamburger';
+
+  function setHover(on) {
+    cursor.classList.toggle('hover', on);
+    ring.classList.toggle('hover', on);
+  }
+  function setActive(on) {
+    cursor.classList.toggle('active', on);
+    ring.classList.toggle('active', on);
+  }
+
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(interactiveSelector)) setHover(true);
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(interactiveSelector)) setHover(false);
+  });
+
+  document.addEventListener('mousedown', () => setActive(true));
+  document.addEventListener('mouseup', () => setActive(false));
+}
+
 function initPortDots() {
   const container = document.getElementById('portDots');
   if (!container) return;
@@ -387,17 +465,14 @@ function addPortImageClickHandlers() {
     if (!colEl) return;
     const imgWrap = colEl.querySelector('.port-image-wrap');
     if (!imgWrap) return;
+
     imgWrap.addEventListener('click', () => {
-      const projIdx = colId === 'portColLeft' ? portLeft : portRight;
-      const project = PORTFOLIO_DATA[projIdx];
-      if (project.images.length <= 1) return;
-      colImgIdx[colId] = (colImgIdx[colId] + 1) % project.images.length;
-      const img = colEl.querySelector('.port-img');
-      if (!img) return;
-      img.style.opacity = '0';
-      setTimeout(() => { img.src = project.images[colImgIdx[colId]]; img.style.opacity = '1'; }, 280);
-      clearInterval(colImgTimers[colId]);
-      startColImageCycle(colEl, project);
+      nextProjectForColumn(colId);
+    });
+
+    colEl.querySelectorAll('a, button, .project-link').forEach(el => {
+      el.addEventListener('mouseenter', () => colEl.classList.add('port-hover'));
+      el.addEventListener('mouseleave', () => colEl.classList.remove('port-hover'));
     });
   });
 }
@@ -478,5 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initContactForm();
   initScrollReveal();
+  initCustomCursor();
   setTimeout(initThree, 120);
 });

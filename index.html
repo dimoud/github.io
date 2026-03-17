@@ -273,6 +273,39 @@
   </div>
 </section>
 
+<!-- CAD VIEWER -->
+<section id="cad-viewer">
+  <div class="section-header reveal-up">
+    <span class="section-num">02.1</span>
+    <h2 class="section-title">3D Model</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cad-viewer-layout">
+    <div class="cad-canvas-wrap">
+      <canvas id="stepCanvas"></canvas>
+      <div id="cad-loading" class="cad-loading-overlay">
+        <div class="cad-spinner"></div>
+        <div class="cad-loading-text" id="cad-loading-text">Scroll to load CAD engine…</div>
+      </div>
+    </div>
+    <div class="cad-sidebar">
+      <div class="cad-file-label">
+        <span class="cad-file-icon">⬡</span>
+        <span>gym_rack.STEP</span>
+      </div>
+      <div class="cad-controls">
+        <button class="cad-btn" id="cadBtnWire"  onclick="stepToggleWireframe()">⧉ WIREFRAME</button>
+        <button class="cad-btn" id="cadBtnReset" onclick="stepResetCamera()">↺ RESET VIEW</button>
+      </div>
+      <div class="cad-hint">drag to orbit · scroll to zoom · right-drag to pan</div>
+      <div class="cad-legend">
+        <div class="cad-legend-row"><span class="cad-dot" style="background:#3b82f6"></span>Colors from STEP file</div>
+        <div class="cad-legend-row"><span class="cad-dot" style="background:#22a85a"></span>Real CAD geometry</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TEAM -->
 <section id="team-index">
   <div class="section-header team-index-header">
@@ -400,7 +433,9 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
 <script src="models.js" defer></script>
 <script src="main.js" defer></script>
+<script src="step-viewer.js" defer></script>
 </body>
 </html>
