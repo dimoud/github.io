@@ -4,81 +4,81 @@
 const LANG = {
   el: {
     nav_about:'Σχετικά', nav_projects:'Έργα', nav_software:'Λογισμικό',
-    nav_experience:'Ομάδα', nav_contact:'Επικοινωνία',
-    hero_tag:'// Μηχανολογικό Studio — Αθήνα, Ελλάδα',
-    hero_title:'Μηχανολογικός Σχεδιασμός · 3D Printing · Διαχείριση Έργων',
-    hero_desc:'Η <strong>Expertease Designs</strong> είναι στούντιο μηχανολογικού σχεδιασμού και 3D printing — από το concept έως την κατασκευή.',
+    nav_webdesign:'Web Design', nav_experience:'Ομάδα', nav_contact:'Επικοινωνία',
+    hero_tag:'// Μηχανολογικό Studio — Αθήνα',
+    hero_title:'Μηχανολογικός Σχεδιασμός · 3D Printing · Project Management',
+    hero_desc:'Η <strong>Expertease Designs</strong> είναι studio μηχανολογικού σχεδιασμού και 3D printing — από το concept ως την κατασκευή.',
     hero_cta_work:'Δείτε τα Έργα →', hero_cta_contact:'Επικοινωνήστε',
-    stat_years:'Χρόνια Εμπειρίας', stat_projects:'Ολοκληρωμένα Έργα', stat_degrees:'Μεταπτυχιακοί Τίτλοι',
-    viewer_hint:'σύρτε για περιστροφή',
-    edu_strip:'Ιδρυτής — Δημήτριος Μουδιώτης · 5 Πανεπιστήμια σε 3 Χώρες',
-    edu1_deg:'BEng', edu1_name:'Μηχανολόγος Μηχανικός',
-    edu2_deg:'MSc', edu2_name:'École Centrale Paris',
-    edu3_deg:'MSc', edu3_name:'IFP School',
-    edu4_deg:'MSc', edu4_name:'Διεθνές Πανεπιστήμιο Ελλάδος',
-    edu5_deg:'MBA', edu5_name:'Washington Univ. of Science & Technology',
-    about_heading:'Σχετικά',
-    about_p1:'Η <strong>Expertease Designs</strong> είναι studio μηχανολογικού σχεδιασμού με επικεφαλής τον <strong>Δημήτριο Μουδιώτη</strong>, Μηχανολόγο Μηχανικό ΑΠΘ με 7 χρόνια εμπειρίας και 4 μεταπτυχιακούς τίτλους: MSc École Centrale Paris, MSc IFP School, MSc ΔΙΠαΕ, MBA ΗΠΑ.',
-    about_quote:'«Η μηχανική είναι η τέχνη να μετατρέπεις μια ιδέα σε κάτι που μπορείς να κρατήσεις στα χέρια σου.»',
-    about_p2:'Αναλαμβάνουμε τον πλήρη κύκλο ζωής ενός προϊόντος — από τον αρχικό σχεδιασμό και το BOM, μέχρι την τρισδιάστατη εκτύπωση, την κατεργασία φύλλων μετάλλου και τη διαχείριση έργου.',
-    about_p3:'Έδρα: <strong><span class="accent-red">Αθήνα, Ελλάδα</span></strong> — Αναλαμβάνουμε έργα σε Ελλάδα και εξωτερικό.',
-    about_p4:'Πιστεύουμε ότι η μηχανική είναι δημιουργική πειθαρχία. Οι καλύτερες λύσεις είναι ακριβείς, κομψές και κατασκευάσιμες από την πρώτη μέρα.',
-    val_1_title:'Ακρίβεια', val_1_text:'FEA, ανοχές, δοκιμές σε πραγματικές συνθήκες. Δεν προσεγγίζουμε ποτέ.',
-    val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο σε συναρμολόγηση — σχεδιασμός, BOM, κατασκευή, παράδοση.',
-    val_3_title:'Διεθνή Πρότυπα', val_3_text:'Εκπαιδευμένοι σε 3 χώρες. Διεθνή πρότυπα μηχανικής σε κάθε έργο.',
-    val_4_title:'Σχέδιο για Κατ/σκευή', val_4_text:'DFM από την αρχή. Γρηγορότερη παραγωγή, λιγότερα απόβλητα, χαμηλότερο κόστος.',
+    stat_years:'Χρόνια Εμπειρίας', stat_projects:'Παραδοθέντα Έργα', stat_degrees:'Μεταπτυχιακά',
+    edu_strip:'Ιδρυτής — Δημήτριος Μουδιώτης · 5 Πανεπιστήμια, 3 Χώρες',
+    edu1_deg:'Dipl.-Ing.', edu1_name:'Μηχανολόγος Μηχανικός',
+    edu2_deg:'MSc General Engineering', edu2_name:'École Centrale Paris',
+    edu3_deg:'MSc Powertrain Engineering', edu3_name:'IFP School',
+    edu4_deg:'MSc Strategic Product Design', edu4_name:'Διεθνές Πανεπιστήμιο Ελλάδος',
+    edu5_deg:'MBA Leadership & Project Management', edu5_name:'Washington Univ. of Science & Technology',
+    about_heading:'Σχετικά με Εμάς',
+    about_p1:'Η <strong>Expertease Designs</strong> είναι studio μηχανολογικού σχεδιασμού με επικεφαλής τον <strong>Δημήτριο Μουδιώτη</strong> — Μηχανολόγο Μηχανικό ΑΠΘ με 7+ χρόνια εμπειρίας σε ρομποτική, εξοπλισμό ασφαλείας, βιομηχανικές κατασκευές και precision fabrication. Τέσσερα μεταπτυχιακά από ιδρύματα σε Ελλάδα, Γαλλία και ΗΠΑ.',
+    about_quote:'«Η μηχανική είναι η τέχνη να μετατρέπεις μια ιδέα σε κάτι που κρατάς στα χέρια σου.»',
+    about_p2:'Σχεδιάζουμε και κατασκευάζουμε μηχανολογικές διατάξεις και εξοπλισμό — καλύπτοντας κάθε στάδιο από R&amp;D και CAD ως τον συντονισμό κατασκευής και τον ποιοτικό έλεγχο. Κάθε παράδοση περιλαμβάνει πλήρη τεκμηρίωση: σχέδια εξαρτημάτων, συναρμολόγησης, BOM και οδηγίες.',
+    about_p3:'Βάση: <strong><span class="accent-red">Αθήνα</span></strong> — δουλεύουμε σε Ελλάδα και εξωτερικό.',
+    about_p4:'Βελτιστοποιούμε την επιλογή υλικών, κατασκευή και συναρμολόγηση για οικονομική αποδοτικότητα και βιωσιμότητα — συντονίζουμε υπεργολάβους, επιβλέπουμε την κατασκευή και διασφαλίζουμε ότι κάθε παράδοση πληροί τα πρότυπα ποιότητας, αξιοπιστίας και ασφάλειας (ISO).',
+    val_1_title:'Ακρίβεια', val_1_text:'FEA, ανοχές σε στοίβα, δοκιμές σε πραγματικές συνθήκες. Δεν προσεγγίζουμε.',
+    val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο ως συναρμολόγηση — σχεδιασμός, BOM, κατασκευή και παράδοση. Παραδίδουμε, δεν μεταβιβάζουμε.',
+    val_3_title:'Διεθνή Πρότυπα', val_3_text:'Σπουδές σε 3 χώρες. Διεθνής μηχανολογική αυστηρότητα εφαρμοσμένη σε κάθε τοπικό έργο.',
+    val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'DFM από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.',
     proc_label:'Πώς Δουλεύουμε',
-    proc_1_title:'Briefing', proc_1_text:'Μελετάμε περιορισμούς, υλικά, περιβάλλον και χρονοδιάγραμμα πριν σχεδιάσουμε την πρώτη γραμμή.',
-    proc_2_title:'Σχεδιασμός', proc_2_text:'Πλήρες 3D μοντέλο σε SolidWorks, FEA, BOM και τεχνικά σχέδια — κάθε παραδοτέο έτοιμο για παραγωγή.',
-    proc_3_title:'Παράδοση', proc_3_text:'Εποπτεία κατασκευής, διαχείριση προμηθευτών και παράδοση δοκιμασμένης συναρμολόγησης.',
+    proc_1_title:'Brief', proc_1_text:'Αφιερώνουμε χρόνο να κατανοήσουμε τις ανάγκες, τους περιορισμούς και τους στόχους σας πριν πάρουμε οποιαδήποτε σχεδιαστική απόφαση — γιατί ένα σωστό brief οδηγεί σε σωστό αποτέλεσμα.',
+    proc_2_title:'Σχεδιασμός', proc_2_text:'3D μοντέλο σε SolidWorks, FEA, πλήρες BOM και τεχνικά σχέδια (εξαρτημάτων, συναρμολόγησης, οδηγίες) — όλα έτοιμα για παραγωγή.',
+    proc_3_title:'Παράδοση', proc_3_text:'Συντονίζουμε υπεργολάβους, επιβλέπουμε την κατασκευή και διασφαλίζουμε τήρηση προτύπων ποιότητας, αξιοπιστίας και ασφάλειας — παραδίδοντας δοκιμασμένο, έτοιμο προς λειτουργία αποτέλεσμα.',
     principles_label:'Αρχές μας',
-    prin_1_title:'Ακρίβεια', prin_1_text:'Κάθε διάσταση έχει σημασία. Σχεδιάζουμε με ανοχές, επαληθεύουμε με πρωτότυπα και παραδίδουμε εξαρτήματα που <span class="accent-red">ταιριάζουν από την πρώτη φορά</span>.',
-    prin_2_title:'Ακεραιότητα', prin_2_text:'<span class="accent-red">Ειλικρινή χρονοδιαγράμματα, διαφανές κόστος</span> και άμεση επικοινωνία — χωρίς εκπλήξεις, μόνο αποτελέσματα.',
-    prin_3_title:'Καινοτομία', prin_3_text:'Εξερευνούμε συνεχώς νέα εργαλεία, υλικά και μεθόδους — FEA, <span class="accent-red">προηγμένη κατασκευή</span> και βελτιστοποίηση σχεδίου σε κάθε έργο.',
+    prin_1_title:'Ακρίβεια', prin_1_text:'Κάθε διάσταση μετράει. Σχεδιάζουμε με ανοχές, ελέγχουμε με πρωτότυπα, παραδίδουμε μέρη που <span class="accent-red">ταιριάζουν από την πρώτη</span>.',
+    prin_2_title:'Ειλικρίνεια', prin_2_text:'<span class="accent-red">Ρεαλιστικά χρονοδιαγράμματα, διαφανές κόστος</span> — χωρίς εκπλήξεις, μόνο αποτελέσματα.',
+    prin_3_title:'Καινοτομία', prin_3_text:'Νέα εργαλεία, υλικά, μεθόδους — FEA, <span class="accent-red">προηγμένη κατασκευή</span> και design optimization σε κάθε project.',
+    prin_4_title:'Web Design', prin_4_text:'Σας άρεσε αυτή η σελίδα; Είναι εξ ολοκλήρου <span class="accent-green">custom HTML</span> — χωρίς templates. Σχεδιάζουμε <span class="accent-green">μοναδικές, διαδραστικές επαγγελματικές ιστοσελίδες</span> από το μηδέν. <a href="#contact" class="principle-cta" id="prin-4-cta-el">Επικοινωνήστε →</a>',
     projects_heading:'Έργα',
     sw_heading:'Λογισμικό', sw_label:'Ενεργό Προϊόν · easemanual.eu',
-    sw_desc:'Ισχυρό λογισμικό που αυτοματοποιεί τη δημιουργία τεχνικής μελέτης για άδεια κυκλοφορίας οχημάτων ειδικής χρήσης — βάσει ΥΑ 80255/4693/19/2020. Φτιαγμένο από μηχανικούς για μηχανικούς.',
-    sw_f1:'Τεχνικοί υπολογισμοί', sw_f2:'Διαγράμματα φόρτισης', sw_f3:'Σχέδια οχημάτων A3', sw_f4:'Αυτόματη μελέτη Word',
+    sw_desc:'Λογισμικό που αυτοματοποιεί την τεχνική μελέτη για άδεια κυκλοφορίας οχημάτων ειδικής χρήσης — βάσει ΥΑ 80255/4693/19/2020. Φτιαγμένο από μηχανικούς για μηχανικούς.',
+    sw_f1:'Τεχνικοί υπολογισμοί', sw_f2:'Διαγράμματα φόρτισης', sw_f3:'Σχέδια A3', sw_f4:'Αυτόματη μελέτη Word',
     sw_f5:'Άξονες & εφεδρανισμοί', sw_f6:'Ευστάθεια & πέδηση', sw_f7:'Συγκολλήσεις & ελατήρια', sw_f8:'Γερανοί & καλαθοφόρα',
     sw_cta1:'Δείτε το Προϊόν →', sw_cta2:'Τιμολόγηση',
     contact_label:'// Ας Δουλέψουμε Μαζί',
-    contact_heading:'Έχετε ένα<br>έργο στο νου;',
-    contact_sub:'Από τον σχεδιασμό ενός εξαρτήματος έως τη διαχείριση ολόκληρου έργου — η Expertease είναι εδώ.',
+    contact_heading:'Έχετε κάποιο project;',
+    contact_sub:'Ένα εξάρτημα ή ολόκληρο project — η Expertease είναι εδώ.',
     footer_copy:'© 2026 Expertease Designs', footer_loc:'Αθήνα, Ελλάδα',
   },
   en: {
     nav_about:'About', nav_projects:'Work', nav_software:'Software',
-    nav_experience:'Team', nav_contact:'Contact',
+    nav_webdesign:'Web Design', nav_experience:'Team', nav_contact:'Contact',
     hero_tag:'// Mechanical Design & 3D Printing Studio — Athens, GR',
     hero_title:'Mechanical Design · 3D Printing · Project Management',
     hero_desc:'<strong>Expertease Designs</strong> — machine design, sheet metal, rapid prototyping, BOM, and project management. Athens-based, working internationally.',
     hero_cta_work:'View Work →', hero_cta_contact:'Get in Touch',
     stat_years:'Years Experience', stat_projects:'Projects Delivered', stat_degrees:'Postgrad Degrees',
-    viewer_hint:'drag to rotate',
     edu_strip:'Founder — Dimitrios Moudiotis · 5 Universities in 3 Countries',
-    edu1_deg:'BEng', edu1_name:'Mechanical Engineering',
-    edu2_deg:'MSc', edu2_name:'École Centrale Paris',
-    edu3_deg:'MSc', edu3_name:'IFP School',
-    edu4_deg:'MSc', edu4_name:'International Hellenic University',
-    edu5_deg:'MBA', edu5_name:'Washington Univ. of Science & Technology',
+    edu1_deg:'Dipl.-Ing.', edu1_name:'Mechanical Engineering',
+    edu2_deg:'MSc General Engineering', edu2_name:'École Centrale Paris',
+    edu3_deg:'MSc Powertrain Engineering', edu3_name:'IFP School',
+    edu4_deg:'MSc Strategic Product Design', edu4_name:'International Hellenic University',
+    edu5_deg:'MBA Leadership & Project Management', edu5_name:'Washington Univ. of Science & Technology',
     about_heading:'About',
-    about_p1:'<strong>Expertease Designs</strong> is an Athens-based mechanical engineering studio led by <strong>Dimitrios Moudiotis</strong> — Mechanical Engineer (AUTH), with 7 years of experience and four postgraduate degrees: MSc École Centrale Paris, MSc IFP School, MSc IHU, and MBA (USA).',
+    about_p1:'<strong>Expertease Designs</strong> is a mechanical engineering studio based in Athens, led by <strong>Dimitrios Moudiotis</strong> — Mechanical Engineer (AUTH) with 7+ years of experience spanning robotics, safety equipment, industrial machinery, and precision fabrication. Four postgraduate degrees from institutions in Greece, France, and the USA.',
     about_quote:'"Engineering is the art of turning an idea into something you can hold in your hands."',
-    about_p2:'We cover the full product lifecycle — from initial design and BOM to 3D printing, sheet metal fabrication, and project management.',
+    about_p2:'We design and build mechanical devices, products, and equipment — covering every stage from R&amp;D and CAD to manufacturing coordination and quality control. Every project is delivered with complete documentation: part drawings, assembly drawings, BOM structure, and instructions.',
     about_p3:'Based in <strong><span class="accent-red">Athens, Greece</span></strong> — available for projects across Greece and internationally.',
-    about_p4:'We believe engineering is a creative discipline. The best solutions are precise, elegant, and manufacturable from day one — no excess complexity, no unnecessary iterations.',
+    about_p4:'We optimise material selection, manufacturing, and assembly for cost-effectiveness and sustainability — coordinating subcontractors, supervising construction, and enforcing ISO quality, reliability, and safety standards on every deliverable.',
     val_1_title:'Precision', val_1_text:'FEA-verified, tolerance-stacked, tested in real conditions. We don\'t approximate.',
     val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.',
     val_3_title:'Global Standards', val_3_text:'Educated across 3 countries. International engineering rigour applied to every local project.',
     val_4_title:'Built to Make', val_4_text:'DFM from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.',
     proc_label:'How We Work',
-    proc_1_title:'Brief', proc_1_text:'We study your constraints, material, environment, and timeline before drawing a single line.',
-    proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings — every deliverable ready for production.',
-    proc_3_title:'Deliver', proc_3_text:'We supervise fabrication, manage suppliers, and hand over a tested, production-ready assembly.',
+    proc_1_title:'Brief', proc_1_text:'We take time to understand your requirements, constraints, and goals before committing to any design direction — because the right brief leads to the right outcome.',
+    proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings (part, assembly, instructions) — every deliverable ready for production.',
+    proc_3_title:'Deliver', proc_3_text:'We coordinate subcontractors, supervise fabrication, and make sure quality, reliability, and safety standards are met — then hand over a tested, production-ready assembly.',
     principles_label:'How We Work',
     prin_1_title:'Precision', prin_1_text:'Every dimension matters. We design to tolerance, prototype to verify, and deliver parts that <span class="accent-red">fit first time</span>.',
     prin_2_title:'Integrity', prin_2_text:'<span class="accent-red">Honest timelines, transparent costs</span>, and direct communication — no surprises, just results.',
     prin_3_title:'Innovation', prin_3_text:'We constantly explore new tools, materials, and methods to deliver smarter solutions — FEA, <span class="accent-red">advanced manufacturing</span>, and design optimisation built into every workflow.',
+    prin_4_title:'Web Design', prin_4_text:'Liked this page? It\'s entirely <span class="accent-green">custom-built HTML</span> — no templates, no page builders. We design <span class="accent-green">fully interactive, unique business websites</span> from scratch. <a href="#contact" class="principle-cta" id="prin-4-cta-en">Get in touch →</a>',
     projects_heading:'Work',
     sw_heading:'Software', sw_label:'Active Product · easemanual.eu',
     sw_desc:'Powerful software automating the creation of technical studies for special-purpose vehicle licensing — per Greek regulation YA 80255/4693/19/2020. Built by engineers for engineers.',
@@ -86,7 +86,7 @@ const LANG = {
     sw_f5:'Shafts & bearings', sw_f6:'Stability & braking', sw_f7:'Welds & springs', sw_f8:'Cranes & platforms',
     sw_cta1:'View Product →', sw_cta2:'Pricing',
     contact_label:'// Let\'s Work Together',
-    contact_heading:'Got a project<br>in mind?',
+    contact_heading:'Got a project in mind?',
     contact_sub:'From designing a single component to managing an entire project — Expertease is here.',
     footer_copy:'© 2026 Expertease Designs', footer_loc:'Athens, Greece',
   }
@@ -103,12 +103,12 @@ function applyLang(lang) {
   document.documentElement.lang = lang === 'el' ? 'el' : 'en';
   const set = (id, val, html=false) => { const el=document.getElementById(id); if(!el)return; html?el.innerHTML=val:el.textContent=val; };
   set('nav-about',t.nav_about); set('nav-projects',t.nav_projects);
-  set('nav-software',t.nav_software); set('nav-experience',t.nav_experience); set('nav-contact',t.nav_contact);
+  set('nav-software',t.nav_software); set('nav-webdesign',t.nav_webdesign); set('nav-experience',t.nav_experience); set('nav-contact',t.nav_contact);
   set('hero-tag',t.hero_tag); set('hero-title',t.hero_title);
   set('hero-desc',t.hero_desc,true);
   set('hero-cta-work',t.hero_cta_work); set('hero-cta-contact',t.hero_cta_contact);
   set('stat-years',t.stat_years); set('stat-projects',t.stat_projects); set('stat-degrees',t.stat_degrees);
-  set('viewer-hint',t.viewer_hint);
+
   set('edu-strip-title',t.edu_strip);
   set('edu1-deg',t.edu1_deg); set('edu1-name',t.edu1_name);
   set('edu2-deg',t.edu2_deg); set('edu2-name',t.edu2_name);
@@ -131,6 +131,7 @@ function applyLang(lang) {
   set('prin-1-title',t.prin_1_title); set('prin-1-text',t.prin_1_text,true);
   set('prin-2-title',t.prin_2_title); set('prin-2-text',t.prin_2_text,true);
   set('prin-3-title',t.prin_3_title); set('prin-3-text',t.prin_3_text,true);
+  set('prin-4-title',t.prin_4_title); set('prin-4-text',t.prin_4_text,true);
   set('projects-heading',t.projects_heading);
   set('sw-heading',t.sw_heading); set('sw-label',t.sw_label);
   set('sw-desc',t.sw_desc);
@@ -139,7 +140,7 @@ function applyLang(lang) {
   set('contact-label',t.contact_label); set('contact-heading',t.contact_heading,true);
   set('contact-sub',t.contact_sub);
   set('footer-copy',t.footer_copy); set('footer-loc',t.footer_loc);
-  const mmap = {'mnav-about':t.nav_about,'mnav-projects':t.nav_projects,'mnav-software':t.nav_software,'mnav-experience':t.nav_experience,'mnav-contact':t.nav_contact};
+  const mmap = {'mnav-about':t.nav_about,'mnav-projects':t.nav_projects,'mnav-software':t.nav_software,'mnav-webdesign':t.nav_webdesign,'mnav-experience':t.nav_experience,'mnav-contact':t.nav_contact};
   Object.entries(mmap).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.textContent=val; });
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
   localStorage.setItem('lang',lang);
@@ -149,95 +150,6 @@ function applyLang(lang) {
 /* ═══════════════════════════════════════════════════════════════
    PORTFOLIO DATA
 ═══════════════════════════════════════════════════════════════ */
-const PORTFOLIO_DATA = [
-  {
-    catEn:'Robotics · Electronics · Fabrication', catEl:'Ρομποτική · Ηλεκτρονικά · Κατασκευή',
-    titleEn:'Modular Robot', titleEl:'Αρθρωτό Ρομπότ',
-    descEn:'Tracked robot with 3 lead-acid batteries, 36V supply, solar panel, 4 cameras, sensors, and powerful LEDs. Laser-cut steel, biodegradable PLA parts, wood panels. Dustproof, waterproof, recyclable.',
-    descEl:'Τροχήλατο ρομπότ με 3 μπαταρίες μολύβδου, τροφοδοσία 36V, ηλιακό πάνελ, 4 κάμερες, αισθητήρες και ισχυρά LED. Laser cut χάλυβας, βιοδιασπάσιμη PLA. Αδιάβροχο, αντισκονικό.',
-    badgeEn:'Featured', badgeEl:'Ναυαρχίδα',
-    images:[
-      'images/modular_robot/Untitled Project.png',
-      'images/modular_robot/Untitled Project 2.png',
-      'images/modular_robot/Untitled Project 3.png',
-      'images/modular_robot/444.png',
-      'images/modular_robot/Untitled Project 4.png',
-      'images/modular_robot/Untitled Project 5.png',
-      'images/tracked/Untitled Project 3.png',
-      'images/tracked/Untitled Project 5.png'
-    ],
-    link:'#contact'
-  },
-  {
-    catEn:'Safety · Driver Education', catEl:'Ασφάλεια · Εκπαίδευση Οδηγών',
-    titleEn:'Seatbelt Convincer', titleEl:'Simulator Ζώνης Ασφαλείας',
-    descEn:'Experience a controlled 12 km/h impact in a safe environment. Single and double-seat versions — lightweight steel frame, assembled by one person in half a day.',
-    descEl:'Νιώστε μια σύγκρουση στα 12km/h σε ελεγχόμενο περιβάλλον. Εκδόσεις μονής και διπλής θέσης — ελαφρύ, συναρμολογείται σε μισή μέρα.',
-    badgeEn:'', badgeEl:'',
-    images:[
-      'images/double_seat_belt_convincer/1.png',
-      'images/double_seat_belt_convincer/2.png',
-      'images/double_seat_belt_convincer/3.png',
-      'images/double_seat_belt_convincer/4.png',
-      'images/double_seat_belt_convincer/5.png',
-      'images/double_seat_belt_convincer/6.png'
-    ],
-    link:'#contact'
-  },
-  {
-    catEn:'Safety · Educational Equipment', catEl:'Ασφάλεια · Εκπαιδευτικός Εξοπλισμός',
-    titleEn:'Rollcar Simulator', titleEl:'Rollcar Simulator',
-    descEn:'Vehicle rollover simulator — place a car on top and roll inside it. Versions I & II, up to 20 rpm. Powerful tool for driver-safety training programmes.',
-    descEl:'Προσομοιωτής ανατροπής οχήματος. Τοποθετείτε αυτοκίνητο στην κορυφή. Εκδόσεις Ι & ΙΙ, έως 20rpm. Ισχυρό εργαλείο εκπαίδευσης οδηγών.',
-    badgeEn:'', badgeEl:'',
-    images:[
-      'images/gear/Untitled Project.png',
-      'images/gear/Untitled Project 2.png',
-      'images/gear/Untitled Project 3.png',
-      'images/gear/Untitled Project 4.png',
-      'images/gear/Untitled Project 5.png',
-      'images/gear/Untitled Project 6.png'
-    ],
-    link:'#contact'
-  },
-  {
-    catEn:'Laser Cutting · Brake Press · Welding', catEl:'Laser Cutting · Brake Press · Συγκόλληση',
-    titleEn:'Sheet Metal Applications', titleEl:'Εφαρμογές Φύλλων Μετάλλου',
-    descEn:'From LED wall décor to log baskets, anchor brackets, and structural steel bases. 1.5–5mm steel, optimised DFM for fast fabrication and minimal waste.',
-    descEl:'Από διακοσμητικά τοίχου με LED μέχρι καλάθια καυσόξυλων, αγκύρια και χαλύβδινες βάσεις. Χάλυβας 1.5–5mm, βελτιστοποιημένο DFM.',
-    badgeEn:'Sheet Metal', badgeEl:'Sheet Metal',
-    images:[
-      'images/sheetmetal/1.png',
-      'images/sheetmetal/2.png',
-      'images/sheetmetal/a1.png',
-      'images/sheetmetal/a2.png',
-      'images/log_basket/καροτσακι.png',
-      'images/ancor/1.png',
-      'images/steel_base/Untitled Project_left.png',
-      'images/sheetmetal/3.png'
-    ],
-    link:'#contact'
-  },
-  {
-    catEn:'Dynamic Loading · Structural Testing', catEl:'Δυναμική Φόρτιση · Δομικές Δοκιμές',
-    titleEn:'1D Harmonic Exciter', titleEl:'Αρμονικός Διεγέρτης 1D',
-    descEn:'Applies 450 kg uni-directional vibration to structures at up to 20 Hz. Flip it over and it covers all three axes. Built for structural testing labs and research institutions.',
-    descEl:'Μονοδιευθυντική δόνηση 450kg σε κατασκευές, έως 20Hz. Αναποδογυρίστε τον και καλύπτει και τις τρεις κατευθύνσεις.',
-    badgeEn:'', badgeEl:'',
-    images:[
-      'images/harmonic_exhiter/he_1.png',
-      'images/harmonic_exhiter/1.png',
-      'images/harmonic_exhiter/2.png',
-      'images/harmonic_exhiter/3.png',
-      'images/harmonic_exhiter/Untitled Project 6.png',
-      'images/harmonic_exhiter/Untitled Project 7.png',
-      'images/harmonic_exhiter/4.png',
-      'images/harmonic_exhiter/5.png'
-    ],
-    link:'#contact'
-  }
-];
-
 /* ═══════════════════════════════════════════════════════════════
    PORTFOLIO — 2-COLUMN DYNAMIC
 ═══════════════════════════════════════════════════════════════ */
@@ -263,8 +175,8 @@ function startColImageCycle(colEl, project) {
     const img = colEl.querySelector('.port-img');
     if (!img) return;
     img.style.opacity = '0';
-    setTimeout(() => { img.src = project.images[colImgIdx[id]]; img.style.opacity = '1'; }, 320);
-  }, 3200);
+    setTimeout(() => { img.src = project.images[colImgIdx[id]]; img.style.opacity = '1'; }, 500);
+  }, 5200);
 }
 
 function renderPortfolioCol(colEl, idx) {
@@ -286,7 +198,35 @@ function renderPortfolioCol(colEl, idx) {
     if (link) { link.href = p.link; link.textContent = lang === 'el' ? 'Επικοινωνήστε →' : 'Get in Touch →'; }
     colEl.classList.remove('port-fade-out');
     startColImageCycle(colEl, p);
-  }, 280);
+  }, 500);
+}
+
+function buildPortThumbStrip() {
+  const container = document.getElementById('portThumbStrip');
+  if (!container) return;
+  container.innerHTML = '';
+  const lang = currentLang;
+  PORTFOLIO_DATA.forEach((p, i) => {
+    const item = document.createElement('button');
+    item.className = 'port-thumb-item';
+    item.dataset.idx = i;
+    const title = lang === 'el' ? p.titleEl : p.titleEn;
+    item.innerHTML = `
+      <div class="port-thumb-img-wrap">
+        <img class="port-thumb-img" src="${p.images[0]}" alt="${title}" loading="lazy">
+      </div>
+      <div class="port-thumb-label">
+        <span class="port-thumb-num">0${i + 1} &nbsp;</span>${title}
+      </div>`;
+    item.addEventListener('click', () => openProjectModal(i));
+    container.appendChild(item);
+  });
+}
+
+function setThumbActive(idx) {
+  document.querySelectorAll('.port-thumb-item').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
 }
 
 function renderPortfolio() {
@@ -295,6 +235,7 @@ function renderPortfolio() {
   if (L) renderPortfolioCol(L, portLeft);
   if (R) renderPortfolioCol(R, portRight);
   updatePortDots();
+  buildPortThumbStrip();
 }
 
 function swapPortCols() {
@@ -319,7 +260,7 @@ function startPortTimer() {
       if (el) renderPortfolioCol(el, portRight);
     }
     updatePortDots();
-  }, 5000);
+  }, 7000);
 }
 
 function nextProjectForColumn(colId) {
@@ -353,23 +294,27 @@ function initCustomCursor() {
   let ringX = targetX;
   let ringY = targetY;
 
+  const darkSections = '#hero, #process, #principles, #cad-viewer';
+
   document.addEventListener('mousemove', e => {
     targetX = e.clientX;
     targetY = e.clientY;
+    const onDark = !!e.target.closest(darkSections);
+    cursor.classList.toggle('on-dark', onDark);
+    ring.classList.toggle('on-dark', onDark);
   });
 
   function animate() {
     currentX += (targetX - currentX) * 0.35;
     currentY += (targetY - currentY) * 0.35;
 
-    // ring follows the visible dot with a slight lag, then snaps when close enough
-    ringX += (currentX - ringX) * 0.15;
-    ringY += (currentY - ringY) * 0.15;
-
-    if (Math.abs(currentX - ringX) + Math.abs(currentY - ringY) < 0.4) {
-      ringX = currentX;
-      ringY = currentY;
-    }
+    // Magnetic ring: faster overall, accelerates as it closes in
+    const dx = currentX - ringX;
+    const dy = currentY - ringY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const factor = dist < 0.5 ? 1 : Math.min(0.9, 0.18 + 7 / (dist + 3));
+    ringX += dx * factor;
+    ringY += dy * factor;
 
     cursor.style.transform = `translate3d(${currentX - 4}px, ${currentY - 4}px, 0)`;
     ring.style.transform = `translate3d(${ringX - 16}px, ${ringY - 16}px, 0)`;
@@ -459,6 +404,107 @@ function initPortDrag() {
   document.addEventListener('touchend',  onUp, {passive:true});
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   PROJECT MODAL
+═══════════════════════════════════════════════════════════════ */
+let modalImgIdx = 0;
+let modalProject = null;
+
+function buildProjectModal() {
+  if (document.getElementById('portModal')) return;
+  const m = document.createElement('div');
+  m.id = 'portModal';
+  m.className = 'port-modal';
+  m.innerHTML = `
+    <div class="port-modal-backdrop"></div>
+    <div class="port-modal-panel">
+      <button class="port-modal-close" id="portModalClose" aria-label="Close">✕</button>
+      <div class="port-modal-gallery">
+        <button class="port-modal-nav port-modal-prev" id="portModalPrev">‹</button>
+        <img class="port-modal-img" id="portModalImg" src="" alt="">
+        <button class="port-modal-nav port-modal-next" id="portModalNext">›</button>
+        <div class="port-modal-img-counter" id="portModalCounter"></div>
+      </div>
+      <div class="port-modal-dots-row" id="portModalDots"></div>
+      <div class="port-modal-info">
+        <div class="port-modal-cat"  id="portModalCat"></div>
+        <h2  class="port-modal-title" id="portModalTitle"></h2>
+        <p   class="port-modal-desc"  id="portModalDesc"></p>
+      </div>
+    </div>`;
+  document.body.appendChild(m);
+
+  document.getElementById('portModalClose').addEventListener('click', closeProjectModal);
+  m.querySelector('.port-modal-backdrop').addEventListener('click', closeProjectModal);
+  document.getElementById('portModalPrev').addEventListener('click', () => modalNav(-1));
+  document.getElementById('portModalNext').addEventListener('click', () => modalNav(+1));
+  document.addEventListener('keydown', e => {
+    if (!m.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeProjectModal();
+    if (e.key === 'ArrowLeft')  modalNav(-1);
+    if (e.key === 'ArrowRight') modalNav(+1);
+  });
+}
+
+function openProjectModal(projectIdx) {
+  modalProject = PORTFOLIO_DATA[projectIdx];
+  modalImgIdx  = 0;
+  const lang = currentLang;
+  document.getElementById('portModalCat').textContent   = lang === 'el' ? modalProject.catEl   : modalProject.catEn;
+  document.getElementById('portModalTitle').textContent = lang === 'el' ? modalProject.titleEl : modalProject.titleEn;
+  document.getElementById('portModalDesc').textContent  = lang === 'el' ? modalProject.descEl  : modalProject.descEn;
+  buildModalDots();
+  modalSetImage(0);
+  setThumbActive(projectIdx);
+  const m = document.getElementById('portModal');
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  const m = document.getElementById('portModal');
+  if (m) m.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buildModalDots() {
+  const container = document.getElementById('portModalDots');
+  if (!container || !modalProject) return;
+  container.innerHTML = '';
+  modalProject.images.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'port-modal-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Image ' + (i + 1));
+    d.addEventListener('click', () => modalSetImage(i));
+    container.appendChild(d);
+  });
+}
+
+function modalSetImage(idx) {
+  if (!modalProject) return;
+  modalImgIdx = (idx + modalProject.images.length) % modalProject.images.length;
+  const img = document.getElementById('portModalImg');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = modalProject.images[modalImgIdx];
+    img.alt = '';
+    img.style.opacity = '1';
+  }, 180);
+  document.getElementById('portModalCounter').textContent = `${modalImgIdx + 1} / ${modalProject.images.length}`;
+  document.querySelectorAll('.port-modal-dot').forEach((d, i) => d.classList.toggle('active', i === modalImgIdx));
+  const prev = document.getElementById('portModalPrev');
+  const next = document.getElementById('portModalNext');
+  if (prev) prev.disabled = modalImgIdx === 0;
+  if (next) next.disabled = modalImgIdx === modalProject.images.length - 1;
+}
+
+function modalNav(dir) {
+  if (!modalProject) return;
+  const newIdx = modalImgIdx + dir;
+  if (newIdx < 0 || newIdx >= modalProject.images.length) return;
+  modalSetImage(newIdx);
+}
+
 function addPortImageClickHandlers() {
   ['portColLeft', 'portColRight'].forEach(colId => {
     const colEl = document.getElementById(colId);
@@ -467,7 +513,8 @@ function addPortImageClickHandlers() {
     if (!imgWrap) return;
 
     imgWrap.addEventListener('click', () => {
-      nextProjectForColumn(colId);
+      const idx = colId === 'portColLeft' ? portLeft : portRight;
+      openProjectModal(idx);
     });
 
     colEl.querySelectorAll('a, button, .project-link').forEach(el => {
@@ -482,7 +529,7 @@ function initPortfolio() {
   renderPortfolio();
   initPortDrag();
   addPortImageClickHandlers();
-  setTimeout(startPortTimer, 1200);
+  setTimeout(startPortTimer, 3200);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -510,6 +557,25 @@ function initScroll() {
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   });
+}
+
+function initHeroExplode() {
+  const hero     = document.getElementById('hero');
+  const heroLeft = hero ? hero.querySelector('.hero-left') : null;
+  if (!hero) return;
+
+  window.addEventListener('scroll', () => {
+    const heroH    = hero.offsetHeight;
+    const progress = Math.max(0, Math.min(1, window.scrollY / (heroH * 0.55)));
+
+    if (typeof setScrollExplode === 'function') setScrollExplode(progress);
+
+    if (heroLeft) {
+      /* text fades out between 25 % and 75 % explosion progress */
+      const fade = Math.max(0, 1 - Math.max(0, progress - 0.25) / 0.5);
+      heroLeft.style.opacity = fade;
+    }
+  }, { passive: true });
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -549,7 +615,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
   applyLang(localStorage.getItem('lang') || 'en');
   initScroll();
+  initHeroExplode();
   initPortfolio();
+  buildProjectModal();
   initMobileNav();
   initContactForm();
   initScrollReveal();

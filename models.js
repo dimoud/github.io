@@ -26,26 +26,50 @@ let currentModelIdx = 0;
 
 let modelCycleTimer = null;
 
+let rightHalfX = 4.5;
+
+let scrollExplodeActive = false, scrollExplodeT = 0;
+
 function createMachinedTexture() {
-  const size = 256;
+  const size = 512;
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#c2c2c2';
+
+  // base mid-grey
+  ctx.fillStyle = '#828282';
   ctx.fillRect(0, 0, size, size);
-  ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-  ctx.lineWidth = 1;
-  for (let i = -size; i < size * 2; i += 5) {
+
+  // fine uniform granular speckle — thousands of tiny dots, varying brightness
+  for (let i = 0; i < 120000; i++) {
+    const x = Math.random() * size;
+    const y = Math.random() * size;
+    const r = Math.random() * 1.0 + 0.2;
+    const v = Math.floor(Math.random() * 70) + 72; // 72–142 grey range
+    ctx.fillStyle = `rgb(${v},${v},${v})`;
     ctx.beginPath();
-    ctx.moveTo(i, 0);
-    ctx.lineTo(i - size, size);
-    ctx.stroke();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
   }
+
+  // occasional slightly larger lighter grain for realism
+  for (let i = 0; i < 4000; i++) {
+    const x = Math.random() * size;
+    const y = Math.random() * size;
+    const r = Math.random() * 1.8 + 0.6;
+    const v = Math.floor(Math.random() * 40) + 120;
+    ctx.fillStyle = `rgba(${v},${v},${v},0.35)`;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
   const tex = new THREE.CanvasTexture(canvas);
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.repeat.set(8, 8);
-  tex.anisotropy = 8;
+  tex.repeat.set(4, 4);
+  tex.anisotropy = 16;
+
   return tex;
 }
 
@@ -54,33 +78,44 @@ function createMachinedTexture() {
 
 function makeMats() {
 
-  const machinedTex = createMachinedTexture();
+  const t = createMachinedTexture();
 
   return {
 
-    chrome:   new THREE.MeshStandardMaterial({ color: 0xdce8ec, metalness: .95, roughness: .15, map: machinedTex, normalMap: machinedTex, roughnessMap: machinedTex }),
+    /* planet shafts, washers, output flange — cool light grey */
+    chrome:   new THREE.MeshStandardMaterial({ color: 0x6e7e8c, metalness: .78, roughness: .58, map: t }),
 
-    steel:    new THREE.MeshStandardMaterial({ color: 0x8c9298, metalness: .92,  roughness: .38, map: machinedTex, normalMap: machinedTex, roughnessMap: machinedTex }),
+    /* bolts, keyway — medium slate grey-blue */
+    steel:    new THREE.MeshStandardMaterial({ color: 0x48555f, metalness: .74, roughness: .62, map: t }),
 
-    blue:     new THREE.MeshStandardMaterial({ color: 0x243a5e, metalness: .88,  roughness: .44, map: machinedTex, normalMap: machinedTex }),
+    blue:     new THREE.MeshStandardMaterial({ color: 0x1e304a, metalness: .70, roughness: .65, map: t }),
 
-    blueB:    new THREE.MeshStandardMaterial({ color: 0x2e5080, metalness: .88,  roughness: .40, map: machinedTex, normalMap: machinedTex }),
+    blueB:    new THREE.MeshStandardMaterial({ color: 0x263a58, metalness: .70, roughness: .63, map: t }),
 
-    gold:     new THREE.MeshStandardMaterial({ color: 0xcfa234, metalness: .96,  roughness: .28, map: machinedTex, normalMap: machinedTex }),
+    /* circlip retainers — neutral dark grey */
+    gold:     new THREE.MeshStandardMaterial({ color: 0x3a4248, metalness: .78, roughness: .56, map: t }),
 
-    brass:    new THREE.MeshStandardMaterial({ color: 0xa8783a, metalness: .94,  roughness: .38, map: machinedTex, normalMap: machinedTex }),
+    brass:    new THREE.MeshStandardMaterial({ color: 0x343c44, metalness: .76, roughness: .60, map: t }),
 
-    orange:   new THREE.MeshStandardMaterial({ color: 0xa05228, metalness: .92,  roughness: .42, map: machinedTex, normalMap: machinedTex }),
+    orange:   new THREE.MeshStandardMaterial({ color: 0x2e3a46, metalness: .72, roughness: .63, map: t }),
 
-    dark:     new THREE.MeshStandardMaterial({ color: 0x1c2228, metalness: .90,  roughness: .50, map: machinedTex, normalMap: machinedTex }),
+    /* housing plates, carrier — dark blue-grey */
+    dark:     new THREE.MeshStandardMaterial({ color: 0x222e3a, metalness: .68, roughness: .68, map: t }),
 
-    darkB:    new THREE.MeshStandardMaterial({ color: 0x10161c, metalness: .90,  roughness: .55, map: machinedTex, normalMap: machinedTex }),
+    /* ring gear — deepest, near-black blue */
+    darkB:    new THREE.MeshStandardMaterial({ color: 0x161e28, metalness: .66, roughness: .72, map: t }),
 
-    titanium: new THREE.MeshStandardMaterial({ color: 0x8a9298, metalness: .93,  roughness: .42, map: machinedTex, normalMap: machinedTex }),
+    /* bearing rings — medium blue-grey */
+    titanium: new THREE.MeshStandardMaterial({ color: 0x3c4e5e, metalness: .72, roughness: .60, map: t }),
 
-    silver:   new THREE.MeshStandardMaterial({ color: 0xe0e6ea, metalness: .96,  roughness: .20, map: machinedTex, normalMap: machinedTex }),
+    /* input sprocket — lighter grey accent */
+    silver:   new THREE.MeshStandardMaterial({ color: 0x5a6a78, metalness: .80, roughness: .52, map: t }),
 
-    red:      new THREE.MeshStandardMaterial({ color: 0x7a2020, metalness: .90,  roughness: .44, map: machinedTex, normalMap: machinedTex }),
+    /* sun & planet gears — dark navy blue */
+    red:      new THREE.MeshStandardMaterial({ color: 0x1a2c40, metalness: .78, roughness: .62, map: t }),
+
+    /* carrier plate — dark red */
+    darkRed:  new THREE.MeshStandardMaterial({ color: 0x4e0e0e, metalness: .74, roughness: .60, map: t }),
 
   };
 
@@ -92,27 +127,27 @@ function makeMats() {
 
 function addLights(s) {
 
-  s.add(new THREE.AmbientLight(0x7090c0, 2.6));
+  s.add(new THREE.AmbientLight(0x8090a8, 3.2));
 
-  const key = new THREE.DirectionalLight(0xffffff, 8.0);
+  const key = new THREE.DirectionalLight(0xfff8f0, 9.0);
 
   key.position.set(10, 16, 12); key.castShadow = true;
 
   key.shadow.mapSize.set(2048, 2048); s.add(key);
 
-  const fill = new THREE.DirectionalLight(0x5090e0, 4.0);
+  const fill = new THREE.DirectionalLight(0x4878c8, 3.2);
 
   fill.position.set(-10, 6, -8); s.add(fill);
 
-  const rim = new THREE.PointLight(0x40b0ff, 4.5, 65);
+  const rim = new THREE.PointLight(0x50a8e8, 4.2, 65);
 
   rim.position.set(-6, 12, -12); s.add(rim);
 
-  const bot = new THREE.PointLight(0x3070ff, 2.5, 55);
+  const bot = new THREE.PointLight(0x3060d8, 2.4, 55);
 
   bot.position.set(6, -10, 6); s.add(bot);
 
-  const top = new THREE.DirectionalLight(0xe0f0ff, 2.8);
+  const top = new THREE.DirectionalLight(0xe8f2ff, 3.0);
 
   top.position.set(0, 20, 0); s.add(top);
 
@@ -128,7 +163,8 @@ function gearShape(teeth, pR, tH, hR, spokes) {
 
   for (let i = 0; i < teeth; i++) {
 
-    const a0=i*step-step*.42, a1=i*step-step*.16, a2=i*step+step*.16, a3=i*step+step*.42;
+    /* ±0.26/±0.17 gives ~50 % tooth / 50 % space for realistic interlocking */
+    const a0=i*step-step*.26, a1=i*step-step*.17, a2=i*step+step*.17, a3=i*step+step*.26;
 
     const p = (a, r) => [Math.cos(a)*r, Math.sin(a)*r];
 
@@ -166,7 +202,8 @@ function ringShape(teeth, oR, tRR, tH) {
 
   for (let i=0; i<teeth; i++) {
 
-    const a0=i*step-step*.38, a1=i*step-step*.14, a2=i*step+step*.14, a3=i*step+step*.38;
+    /* match external gear proportions for proper ring-planet interlocking */
+    const a0=i*step-step*.26, a1=i*step-step*.17, a2=i*step+step*.17, a3=i*step+step*.26;
 
     const p = (a,r) => [Math.cos(a)*r, Math.sin(a)*r];
 
@@ -192,179 +229,221 @@ function buildGearbox(group, m) {
 
   const ps = [];
 
-  const eH={depth:.78,bevelEnabled:true,bevelThickness:.055,bevelSize:.044,bevelSegments:4};
+  /* ── Module-based gear parameters ─────────────────────────────
+     Ns=18, Np=18, Nr=54 → (Ns+Nr)=72, 72/3=24 ✓ (3 equal planets)
+     Even tooth counts so half-pitch offset (PI/Np=10°) places spaces
+     at BOTH 0° (ring contact) and 180° (sun contact) simultaneously.
+     Clearance = 0.045 at both sun-planet and planet-ring meshes.    */
+  const MOD  = 0.18;
+  const Ns = 18, Np = 18, Nr = 54;
+  const sunPR    = Ns * MOD / 2;           // 1.62 pitch radius
+  const OR       = (Ns + Np) * MOD / 2;    // 3.24 planet orbit radius
+  const ringPR   = Nr * MOD / 2;           // 4.86
+  const ADD = MOD, DED = 1.25 * MOD;       // 0.18 / 0.225
+  const FULLH    = ADD + DED;              // 0.405 full tooth height
+  const sunRoot  = sunPR - DED;            // 1.395
+  const ringRoot = ringPR + DED;           // 5.085 (outer base of ring teeth)
+  const ringWall = ringRoot + 0.60;        // 5.685 solid outer wall
+  const FACE     = 0.76;                   // gear face width
+  const HELIX    = 0.24;                   // total helix twist across face (rad)
+  const NSLICES  = 14;                     // slices for helical approximation
+  const pA = [0, Math.PI*2/3, Math.PI*4/3];
 
-  const eM={depth:.60,bevelEnabled:true,bevelThickness:.042,bevelSize:.032,bevelSegments:3};
-
-  const eR={depth:.82,bevelEnabled:true,bevelThickness:.072,bevelSize:.062,bevelSegments:4};
-
-  const OR = 2.85, pA = [0, Math.PI*2/3, Math.PI*4/3], pM = [m.red, m.red, m.red];
 
 
+  /* -- Helical gear helper -- */
+  function helical(shape, twist, mat) {
+    const g = new THREE.Group();
+    const sd = FACE / NSLICES;
+    for (let i = 0; i < NSLICES; i++) {
+      const sl = new THREE.Mesh(
+        new THREE.ExtrudeGeometry(shape, { depth: sd, bevelEnabled: false }), mat);
+      sl.position.z = i * sd;
+      sl.rotation.z  = (i / NSLICES) * twist;
+      g.add(sl);
+    }
+    return g;
+  }
 
-  /* Sun gear */
+  /* -- Sun gear -- */
+  const sg = helical(gearShape(Ns, sunRoot, FULLH, 0.30, 5), HELIX, m.red);
+  group.add(sg);
+  ps.push({ mesh: sg, o: sg.position.clone(), d: new THREE.Vector3(0,0,0), spin: 0.18 });
 
-  const gs = new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(20,1.9,.52,.29,6),eH), m.red);
+  /* -- Carrier group created early so planets can be children of it.
+     Planets inside cGroup orbit automatically as cGroup rotates.
+     carrierSpin = ω_sun * Ns/(Ns+Nr) = 0.18*15/60 = 0.045 rad/s
+     Planet world spin = carrierSpin + planet_local_spin = −0.09
+     → planet_local_spin = −0.09 − 0.045 = −0.135
+     This satisfies both sun-planet AND planet-ring mesh conditions.   */
+  const carrierSpin = 0.18 * Ns / (Ns + Nr);  // 0.045
+  const cGroup = new THREE.Group();
+  group.add(cGroup);
 
-  gs.castShadow=true; group.add(gs); ps.push({mesh:gs,o:gs.position.clone(),d:new THREE.Vector3(0,0,0),spin:.58});
-
-
-
-  /* 3 Planet gears */
-
-  pA.forEach((a,i)=>{
-
-    const pg=new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(11,1.05,.43,.17,3),eM),pM[i]);
-
-    pg.position.set(Math.cos(a)*OR,Math.sin(a)*OR,.09); pg.castShadow=true; group.add(pg);
-
-    ps.push({mesh:pg,o:pg.position.clone(),d:new THREE.Vector3(Math.cos(a)*5.0,Math.sin(a)*5.0,1.5+i*.7),spin:-.97});
-
+  /* -- 3 Planet gears (inside carrier group, opposite helix hand) -- */
+  pA.forEach((a, i) => {
+    const pg = helical(gearShape(Np, sunRoot, FULLH, 0.21, 3), -HELIX, m.red);
+    pg.position.set(Math.cos(a)*OR, Math.sin(a)*OR, 0);
+    pg.rotation.z = Math.PI / Np;  // half-pitch offset for ring mesh alignment
+    cGroup.add(pg);                 // child of carrier → orbits with it
+    ps.push({ mesh: pg, o: pg.position.clone(),
+              d: new THREE.Vector3(Math.cos(a)*5.2, Math.sin(a)*5.2, 1.5+i*.7),
+              spin: -0.135 });      // local spin: world spin(-0.09) - carrierSpin(0.045)
   });
 
+  /* -- Ring gear (fixed housing) -- */
+  const eR = { depth: FACE+0.14, bevelEnabled:true,
+               bevelThickness:.055, bevelSize:.042, bevelSegments:3 };
+  const gr = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(ringShape(Nr, ringWall, ringRoot, FULLH), eR), m.darkB);
+  gr.position.z = -0.07;
+  group.add(gr);
+  ps.push({ mesh: gr, o: gr.position.clone(), d: new THREE.Vector3(0,0,-5.2), spin: 0 });
 
+  /* -- Carrier: flat annular disk plates front+back + planet pin bosses -- */
+  /* Use RingGeometry (flat disk with hole) extruded thin via CylinderGeometry trick:
+     outer radius = OR+0.28, inner radius = OR-0.28, thickness = 0.14             */
+  function carrierDisk(z) {
+    /* Build flat ring as a shape extrude */
+    const ds = new THREE.Shape(); ds.absarc(0,0, OR+0.28, 0, Math.PI*2, false);
+    const dh = new THREE.Path();  dh.absarc(0,0, OR-0.28, 0, Math.PI*2, true);
+    ds.holes.push(dh);
+    /* punch holes for planet pin bosses */
+    pA.forEach(a => {
+      const ph = new THREE.Path();
+      ph.absarc(Math.cos(a)*OR, Math.sin(a)*OR, 0.23, 0, Math.PI*2, true);
+      ds.holes.push(ph);
+    });
+    const disk = new THREE.Mesh(
+      new THREE.ExtrudeGeometry(ds, { depth: 0.26, bevelEnabled: false }), m.darkRed);
+    disk.position.z = z;
+    return disk;
+  }
+  const bDisk = carrierDisk(-0.14);
+  cGroup.add(bDisk);
+  const fDisk = carrierDisk(FACE + 0.01);
+  cGroup.add(fDisk);
+  pA.forEach(a => {
+    const px = Math.cos(a)*OR, py = Math.sin(a)*OR;
+    const bossGeo = new THREE.CylinderGeometry(0.21, 0.21, FACE+0.42, 16);
+    bossGeo.applyMatrix4(new THREE.Matrix4().makeRotationX(Math.PI/2));
+    const boss = new THREE.Mesh(bossGeo, m.chrome);
+    boss.position.set(px, py, FACE/2);
+    cGroup.add(boss);
+    [-0.08, FACE+0.08].forEach(z => {
+      const cc = new THREE.Mesh(new THREE.TorusGeometry(0.23, 0.022, 2, 28), m.gold);
+      cc.position.set(px, py, z);
+      cGroup.add(cc);
+    });
+  });
+  ps.push({ mesh: cGroup, o: cGroup.position.clone(),
+            d: new THREE.Vector3(0,0,-2.8), spin: carrierSpin });
 
-  /* Ring gear */
+  /* -- Back plate (rough, complex, very dark) -- */
+  const bPR = ringWall + 0.30;
+  const bBC = bPR - 0.28;
+  const backMat = new THREE.MeshStandardMaterial({
+    color: 0x090d10, metalness: .48, roughness: .94, map: createMachinedTexture()
+  });
 
-  const gr=new THREE.Mesh(new THREE.ExtrudeGeometry(ringShape(40,4.4,3.88,.50),eR), m.darkB);
+  // Main annular ring: 12 bolt holes + 6 small vent holes at inner bolt circle
+  const bS = new THREE.Shape(); bS.absarc(0,0,bPR,0,Math.PI*2,false);
+  const bRim = new THREE.Path(); bRim.absarc(0,0,bPR-0.52,0,Math.PI*2,true); bS.holes.push(bRim);
+  for (let i=0; i<12; i++) {
+    const a=(i/12)*Math.PI*2;
+    const h=new THREE.Path(); h.absarc(Math.cos(a)*bBC,Math.sin(a)*bBC,.16,0,Math.PI*2,true);
+    bS.holes.push(h);
+  }
+  for (let i=0; i<6; i++) {
+    const a=(i/6)*Math.PI*2+Math.PI/12;
+    const vr = bBC - 0.36;
+    const h=new THREE.Path(); h.absarc(Math.cos(a)*vr,Math.sin(a)*vr,.09,0,Math.PI*2,true);
+    bS.holes.push(h);
+  }
+  const gBack = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(bS, { depth:.52, bevelEnabled:true, bevelThickness:.04, bevelSize:.025, bevelSegments:2 }), backMat);
+  gBack.position.z = -0.45;
+  group.add(gBack);
+  ps.push({ mesh:gBack, o:gBack.position.clone(), d:new THREE.Vector3(0,0,-6.2), spin:0 });
 
-  gr.castShadow=true; group.add(gr); ps.push({mesh:gr,o:gr.position.clone(),d:new THREE.Vector3(0,0,-5.4),spin:-.09});
+  // Raised inner boss ring
+  const bossS = new THREE.Shape(); bossS.absarc(0,0,1.18,0,Math.PI*2,false);
+  const bossH = new THREE.Path(); bossH.absarc(0,0,0.82,0,Math.PI*2,true); bossS.holes.push(bossH);
+  const boss = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(bossS, { depth:.18, bevelEnabled:false }), backMat);
+  boss.position.z = -0.45 + 0.52;
+  group.add(boss);
+  ps.push({ mesh:boss, o:boss.position.clone(), d:new THREE.Vector3(0,0,-6.2), spin:0 });
 
+  // 6 radial ribs between bolt holes
+  for (let i=0; i<6; i++) {
+    const a = (i/6)*Math.PI*2 + Math.PI/12;
+    const rStart = 1.20, rEnd = bBC - 0.24;
+    const ribLen = rEnd - rStart;
+    const rib = new THREE.Mesh(new THREE.BoxGeometry(0.08, ribLen, 0.14), backMat);
+    rib.rotation.z = a;
+    const midR = rStart + ribLen/2;
+    rib.position.set(Math.cos(a)*midR, Math.sin(a)*midR, -0.45 + 0.52);
+    group.add(rib);
+    ps.push({ mesh:rib, o:rib.position.clone(), d:new THREE.Vector3(0,0,-6.2), spin:0 });
+  }
 
-
-  /* Carrier plate */
-
-  const cS=new THREE.Shape(); cS.absarc(0,0,3.65,0,Math.PI*2,false);
-
-  const cHub=new THREE.Path(); cHub.absarc(0,0,2.15,0,Math.PI*2,true); cS.holes.push(cHub);
-
-  pA.forEach(a=>{const h=new THREE.Path();h.absarc(Math.cos(a)*OR,Math.sin(a)*OR,.37,0,Math.PI*2,true);cS.holes.push(h);});
-
-  const gc=new THREE.Mesh(new THREE.ExtrudeGeometry(cS,{depth:.28,bevelEnabled:false}),m.dark);
-
-  gc.position.z=.04; group.add(gc); ps.push({mesh:gc,o:gc.position.clone(),d:new THREE.Vector3(0,0,-2.9),spin:.17});
-
-
-
-  /* Back plate */
-
-  const bS=new THREE.Shape(); bS.absarc(0,0,5.05,0,Math.PI*2,false);
-
-  const bRim=new THREE.Path(); bRim.absarc(0,0,4.52,0,Math.PI*2,true); bS.holes.push(bRim);
-
-  [0,1,2,3,4,5,6,7].forEach(i=>{const a=(i/8)*Math.PI*2;const h=new THREE.Path();h.absarc(Math.cos(a)*4.76,Math.sin(a)*4.76,.21,0,Math.PI*2,true);bS.holes.push(h);});
-
-  const gBack=new THREE.Mesh(new THREE.ExtrudeGeometry(bS,{depth:.38,bevelEnabled:false}),m.dark);
-
-  gBack.position.z=-.36; group.add(gBack); ps.push({mesh:gBack,o:gBack.position.clone(),d:new THREE.Vector3(0,0,-6.2),spin:0});
-
-
-
-  /* Front cover */
-
-  const fS=new THREE.Shape(); fS.absarc(0,0,5.05,0,Math.PI*2,false);
-
-  const fRim=new THREE.Path(); fRim.absarc(0,0,4.02,0,Math.PI*2,true); fS.holes.push(fRim);
-
-  [0,1,2,3,4,5,6,7].forEach(i=>{const a=(i/8)*Math.PI*2;const h=new THREE.Path();h.absarc(Math.cos(a)*4.76,Math.sin(a)*4.76,.21,0,Math.PI*2,true);fS.holes.push(h);});
-
-  const gFront=new THREE.Mesh(new THREE.ExtrudeGeometry(fS,{depth:.32,bevelEnabled:false}),m.dark);
-
-  gFront.position.z=.78; group.add(gFront); ps.push({mesh:gFront,o:gFront.position.clone(),d:new THREE.Vector3(0,0,5.4),spin:0});
-
-
-
-  /* 8 bolts */
-
+  /* -- Front cover (silver) -- */
+  const fS = new THREE.Shape(); fS.absarc(0,0,bPR,0,Math.PI*2,false);
+  const fRim = new THREE.Path(); fRim.absarc(0,0,4.10,0,Math.PI*2,true); fS.holes.push(fRim);
   [0,1,2,3,4,5,6,7].forEach(i=>{
+    const a=(i/8)*Math.PI*2;
+    const h=new THREE.Path(); h.absarc(Math.cos(a)*bBC,Math.sin(a)*bBC,.22,0,Math.PI*2,true);
+    fS.holes.push(h);
+  });
+  const gFront = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(fS, { depth:.30, bevelEnabled:false }), m.silver);
+  gFront.position.z = FACE + 0.10;
+  group.add(gFront);
+  ps.push({ mesh:gFront, o:gFront.position.clone(), d:new THREE.Vector3(0,0,5.2), spin:0 });
 
-    const a=(i/8)*Math.PI*2, bx=Math.cos(a)*4.76, by=Math.sin(a)*4.76;
-
-    const bolt=new THREE.Mesh(new THREE.CylinderGeometry(.135,.135,1.52,8),m.brass);
-
-    bolt.rotation.x=Math.PI/2; bolt.position.set(bx,by,.37); group.add(bolt);
-
-    ps.push({mesh:bolt,o:bolt.position.clone(),d:new THREE.Vector3(bx*.14,by*.14,0),spin:0});
-
-    const head=new THREE.Mesh(new THREE.CylinderGeometry(.23,.23,.21,6),m.gold);
-
-    head.rotation.x=Math.PI/2; head.position.set(bx,by,1.13); group.add(head);
-
-    ps.push({mesh:head,o:head.position.clone(),d:new THREE.Vector3(bx*.14,by*.14,1.75),spin:0});
-
+  /* -- 8 hex bolts -- */
+  [0,1,2,3,4,5,6,7].forEach(i=>{
+    const a=(i/8)*Math.PI*2, bx=Math.cos(a)*bBC, by=Math.sin(a)*bBC;
+    const bolt=new THREE.Mesh(new THREE.CylinderGeometry(.130,.130,1.50,16),m.steel);
+    bolt.rotation.x=Math.PI/2; bolt.position.set(bx,by,.38); group.add(bolt);
+    ps.push({mesh:bolt,o:bolt.position.clone(),d:new THREE.Vector3(bx*.13,by*.13,0),spin:0});
+    const head=new THREE.Mesh(new THREE.CylinderGeometry(.252,.252,.27,6),m.steel);
+    head.rotation.x=Math.PI/2; head.position.set(bx,by,1.18); group.add(head);
+    ps.push({mesh:head,o:head.position.clone(),d:new THREE.Vector3(bx*.13,by*.13,1.85),spin:0});
+    const washer=new THREE.Mesh(new THREE.CylinderGeometry(.300,.300,.044,20),m.chrome);
+    washer.rotation.x=Math.PI/2; washer.position.set(bx,by,1.06); group.add(washer);
+    ps.push({mesh:washer,o:washer.position.clone(),d:new THREE.Vector3(bx*.13,by*.13,1.85),spin:0});
+    const nut=new THREE.Mesh(new THREE.CylinderGeometry(.235,.235,.21,6),m.steel);
+    nut.rotation.x=Math.PI/2; nut.position.set(bx,by,-.47); group.add(nut);
+    ps.push({mesh:nut,o:nut.position.clone(),d:new THREE.Vector3(bx*.13,by*.13,-2.4),spin:0});
   });
 
-
-
-  /* Planet shafts */
-
-  pA.forEach(a=>{
-
-    const sh=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,2.35,12),m.chrome);
-
-    sh.rotation.x=Math.PI/2; sh.position.set(Math.cos(a)*OR,Math.sin(a)*OR,.09); group.add(sh);
-
-    ps.push({mesh:sh,o:sh.position.clone(),d:new THREE.Vector3(Math.cos(a)*5.6,Math.sin(a)*5.6,1.5),spin:0});
-
+  /* -- Bearing rings (central hub) -- */
+  [-0.17, FACE+0.04].forEach(z => {
+    const br = new THREE.Mesh(new THREE.TorusGeometry(.50,.055,2,40), m.gold);
+    br.position.z = z; group.add(br);
+    ps.push({ mesh:br, o:br.position.clone(), d:new THREE.Vector3(0,0,z*3.5), spin:0 });
   });
 
+  /* -- Input shaft: geometry rotation baked in, spins correctly on Z axis -- */
+  const shaftR = 0.34;
+  const shaftGeo = new THREE.CylinderGeometry(shaftR, shaftR, 4.6, 22);
+  shaftGeo.applyMatrix4(new THREE.Matrix4().makeRotationX(Math.PI/2));
+  const shaft = new THREE.Mesh(shaftGeo, m.chrome);
+  shaft.position.z = -0.40;
+  group.add(shaft);
+  ps.push({ mesh:shaft, o:shaft.position.clone(), d:new THREE.Vector3(0,0,0), spin:0.18 });
 
+  /* -- Input sprocket -- */
+  const sp = new THREE.Mesh(new THREE.TorusGeometry(1.32,.07,2,32), m.chrome);
+  sp.position.z = 1.10; group.add(sp);
+  ps.push({ mesh:sp, o:sp.position.clone(), d:new THREE.Vector3(0,0,4.8), spin:0.18 });
 
-  /* Bearing rings */
-
-  [-.10,.72].forEach(z=>{
-
-    const br=new THREE.Mesh(new THREE.TorusGeometry(.37,.12,14,36),m.gold);
-
-    br.position.z=z; group.add(br); ps.push({mesh:br,o:br.position.clone(),d:new THREE.Vector3(0,0,z*3.5),spin:0});
-
-  });
-
-
-
-  /* Output flange */
-
-  const fl=new THREE.Mesh(new THREE.CylinderGeometry(.94,.94,.48,24),m.chrome);
-
-  fl.rotation.x=Math.PI/2; fl.position.z=-.62; group.add(fl);
-
-  ps.push({mesh:fl,o:fl.position.clone(),d:new THREE.Vector3(0,0,-5.9),spin:.17});
-
-
-
-  /* Keyway */
-
-  const kw=new THREE.Mesh(new THREE.BoxGeometry(.15,.11,.50),m.steel);
-
-  kw.position.set(.25,0,-.62); group.add(kw);
-
-  ps.push({mesh:kw,o:kw.position.clone(),d:new THREE.Vector3(.7,0,-5.9),spin:0});
-
-
-
-  /* Input sprocket */
-
-  const sp=new THREE.Mesh(new THREE.TorusGeometry(1.34,.16,12,30),m.chrome);
-
-  sp.position.z=1.10; group.add(sp); ps.push({mesh:sp,o:sp.position.clone(),d:new THREE.Vector3(0,0,4.6),spin:.58});
-
-
-
-  /* Outer housing ring */
-
-  const hr=new THREE.Mesh(new THREE.TorusGeometry(4.76,.31,18,52),m.dark);
-
-  group.add(hr); ps.push({mesh:hr,o:hr.position.clone(),d:new THREE.Vector3(0,0,0),spin:0});
-
-
-
-  /* Inner spacer ring */
-
-  const sr=new THREE.Mesh(new THREE.TorusGeometry(4.0,.12,10,40),m.steel);
-
-  group.add(sr); ps.push({mesh:sr,o:sr.position.clone(),d:new THREE.Vector3(0,0,0),spin:-.04});
-
-
+  /* -- Keyway -- */
+  const kw = new THREE.Mesh(new THREE.BoxGeometry(.15,.11,.46), m.steel);
+  kw.position.set(shaftR+0.06, 0, -1.52); group.add(kw);
+  ps.push({ mesh:kw, o:kw.position.clone(), d:new THREE.Vector3(.8,0,-7.0), spin:0 });
 
   return ps;
 
@@ -868,7 +947,9 @@ function initThree() {
 
   if (!canvas || typeof THREE==='undefined') { console.warn('Three.js not ready'); return; }
 
-  const parent=canvas.parentElement, W=parent.clientWidth||640, H=parent.clientHeight||580;
+  const parent=canvas.parentElement, W=parent.clientWidth||1280, H=parent.clientHeight||700;
+
+  const dragEl=document.getElementById('hero3d-drag')||canvas;
 
 
 
@@ -886,13 +967,15 @@ function initThree() {
 
   camera.position.set(0,2.5,20); camera.lookAt(0,.5,0);
 
+  rightHalfX = Math.tan(19*Math.PI/180) * 20 * (W/H) * 0.5;
+
   clock=new THREE.Clock();
 
 
 
   loadModel();
 
-  setupDrag(canvas, parent);
+  setupDrag(dragEl, parent);
 
   animate();
 
@@ -913,7 +996,9 @@ function loadModel() {
 
   rotGroup=new THREE.Group();
 
-  rotGroup.rotation.x=0.32; rotGroup.scale.set(0.7,0.7,0.7);
+  rotGroup.rotation.x=0.32; rotGroup.scale.set(0.76,0.76,0.76);
+
+  rotGroup.position.x=rightHalfX;
 
   scene.add(rotGroup);
 
@@ -951,13 +1036,15 @@ function loadModel() {
 
 /* ── Drag controls ──────────────────────────────────────────── */
 
-function setupDrag(canvas, parent) {
+function setupDrag(dragEl, parent) {
 
-  let msx=0, msy=0, didDrag=false;
+  let msx=0, msy=0;
 
-  canvas.addEventListener('mousedown',e=>{isDragging=true;didDrag=false;msx=e.clientX;msy=e.clientY;prevMouse={x:e.clientX,y:e.clientY};});
+  let didDrag = false;
 
-  window.addEventListener('mouseup',()=>isDragging=false);
+  dragEl.addEventListener('mousedown',e=>{isDragging=true;didDrag=false;msx=e.clientX;msy=e.clientY;prevMouse={x:e.clientX,y:e.clientY};});
+
+  window.addEventListener('mouseup',()=>{isDragging=false;});
 
   window.addEventListener('mousemove',e=>{
 
@@ -975,15 +1062,26 @@ function setupDrag(canvas, parent) {
 
   });
 
-  canvas.addEventListener('click',()=>{if(didDrag)return;if(currentMode!=='explode')setMode('explode');else resetModel();});
+  /* Click (no drag) — toggle explode / reset */
+  dragEl.addEventListener('click',()=>{
 
-  canvas.addEventListener('touchstart',e=>{isDragging=true;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
+    if(didDrag){didDrag=false;return;}
+
+    if(scrollExplodeActive)return;
+
+    if(explodeT<0.01&&!exploding){setMode('explode');}
+
+    else{resetModel();}
+
+  });
+
+  dragEl.addEventListener('touchstart',e=>{isDragging=true;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
 
   window.addEventListener('touchend',()=>isDragging=false);
 
   window.addEventListener('touchmove',e=>{if(!isDragging)return;rotGroup.rotation.y+=(e.touches[0].clientX-prevMouse.x)*.010;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
 
-  window.addEventListener('resize',()=>{const W2=parent.clientWidth||640,H2=parent.clientHeight||580;camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);});
+  window.addEventListener('resize',()=>{const W2=parent.clientWidth||1280,H2=parent.clientHeight||700;camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);rightHalfX=Math.tan(19*Math.PI/180)*20*(W2/H2)*0.5;if(rotGroup&&!scrollExplodeActive)rotGroup.position.x=rightHalfX;});
 
 }
 
@@ -1003,11 +1101,11 @@ function animate() {
 
   if (!isDragging && currentMode==='rotate') {
 
-    rotGroup.rotation.y+=.004;
+    rotGroup.rotation.y+=.0007;
 
     rotGroup.position.y=Math.sin(floatT*.52)*.04;
 
-    rotGroup.position.x=0;
+    rotGroup.position.x=rightHalfX;
 
   }
 
@@ -1063,9 +1161,19 @@ function animate() {
 
 
 
-  if (exploding&&explodeT<1)      { explodeT=Math.min(1,explodeT+dt*.55); applyExplode(explodeT); }
+  if (scrollExplodeActive) {
 
-  else if (!exploding&&explodeT>0) { explodeT=Math.max(0,explodeT-dt*.80); applyExplode(explodeT); }
+    if (explodeT !== scrollExplodeT) { explodeT = scrollExplodeT; applyExplode(explodeT); }
+
+  } else if (exploding&&explodeT<1) {
+
+    explodeT=Math.min(1,explodeT+dt*.55); applyExplode(explodeT);
+
+  } else if (!exploding&&explodeT>0) {
+
+    explodeT=Math.max(0,explodeT-dt*.80); applyExplode(explodeT);
+
+  }
 
 
 
@@ -1127,12 +1235,22 @@ function setMode(mode) {
 
 function resetModel() {
 
-  exploding=false; currentMode='rotate';
+  exploding=false; currentMode='rotate'; scrollExplodeActive=false; scrollExplodeT=0;
 
-  if(rotGroup) rotGroup.rotation.set(.32,0,0), rotGroup.position.set(0,0,0);
+  if(rotGroup) { rotGroup.rotation.set(.32,0,0); rotGroup.position.set(rightHalfX,0,0); }
 
   document.querySelectorAll('.vctrl').forEach(b=>b.classList.remove('active'));
 
   const rb=document.getElementById('btn-rotate'); if(rb) rb.classList.add('active');
+
+}
+
+function setScrollExplode(t) {
+
+  scrollExplodeActive = true;
+
+  scrollExplodeT = Math.max(0, Math.min(1, t));
+
+  if (scrollExplodeT < 0.005) { scrollExplodeActive = false; exploding = false; }
 
 }

@@ -19,8 +19,9 @@
     <ul class="nav-links">
       <li><a href="#about"        id="nav-about">About</a></li>
       <li><a href="#projects"     id="nav-projects">Work</a></li>
-      <li><a href="software.html" id="nav-software">Software</a></li>
-      <li><a href="#team-index"   id="nav-experience">Team</a></li>
+      <li><a href="software.html"  id="nav-software">Software</a></li>
+      <li><a href="webdesign.html" id="nav-webdesign">Web Design</a></li>
+      <li><a href="#team-index"    id="nav-experience">Team</a></li>
       <li><a href="#contact"      id="nav-contact">Contact</a></li>
     </ul>
     <div class="lang-toggle">
@@ -37,14 +38,17 @@
   <ul>
     <li><a href="#about"        id="mnav-about"      onclick="closeMobileNav()">About</a></li>
     <li><a href="#projects"     id="mnav-projects"   onclick="closeMobileNav()">Work</a></li>
-    <li><a href="software.html" id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
-    <li><a href="#team-index"   id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
+    <li><a href="software.html"  id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
+    <li><a href="webdesign.html" id="mnav-webdesign"  onclick="closeMobileNav()">Web Design</a></li>
+    <li><a href="#team-index"    id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
     <li><a href="#contact"      id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
   </ul>
 </div>
 
 <!-- HERO -->
 <section id="hero">
+  <canvas id="hero3d"></canvas>
+  <div id="hero3d-drag"></div>
   <div class="hero-left">
     <div class="hero-tag" id="hero-tag">// Mechanical Design &amp; 3D Printing Studio — Athens, GR</div>
     <h1 class="hero-name">Expertease<br><span>Designs</span></h1>
@@ -57,14 +61,11 @@
     </div>
   </div>
   <div class="hero-right">
-    <canvas id="hero3d"></canvas>
     <div class="viewer-controls">
       <button class="vctrl active" id="btn-rotate"  onclick="setMode('rotate')">⟳ ROTATE</button>
       <button class="vctrl"        id="btn-explode" onclick="setMode('explode')">⊕ EXPLODE</button>
       <button class="vctrl"        id="btn-reset"   onclick="resetModel()">↺ RESET</button>
     </div>
-    <div class="model-indicator" id="model-indicator">PLANETARY GEARBOX</div>
-    <div class="viewer-hint" id="viewer-hint">drag to rotate</div>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">7<span>+</span></div><div class="stat-label" id="stat-years">Years Experience</div></div>
@@ -112,22 +113,26 @@
     </div>
     <div class="values-col reveal-up">
       <div class="values-grid">
-        <div class="value-item">
+        <div class="value-item v-blue">
+          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg>
           <span class="value-num">01</span>
           <div class="value-title" id="val-1-title">Precision</div>
           <p class="value-text" id="val-1-text">FEA-verified, tolerance-stacked, tested in real conditions. We don't approximate.</p>
         </div>
-        <div class="value-item">
+        <div class="value-item v-green">
+          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
           <span class="value-num">02</span>
           <div class="value-title" id="val-2-title">Full Lifecycle</div>
           <p class="value-text" id="val-2-text">From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don't hand off.</p>
         </div>
-        <div class="value-item">
+        <div class="value-item v-amber">
+          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
           <span class="value-num">03</span>
           <div class="value-title" id="val-3-title">Global Standards</div>
           <p class="value-text" id="val-3-text">Educated across 3 countries. International engineering rigour applied to every local project.</p>
         </div>
-        <div class="value-item">
+        <div class="value-item v-red">
+          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
           <span class="value-num">04</span>
           <div class="value-title" id="val-4-title">Built to Make</div>
           <p class="value-text" id="val-4-text">DFM from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.</p>
@@ -144,17 +149,17 @@
     <div class="process-step">
       <div class="process-num">01</div>
       <h3 class="process-title" id="proc-1-title">Brief</h3>
-      <p class="process-text" id="proc-1-text">We study your constraints, material, environment, and timeline before drawing a single line.</p>
+      <p class="process-text" id="proc-1-text">We take time to understand your <span class="accent-blue">requirements</span>, <span class="accent-blue">constraints</span>, and <span class="accent-blue">goals</span> before committing to any design direction — because the <span class="accent-green">right brief</span> leads to the <span class="accent-green">right outcome</span>.</p>
     </div>
     <div class="process-step">
       <div class="process-num">02</div>
       <h3 class="process-title" id="proc-2-title">Design</h3>
-      <p class="process-text" id="proc-2-text">Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings — every deliverable ready for production.</p>
+      <p class="process-text" id="proc-2-text">Full 3D model in <span class="accent-blue">SolidWorks</span>, <span class="accent-green">FEA validation</span>, complete <span class="accent-blue">BOM</span>, and technical drawings (<span class="accent-blue">part</span>, <span class="accent-blue">assembly</span>, <span class="accent-blue">instructions</span>) — every deliverable <span class="accent-green">ready for production</span>.</p>
     </div>
     <div class="process-step">
       <div class="process-num">03</div>
       <h3 class="process-title" id="proc-3-title">Deliver</h3>
-      <p class="process-text" id="proc-3-text">We supervise fabrication, manage suppliers, and hand over a tested, production-ready assembly.</p>
+      <p class="process-text" id="proc-3-text">We coordinate <span class="accent-blue">subcontractors</span>, supervise <span class="accent-blue">fabrication</span>, and make sure <span class="accent-green">quality</span>, <span class="accent-green">reliability</span>, and <span class="accent-green">safety standards</span> are met — then hand over a <span class="accent-green">tested, production-ready assembly</span>.</p>
     </div>
   </div>
 
@@ -203,11 +208,7 @@
       <div class="pf-loop-line"></div>
     </div>
   </div>
-</section>
 
-<!-- PRINCIPLES / HOW WE WORK -->
-<section id="principles">
-  <div class="principles-label" id="principles-label">How We Work</div>
   <div class="principles-grid">
     <div class="principle-card reveal-up">
       <span class="principle-num">01</span>
@@ -222,7 +223,12 @@
     <div class="principle-card reveal-up">
       <span class="principle-num">03</span>
       <h3 class="principle-title" id="prin-3-title">Innovation</h3>
-      <p class="principle-text" id="prin-3-text">We constantly explore new tools, materials, and methods to deliver <span class="accent-green">smarter solutions</span> — <span class="accent-blue">FEA</span>, <span class="accent-green">advanced manufacturing</span>, and <span class="accent-green">design optimisation</span> built into every workflow.</p>
+      <p class="principle-text" id="prin-3-text">We constantly explore new tools, materials, and methods to deliver <span class="accent-green">smarter solutions</span> — <span class="accent-green">FEA</span>, <span class="accent-green">advanced manufacturing</span>, and <span class="accent-green">design optimisation</span> built into every workflow.</p>
+    </div>
+    <div class="principle-card reveal-up">
+      <span class="principle-num">04</span>
+      <h3 class="principle-title" id="prin-4-title">Web Design</h3>
+      <p class="principle-text" id="prin-4-text">Liked this page? It's entirely <span class="accent-green">custom-built HTML</span> — no templates, no page builders. We design <span class="accent-green">fully interactive, unique business websites</span> from scratch. <a href="#contact" class="principle-cta" id="prin-4-cta">Get in touch →</a></p>
     </div>
   </div>
 </section>
@@ -234,6 +240,8 @@
     <h2 class="section-title" id="projects-heading">Work</h2>
     <div class="section-line"></div>
   </div>
+
+  <div class="port-thumb-strip" id="portThumbStrip"></div>
 
   <div class="portfolio-stage">
     <div class="portfolio-col" id="portColLeft" draggable="false">
@@ -321,7 +329,15 @@
     <div class="founder-card-info">
       <div class="founder-card-label">Founder &amp; Lead Engineer</div>
       <h3 class="founder-card-name">Dimitrios<br>Moudiotis</h3>
-      <p class="founder-card-bio">Mechanical Engineer (AUTH) with 7+ years of experience across robotics, safety equipment, sheet metal, and precision 3D printing. Four postgraduate degrees from institutions in Greece, France, and the USA.</p>
+      <p class="founder-card-bio">Mechanical Engineer (AUTH) with 7+ years of experience across robotics, safety equipment, industrial machinery, and precision fabrication. Studied at five universities in Greece, France, and the USA.</p>
+      <div class="founder-tools-row">
+        <span class="founder-tool">SolidWorks</span>
+        <span class="founder-tool">AutoCAD</span>
+        <span class="founder-tool">META</span>
+        <span class="founder-tool">Python</span>
+        <span class="founder-tool">Visual Basic</span>
+        <span class="founder-tool">MS Project</span>
+      </div>
       <div class="founder-card-stats">
         <div class="founder-card-stat">
           <div class="fcs-num">7<span>+</span></div>
@@ -334,6 +350,16 @@
         <div class="founder-card-stat">
           <div class="fcs-num">4</div>
           <div class="fcs-label">PG Degrees</div>
+        </div>
+        <div class="founder-card-stat">
+          <div class="fcs-num">9</div>
+          <div class="fcs-label">Scholarships</div>
+        </div>
+      </div>
+      <div class="founder-achievements">
+        <div class="founder-ach-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>
+          Co-founder, motorcycle safety startup · 2× national entrepreneurship competition winner
         </div>
       </div>
       <div class="founder-card-actions">
@@ -348,7 +374,7 @@
     <div class="edu-strip-title" id="edu-strip-title">Founder — Dimitrios Moudiotis · 5 Universities in 3 Countries</div>
     <div class="edu-cards">
       <div class="edu-card blue">
-        <div class="edu-logo-wrap" style="background:rgba(0,80,160,.18);">
+        <div class="edu-logo-wrap">
           <img src="images/LogoAUTH.png" alt="AUTH">
         </div>
         <div class="edu-degree" id="edu1-deg">BEng</div>
@@ -356,7 +382,7 @@
         <div class="edu-country">AUTH · Greece</div>
       </div>
       <div class="edu-card red">
-        <div class="edu-logo-wrap" style="background:rgba(160,0,0,.15);">
+        <div class="edu-logo-wrap">
           <img src="images/ecole_centrale_paris_logo.png" alt="ECP">
         </div>
         <div class="edu-degree" id="edu2-deg">MSc</div>
@@ -364,7 +390,7 @@
         <div class="edu-country">Paris · France</div>
       </div>
       <div class="edu-card green">
-        <div class="edu-logo-wrap" style="background:rgba(0,120,60,.15);">
+        <div class="edu-logo-wrap">
           <img src="images/IFP_Logo.png" alt="IFP">
         </div>
         <div class="edu-degree" id="edu3-deg">MSc</div>
@@ -372,7 +398,7 @@
         <div class="edu-country">Paris · France</div>
       </div>
       <div class="edu-card purple">
-        <div class="edu-logo-wrap" style="background:rgba(100,0,150,.15);">
+        <div class="edu-logo-wrap">
           <img src="images/ihu_logo.png" alt="IHU">
         </div>
         <div class="edu-degree" id="edu4-deg">MSc</div>
@@ -380,7 +406,7 @@
         <div class="edu-country">Thessaloniki · Greece</div>
       </div>
       <div class="edu-card navy">
-        <div class="edu-logo-wrap" style="background:rgba(0,40,120,.2);">
+        <div class="edu-logo-wrap">
           <img src="images/wust_logo.png" alt="WUST" onerror="this.parentElement.innerHTML='&#127891;'">
         </div>
         <div class="edu-degree" id="edu5-deg">MBA</div>
@@ -394,15 +420,22 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-label"   id="contact-label">// Let's Work Together</div>
-  <h2  class="contact-heading" id="contact-heading">Got a project<br>in mind?</h2>
+  <h2  class="contact-heading" id="contact-heading">Got a project in mind?</h2>
   <p   class="contact-sub"     id="contact-sub">From designing a single component to managing an entire project — Expertease is here.</p>
   <div class="contact-direct">
-    <a href="mailto:info@expertease.eu" class="contact-email">info@expertease.eu</a>
-    <div class="contact-phone-row">
-      <a href="tel:+3021007561836" class="contact-phone-link">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    <div class="contact-info-row">
+      <a href="mailto:info@expertease.eu" class="contact-info-item contact-email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        info@expertease.eu
+      </a>
+      <a href="tel:+3021007561836" class="contact-info-item contact-phone-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         210 075 61836
       </a>
+      <span class="contact-info-item contact-location">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Pagrati, Athens
+      </span>
     </div>
   </div>
   <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form" novalidate>
@@ -435,6 +468,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
 <script src="models.js" defer></script>
+<script src="projects.js" defer></script>
 <script src="main.js" defer></script>
 <script src="step-viewer.js" defer></script>
 </body>
