@@ -92,9 +92,18 @@
     setStatus('Loading CAD engine… (~63 MB, one-time)');
 
     try {
-      await loadScript(OC_CDN);
       setStatus('Initialising OpenCascade kernel…');
-      oc = await opencascade();
+      let opencascadeInit;
+      try {
+        // Try ESM dynamic import first (opencascade.js@1.1.1 dist is ESM)
+        const mod = await import(OC_CDN);
+        opencascadeInit = mod.default || mod.opencascade || mod;
+      } catch (_) {
+        // Fall back to classic script global
+        await loadScript(OC_CDN);
+        opencascadeInit = window.opencascade;
+      }
+      oc = await opencascadeInit();
       setStatus('Fetching STEP file…');
       await loadStep(STEP_FILE);
     } catch (err) {

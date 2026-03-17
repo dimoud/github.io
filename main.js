@@ -732,5 +732,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initScrollReveal();
   initProcessAnimations();
-  setTimeout(initThree, 120);
+  if (typeof initThree === 'function') setTimeout(initThree, 120);
 });
