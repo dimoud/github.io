@@ -3,7 +3,12 @@
     "allow": [
       "Bash(node -e \":*)",
       "Bash(grep -n \"^//\" models.js)",
-      "WebFetch(domain:cdn.jsdelivr.net)"
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "Bash(for dir:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $dir ===\")",
+      "Read(//a/WORK_PROJECTS/WEBSITES/github/dimoud.github.io/images/**)",
+      "Bash(done)"
     ]
   }
 }

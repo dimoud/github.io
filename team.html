@@ -7,7 +7,7 @@
 <meta name="description" content="Meet the founder of Expertease Designs — Dimitrios Moudiotis, Mechanical Engineer with degrees from 5 universities in 3 countries.">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 
@@ -35,7 +35,7 @@
 
 /* ── FOUNDER SECTION ─────────────────────────────────────────── */
 .founder-section {
-  background: #131720;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
   padding: 90px 56px;
   position: relative; z-index: 1;
   overflow: hidden;
@@ -43,10 +43,10 @@
 .founder-section::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse at 5% 50%, rgba(30,79,160,.10) 0%, transparent 50%),
-    radial-gradient(ellipse at 95% 20%, rgba(184,50,40,.06) 0%, transparent 45%),
-    linear-gradient(rgba(58,120,212,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(58,120,212,.03) 1px, transparent 1px);
+    radial-gradient(ellipse at 5% 50%, rgba(37,99,235,.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 95% 20%, rgba(96,165,250,.08) 0%, transparent 45%),
+    linear-gradient(rgba(37,99,235,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,.05) 1px, transparent 1px);
   background-size: auto, auto, 44px 44px, 44px 44px;
 }
 .founder-grid {
@@ -97,7 +97,7 @@
   position: relative;
   z-index: 1;
   box-shadow:
-    0 0 0 3px #131720,
+    0 0 0 3px var(--navy),
     0 24px 64px rgba(0,0,0,.55),
     0 8px 24px rgba(30,79,160,.25);
   filter: grayscale(12%) contrast(1.04);
@@ -219,7 +219,7 @@
 
 /* ── ABOUT THE FIRM ──────────────────────────────────────────── */
 .firm-section {
-  background: #0e1116;
+  background: linear-gradient(150deg, #3a3f4e 0%, #454b5c 55%, #3a3f4e 100%);
   padding: 90px 56px;
   position: relative; z-index: 1;
   overflow: hidden;
@@ -227,9 +227,9 @@
 .firm-section::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 100%, rgba(30,79,160,.08) 0%, transparent 60%),
-    linear-gradient(rgba(58,120,212,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(58,120,212,.025) 1px, transparent 1px);
+    radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.04) 0%, transparent 60%),
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
   background-size: auto, 44px 44px, 44px 44px;
 }
 .firm-inner {
@@ -240,13 +240,40 @@
 .firm-header {
   text-align: center;
   margin-bottom: 64px;
+  margin-top: -18px;
+  position: relative;
 }
+/* Ghost taglines behind the heading */
+.firm-ghost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.firm-ghost span {
+  font-family: var(--font-display);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.045);
+  white-space: nowrap;
+  line-height: 1;
+}
+.firm-ghost .fg-title  { font-size: clamp(14px, 1.8vw, 22px); }
+.firm-ghost .fg-tagline { font-size: clamp(10px, 1.2vw, 15px); }
+.firm-mono-label,
+.firm-heading { position: relative; z-index: 1; }
 .firm-mono-label {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,.3);
+  color: rgba(255,255,255,.35);
   margin-bottom: 14px;
 }
 .firm-heading {
@@ -265,14 +292,15 @@
 .firm-desc {
   font-size: 16.5px;
   line-height: 1.88;
-  color: rgba(216,232,248,.68);
+  color: rgba(220,225,235,.72);
+  margin-top: 20%;
 }
 .firm-services-label {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--blue-lt);
+  color: rgba(255,255,255,.5);
   margin-bottom: 20px;
 }
 .firm-services {
@@ -285,31 +313,31 @@
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: .5px;
-  color: rgba(216,232,248,.72);
+  color: rgba(220,225,235,.75);
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 11px 16px;
-  border: 1px solid rgba(255,255,255,.06);
-  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
   transition: background .2s, border-color .2s, color .2s, transform .2s;
 }
 .firm-services li:hover {
-  background: rgba(184,50,40,.07);
-  border-color: rgba(212,90,74,.22);
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.2);
   color: #fff;
   transform: translateX(4px);
 }
 .firm-services li::before {
   content: '▸';
-  color: var(--red-lt);
+  color: rgba(255,255,255,.45);
   font-size: 10px;
   flex-shrink: 0;
 }
 
 /* ── VALUES SECTION ──────────────────────────────────────────── */
 .values-section {
-  background: #131720;
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-hero) 50%, var(--navy) 100%);
   padding: 90px 56px;
   position: relative; z-index: 1;
 }
@@ -350,7 +378,7 @@
 .value-card {
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.08);
-  padding: 36px 30px;
+  padding: 44px 34px 40px;
   position: relative;
   overflow: hidden;
   transition: background .3s, border-color .3s, transform .3s;
@@ -386,9 +414,36 @@
   height: 1px;
   background: rgba(255,255,255,.2);
 }
+
+/* Pillar cards: bilingual heading block */
+.value-bilingual {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 18px;
+}
+.value-bilingual .en {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: #fff;
+  line-height: 1;
+}
+.value-bilingual .el {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 3px;
+  line-height: 1;
+  opacity: .55;
+}
+.value-card.vc-blue  .value-bilingual .el { color: var(--blue-lt); }
+.value-card.vc-red   .value-bilingual .el { color: var(--red-lt); }
+.value-card.vc-green .value-bilingual .el { color: #38a169; }
+
+/* Principle cards: single heading */
 .value-heading {
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 28px;
   letter-spacing: 2px;
   color: #fff;
   margin-bottom: 16px;
@@ -400,9 +455,32 @@
   color: rgba(216,232,248,.6);
 }
 
+/* Divider between the two rows of cards */
+.values-row-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 20px;
+}
+.values-row-divider span {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+  white-space: nowrap;
+}
+.values-row-divider::before,
+.values-row-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.07);
+}
+
 /* ── EDUCATION SECTION ───────────────────────────────────────── */
 #team {
-  background: #1e2230;
+  background: #fff;
   padding: 60px 56px 52px;
 }
 .edu-section-header {
@@ -414,14 +492,14 @@
   font-size: 9px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,.3);
+  color: rgba(30,60,120,.45);
   margin-bottom: 10px;
 }
 .edu-section-heading {
   font-family: var(--font-display);
   font-size: clamp(32px, 3.5vw, 48px);
   letter-spacing: 2px;
-  color: rgba(255,255,255,.85);
+  color: #1a2a5e;
   line-height: 1;
 }
 
@@ -441,11 +519,12 @@
 
   .founder-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
     text-align: center;
   }
   .founder-photo-wrap { justify-content: center; }
-  .founder-photo-frame { width: 240px; height: 240px; }
+  .founder-photo-frame { width: 220px; height: 220px; }
+  .founder-photo-accent { right: 0; bottom: 10px; } /* prevent viewport overflow */
   .founder-mono-label { justify-content: center; }
   .founder-text { margin-left: auto; margin-right: auto; }
   .founder-stats { justify-content: center; flex-wrap: wrap; }
@@ -453,9 +532,11 @@
   .founder-stat:last-child  { border-radius: 0 3px 3px 0; border-right: 1px solid rgba(255,255,255,.08); }
   .founder-linkedin { margin: 0 auto; }
 
-  .firm-body { grid-template-columns: 1fr; gap: 44px; }
+  .firm-body { grid-template-columns: 1fr; gap: 36px; }
+  .firm-desc { margin-top: 0; } /* fix excessive spacing when stacked */
 
   .values-grid { grid-template-columns: 1fr; gap: 12px; }
+  .values-line { display: none; }
 
   #team { padding: 48px 20px 40px !important; }
   .edu-cards { grid-template-columns: repeat(3,1fr); }
@@ -466,15 +547,63 @@
   .firm-section,
   .values-section { padding: 52px 16px; }
 
-  .founder-stats { flex-wrap: wrap; }
-  .founder-stat { padding: 16px 20px; }
+  /* Stats: proper grid so borders stay consistent */
+  .founder-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: unset;
+    width: 100%;
+  }
+  .founder-stat {
+    padding: 16px 12px;
+    border-right: none;
+    border-radius: 0 !important;
+  }
+  .founder-stat:first-child { border-radius: 3px 0 0 3px !important; }
+  .founder-stat:last-child  {
+    border-right: 1px solid rgba(255,255,255,.08) !important;
+    border-radius: 0 3px 3px 0 !important;
+  }
+
+  /* LinkedIn: full width on small screens */
+  .founder-linkedin {
+    width: 100%;
+    justify-content: center;
+  }
 
   #team { padding: 40px 16px 36px !important; }
   .edu-cards { grid-template-columns: repeat(2,1fr); }
 }
 
+@media (max-width: 480px) {
+  .founder-section,
+  .firm-section,
+  .values-section { padding: 48px 14px; }
+
+  .founder-name { font-size: clamp(32px, 9vw, 42px); }
+  .founder-stat-num { font-size: 28px; }
+
+  .value-card { padding: 32px 22px 28px; }
+  .value-heading,
+  .value-bilingual .en { font-size: 22px; }
+
+  .edu-section-heading { font-size: clamp(26px, 7vw, 36px); }
+}
+
 @media (max-width: 400px) {
-  .edu-cards { grid-template-columns: 1fr 1fr; }
+  /* Stack stats vertically on very small phones */
+  .founder-stats {
+    grid-template-columns: 1fr;
+  }
+  .founder-stat {
+    border-right: 1px solid rgba(255,255,255,.08) !important;
+    border-bottom: none;
+    border-radius: 0 !important;
+  }
+  .founder-stat:first-child { border-radius: 3px 3px 0 0 !important; }
+  .founder-stat:last-child  { border-radius: 0 0 3px 3px !important; }
+
+  .edu-cards { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -488,9 +617,11 @@
     <ul class="nav-links">
       <li><a href="index.html#about"    id="nav-about">About</a></li>
       <li><a href="index.html#projects" id="nav-projects">Projects</a></li>
+      <li><a href="cad.html"            id="nav-cad">3D Models</a></li>
       <li><a href="software.html"       id="nav-software">Software</a></li>
+      <li><a href="webdesign.html"      id="nav-webdesign">Web Design</a></li>
       <li><a href="team.html"           id="nav-experience" class="active">Team</a></li>
-      <li><a href="index.html#contact"  id="nav-contact">Contact</a></li>
+      <li><a href="contact.html"  id="nav-contact">Contact</a></li>
     </ul>
     <div class="lang-toggle">
       <button class="lang-btn"        data-lang="el">ΕΛ</button>
@@ -507,16 +638,17 @@
   <ul>
     <li><a href="index.html#about"    id="mnav-about"      onclick="closeMobileNav()">About</a></li>
     <li><a href="index.html#projects" id="mnav-projects"   onclick="closeMobileNav()">Projects</a></li>
+    <li><a href="cad.html"            id="mnav-cad"        onclick="closeMobileNav()">3D Models</a></li>
     <li><a href="software.html"       id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
+    <li><a href="webdesign.html"      id="mnav-webdesign"  onclick="closeMobileNav()">Web Design</a></li>
     <li><a href="team.html"           id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
-    <li><a href="index.html#contact"  id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
+    <li><a href="contact.html"  id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
   </ul>
 </div>
 
 <!-- ══ PAGE HEADER ══════════════════════════════════════════════ -->
 <div class="team-page-hero">
   <div class="section-header">
-    <span class="section-num">03</span>
     <h1 class="section-title" id="team-page-heading">Team</h1>
     <div class="section-line"></div>
   </div>
@@ -570,6 +702,11 @@
 <div class="firm-section">
   <div class="firm-inner">
     <div class="firm-header">
+      <!-- ghost taglines — sit behind the heading -->
+      <div class="firm-ghost" aria-hidden="true">
+        <span class="fg-title">Mechanical Design · 3D Printing · Project Management</span>
+        <span class="fg-tagline">from vision to reality</span>
+      </div>
       <div class="firm-mono-label">// The Studio</div>
       <h2 class="firm-heading">Expertease Designs</h2>
     </div>
@@ -588,38 +725,6 @@
           <li>Technical Documentation</li>
         </ul>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ VALUES ════════════════════════════════════════════════════ -->
-<div class="values-section">
-  <div class="values-inner">
-    <div class="values-header">
-      <span class="values-num">// Values</span>
-      <div class="values-title">How We Work</div>
-      <div class="values-line"></div>
-    </div>
-    <div class="values-grid">
-
-      <div class="value-card vc-blue">
-        <div class="value-icon">01</div>
-        <div class="value-heading">Precision</div>
-        <p class="value-text">Every dimension matters. We design to tolerance, prototype to verify, and deliver parts that fit first time.</p>
-      </div>
-
-      <div class="value-card vc-red">
-        <div class="value-icon">02</div>
-        <div class="value-heading">Integrity</div>
-        <p class="value-text">Honest timelines, transparent costs, and direct communication — no surprises, just results.</p>
-      </div>
-
-      <div class="value-card vc-green">
-        <div class="value-icon">03</div>
-        <div class="value-heading">Innovation</div>
-        <p class="value-text">We combine academic rigour with workshop pragmatism, finding the simplest solution that actually works.</p>
-      </div>
-
     </div>
   </div>
 </div>
@@ -684,6 +789,71 @@
 
   </div>
 </section>
+
+
+<!-- ══ VALUES ════════════════════════════════════════════════════ -->
+<div class="values-section">
+  <div class="values-inner">
+    <div class="values-header">
+      <span class="values-num">// Values</span>
+      <div class="values-title">How We Work</div>
+      <div class="values-line"></div>
+    </div>
+    <div class="values-grid">
+
+      <!-- ── Pillars row ── -->
+      <div class="value-card vc-blue">
+        <div class="value-icon">01</div>
+        <div class="value-bilingual">
+          <span class="en">Knowledge</span>
+          <span class="el">Γνώση</span>
+        </div>
+        <p class="value-text">Seven years of hands-on engineering across robotics, safety equipment, and precision fabrication — backed by five university degrees from three countries. Deep technical knowledge applied to every brief.</p>
+      </div>
+
+      <div class="value-card vc-red">
+        <div class="value-icon">02</div>
+        <div class="value-bilingual">
+          <span class="en">Integrity</span>
+          <span class="el">Ακεραιότητα</span>
+        </div>
+        <p class="value-text">Honest estimates, transparent communication, and full accountability from first sketch to final delivery. No surprises, no shortcuts — only what was promised, done properly.</p>
+      </div>
+
+      <div class="value-card vc-green">
+        <div class="value-icon">03</div>
+        <div class="value-bilingual">
+          <span class="en">Innovation</span>
+          <span class="el">Καινοτομία</span>
+        </div>
+        <p class="value-text">A classical engineering foundation meets a genuine drive to find smarter solutions. From DFM-optimised geometry to cross-disciplinary insight, every project is an opportunity to do it better.</p>
+      </div>
+
+      <!-- ── Divider ── -->
+      <div class="values-row-divider" style="grid-column:1/-1;"><span>// How We Work</span></div>
+
+      <!-- ── Principles row ── -->
+      <div class="value-card vc-blue">
+        <div class="value-icon">04</div>
+        <div class="value-heading" id="prin-1-title">Manufacturing Intelligence</div>
+        <p class="value-text" id="prin-1-text">We design knowing how parts are actually made — machined, bent, welded, printed. Every decision reflects the real constraints of the shop floor, before the drawing ever gets there.</p>
+      </div>
+
+      <div class="value-card vc-red">
+        <div class="value-icon">05</div>
+        <div class="value-heading" id="prin-2-title">Zero Rework</div>
+        <p class="value-text" id="prin-2-text">Manufacturing errors are the real cost — not materials. I design to eliminate them: tolerances that can be held, assemblies that fit first time, specifications aligned with what the manufacturer can actually deliver.</p>
+      </div>
+
+      <div class="value-card vc-green">
+        <div class="value-icon">06</div>
+        <div class="value-heading" id="prin-3-title">Full Ownership</div>
+        <p class="value-text" id="prin-3-text">From design, calculations, and simulations through manufacturing coordination, supplier communication, assembly oversight, and final verification — one engineer, full accountability.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
 <footer>

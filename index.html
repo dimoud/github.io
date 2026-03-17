@@ -7,13 +7,11 @@
 <meta name="description" content="Expertease Designs — Mechanical design, 3D printing, sheet metal, BOM, project management. Athens, Greece.">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" as="script" crossorigin>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
-<script src="models.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js" defer></script>
 <script src="projects.js" defer></script>
+<script src="models.js" defer></script>
 <script src="main.js" defer></script>
 <script src="step-viewer.js" defer></script>
 </head>
@@ -26,10 +24,11 @@
     <ul class="nav-links">
       <li><a href="#about"        id="nav-about">About</a></li>
       <li><a href="#projects"     id="nav-projects">Projects</a></li>
+      <li><a href="cad.html"       id="nav-cad">3D Models</a></li>
       <li><a href="software.html"  id="nav-software">Software</a></li>
       <li><a href="webdesign.html" id="nav-webdesign">Web Design</a></li>
       <li><a href="#team-index"    id="nav-experience">Team</a></li>
-      <li><a href="#contact"      id="nav-contact">Contact</a></li>
+      <li><a href="contact.html"  id="nav-contact">Contact</a></li>
     </ul>
     <div class="lang-toggle">
       <button class="lang-btn"        data-lang="el">ΕΛ</button>
@@ -45,10 +44,11 @@
   <ul>
     <li><a href="#about"        id="mnav-about"      onclick="closeMobileNav()">About</a></li>
     <li><a href="#projects"     id="mnav-projects"   onclick="closeMobileNav()">Projects</a></li>
+    <li><a href="cad.html"       id="mnav-cad"        onclick="closeMobileNav()">3D Models</a></li>
     <li><a href="software.html"  id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
     <li><a href="webdesign.html" id="mnav-webdesign"  onclick="closeMobileNav()">Web Design</a></li>
     <li><a href="#team-index"    id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
-    <li><a href="#contact"      id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
+    <li><a href="contact.html"  id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
   </ul>
 </div>
 
@@ -64,16 +64,10 @@
     <p class="hero-desc" id="hero-desc"></p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary" id="hero-cta-work">View Projects →</a>
-      <a href="#contact"  class="btn-outline"  id="hero-cta-contact">Get in Touch</a>
+      <a href="contact.html" class="btn-outline" id="hero-cta-contact">Get in Touch</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="viewer-controls">
-      <button class="vctrl active" id="btn-rotate"  onclick="setMode('rotate')">⟳ ROTATE</button>
-      <button class="vctrl"        id="btn-explode" onclick="setMode('explode')">⊕ EXPLODE</button>
-      <button class="vctrl"        id="btn-reset"   onclick="resetModel()">↺ RESET</button>
-    </div>
-  </div>
+  <div class="hero-right"></div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">7<span>+</span></div><div class="stat-label" id="stat-years">Years Experience</div></div>
     <div class="stat"><div class="stat-num">20<span>+</span></div><div class="stat-label" id="stat-projects">Projects Delivered</div></div>
@@ -112,7 +106,7 @@
   </div>
   <div class="about-grid">
     <div class="about-text reveal-up">
-      <p id="about-p1"></p>
+
       <blockquote class="about-highlight" id="about-quote"></blockquote>
       <p id="about-p2"></p>
       <p id="about-p3"></p>
@@ -121,26 +115,50 @@
     <div class="values-col reveal-up">
       <div class="values-grid">
         <div class="value-item v-blue">
-          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg>
           <span class="value-num">01</span>
+          <div class="vi-icon-wrap">
+            <svg class="value-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="3" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="21"/>
+              <line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/>
+            </svg>
+          </div>
           <div class="value-title" id="val-1-title">Precision</div>
           <p class="value-text" id="val-1-text">FEA-verified, tolerance-stacked, tested in real conditions. We don't approximate.</p>
         </div>
         <div class="value-item v-green">
-          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
           <span class="value-num">02</span>
+          <div class="vi-icon-wrap">
+            <svg class="value-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
+              <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/>
+            </svg>
+          </div>
           <div class="value-title" id="val-2-title">Full Lifecycle</div>
           <p class="value-text" id="val-2-text">From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don't hand off.</p>
         </div>
         <div class="value-item v-amber">
-          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
           <span class="value-num">03</span>
+          <div class="vi-icon-wrap">
+            <svg class="value-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
           <div class="value-title" id="val-3-title">Global Standards</div>
           <p class="value-text" id="val-3-text">Educated across 3 countries. International engineering rigour applied to every local project.</p>
         </div>
         <div class="value-item v-red">
-          <svg class="value-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
           <span class="value-num">04</span>
+          <div class="vi-icon-wrap">
+            <svg class="value-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
           <div class="value-title" id="val-4-title">Built to Make</div>
           <p class="value-text" id="val-4-text">DFM from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.</p>
         </div>
@@ -199,23 +217,58 @@
     </div>
   </div>
 
-  <div class="principles-grid">
-    <div class="principle-card reveal-up">
-      <span class="principle-num">01</span>
-      <h3 class="principle-title" id="prin-1-title">Precision</h3>
-      <p class="principle-text" id="prin-1-text">Every dimension matters. We <span class="accent-green">design to tolerance</span>, <span class="accent-green">prototype to verify</span>, and deliver parts that <span class="accent-green">fit first time</span>.</p>
-    </div>
-    <div class="principle-card reveal-up">
-      <span class="principle-num">02</span>
-      <h3 class="principle-title" id="prin-2-title">Integrity</h3>
-      <p class="principle-text" id="prin-2-text"><span class="accent-green">Honest timelines</span>, <span class="accent-green">transparent costs</span>, and <span class="accent-green">direct communication</span> — no surprises, just <span class="accent-green">results</span>.</p>
-    </div>
-    <div class="principle-card reveal-up">
-      <span class="principle-num">03</span>
-      <h3 class="principle-title" id="prin-3-title">Innovation</h3>
-      <p class="principle-text" id="prin-3-text">We constantly explore new tools, materials, and methods to deliver <span class="accent-green">smarter solutions</span> — <span class="accent-green">FEA</span>, <span class="accent-green">advanced manufacturing</span>, and <span class="accent-green">design optimisation</span> built into every workflow.</p>
-    </div>
+  <div class="values-section">
+    <div class="values-inner">
+      <div class="values-grid">
 
+        <!-- ── Pillars ── -->
+        <div class="value-card vc-blue">
+          <div class="value-icon">01</div>
+          <div class="value-bilingual">
+            <span class="en">Knowledge</span>
+            <span class="el">Γνώση</span>
+          </div>
+          <p class="value-text">Seven years of hands-on engineering across robotics, safety equipment, and precision fabrication — backed by five university degrees from three countries. Deep technical knowledge applied to every brief.</p>
+        </div>
+        <div class="value-card vc-red">
+          <div class="value-icon">02</div>
+          <div class="value-bilingual">
+            <span class="en">Integrity</span>
+            <span class="el">Ακεραιότητα</span>
+          </div>
+          <p class="value-text">Honest estimates, transparent communication, and full accountability from first sketch to final delivery. No surprises, no shortcuts — only what was promised, done properly.</p>
+        </div>
+        <div class="value-card vc-green">
+          <div class="value-icon">03</div>
+          <div class="value-bilingual">
+            <span class="en">Innovation</span>
+            <span class="el">Καινοτομία</span>
+          </div>
+          <p class="value-text">A classical engineering foundation meets a genuine drive to find smarter solutions. From DFM-optimised geometry to cross-disciplinary insight, every project is an opportunity to do it better.</p>
+        </div>
+
+        <!-- ── Divider ── -->
+        <div class="values-row-divider" style="grid-column:1/-1;"><span>// How We Work</span></div>
+
+        <!-- ── Principles (JS-populated) ── -->
+        <div class="value-card vc-blue">
+          <div class="value-icon">04</div>
+          <div class="value-heading" id="prin-1-title"></div>
+          <p class="value-text" id="prin-1-text"></p>
+        </div>
+        <div class="value-card vc-red">
+          <div class="value-icon">05</div>
+          <div class="value-heading" id="prin-2-title"></div>
+          <p class="value-text" id="prin-2-text"></p>
+        </div>
+        <div class="value-card vc-green">
+          <div class="value-icon">06</div>
+          <div class="value-heading" id="prin-3-title"></div>
+          <p class="value-text" id="prin-3-text"></p>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -227,7 +280,11 @@
     <div class="section-line"></div>
   </div>
 
-  <div class="port-thumb-strip" id="portThumbStrip"></div>
+  <div class="port-thumb-wrap">
+    <button class="port-thumb-arrow port-thumb-prev" id="portThumbPrev" aria-label="Previous projects">‹</button>
+    <div class="port-thumb-strip" id="portThumbStrip"></div>
+    <button class="port-thumb-arrow port-thumb-next" id="portThumbNext" aria-label="Next projects">›</button>
+  </div>
 
   <div class="portfolio-stage">
     <div class="portfolio-col" id="portColLeft" draggable="false">
@@ -240,7 +297,7 @@
         <div class="port-cat"></div>
         <h3 class="port-title"></h3>
         <p class="port-desc"></p>
-        <a href="#contact" class="project-link port-link">Get in Touch →</a>
+        <a href="contact.html" class="project-link port-link">Get in Touch →</a>
       </div>
     </div>
 
@@ -256,7 +313,7 @@
         <div class="port-cat"></div>
         <h3 class="port-title"></h3>
         <p class="port-desc"></p>
-        <a href="#contact" class="project-link port-link">Get in Touch →</a>
+        <a href="contact.html" class="project-link port-link">Get in Touch →</a>
       </div>
     </div>
   </div>
@@ -267,38 +324,6 @@
   </div>
 </section>
 
-<!-- CAD VIEWER -->
-<section id="cad-viewer">
-  <div class="section-header reveal-up">
-    <span class="section-num">02.1</span>
-    <h2 class="section-title">3D Model</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="cad-viewer-layout">
-    <div class="cad-canvas-wrap">
-      <canvas id="stepCanvas"></canvas>
-      <div id="cad-loading" class="cad-loading-overlay">
-        <div class="cad-spinner"></div>
-        <div class="cad-loading-text" id="cad-loading-text">Scroll to load CAD engine…</div>
-      </div>
-    </div>
-    <div class="cad-sidebar">
-      <div class="cad-file-label">
-        <span class="cad-file-icon">⬡</span>
-        <span>gym_rack.STEP</span>
-      </div>
-      <div class="cad-controls">
-        <button class="cad-btn" id="cadBtnWire"  onclick="stepToggleWireframe()">⧉ WIREFRAME</button>
-        <button class="cad-btn" id="cadBtnReset" onclick="stepResetCamera()">↺ RESET VIEW</button>
-      </div>
-      <div class="cad-hint">drag to orbit · scroll to zoom · right-drag to pan</div>
-      <div class="cad-legend">
-        <div class="cad-legend-row"><span class="cad-dot" style="background:#3b82f6"></span>Colors from STEP file</div>
-        <div class="cad-legend-row"><span class="cad-dot" style="background:#22a85a"></span>Real CAD geometry</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- TEAM -->
 <section id="team-index">
@@ -316,15 +341,7 @@
       <div class="founder-card-label">Founder &amp; Lead Engineer</div>
       <h3 class="founder-card-name">Dimitrios<br>Moudiotis</h3>
       <p class="founder-card-bio">Mechanical Engineer (AUTH) with 7+ years of experience across robotics, safety equipment, industrial machinery, and precision fabrication. Studied at five universities in Greece, France, and the USA.</p>
-      <div class="founder-tools-row">
-        <span class="founder-tool">SolidWorks</span>
-        <span class="founder-tool">AutoCAD</span>
-        <span class="founder-tool">META</span>
-        <span class="founder-tool">Python</span>
-        <span class="founder-tool">Visual Basic</span>
-        <span class="founder-tool">MS Project</span>
-      </div>
-      <div class="founder-card-stats">
+<div class="founder-card-stats">
         <div class="founder-card-stat">
           <div class="fcs-num">7<span>+</span></div>
           <div class="fcs-label">Years</div>

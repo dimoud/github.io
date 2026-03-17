@@ -118,17 +118,20 @@ function makeMats() {
 /* ── Lights ─────────────────────────────────────────────────── */
 
 function addLights(s) {
-  // 4 lights instead of 7 — no shadows — big GPU savings
-  s.add(new THREE.AmbientLight(0x8090a8, 4.2));
+  // 5 lights — no shadows — big GPU savings
+  s.add(new THREE.AmbientLight(0x9aa8c0, 12.0));
 
-  const key = new THREE.DirectionalLight(0xfff8f0, 8.5);
+  const key = new THREE.DirectionalLight(0xfff8f0, 22.0);
   key.position.set(10, 16, 12); s.add(key);   // no castShadow
 
-  const fill = new THREE.DirectionalLight(0x4878c8, 3.5);
+  const fill = new THREE.DirectionalLight(0x6090d8, 11.0);
   fill.position.set(-10, 6, -8); s.add(fill);
 
-  const rim = new THREE.PointLight(0x50a8e8, 4.5, 65);
+  const rim = new THREE.PointLight(0x70c0f0, 13.0, 80);
   rim.position.set(-6, 12, -12); s.add(rim);
+
+  const bounce = new THREE.DirectionalLight(0x7898b8, 6.0);
+  bounce.position.set(0, -10, 6); s.add(bounce);
 }
 
 

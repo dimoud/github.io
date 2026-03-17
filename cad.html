@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mechanical ExpertEase Software — Expertease Designs</title>
-<meta name="description" content="Mechanical ExpertEase — engineering software for special-purpose vehicle technical studies. Automated calculations, diagrams, A3 drawings, Word reports.">
+<title>3D Models — Expertease Designs</title>
+<meta name="description" content="Interactive 3D STEP file viewer — real CAD geometry rendered in the browser. Expertease Designs, Athens, Greece.">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" as="script" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
 </head>
 <body>
 
@@ -19,8 +22,8 @@
     <ul class="nav-links">
       <li><a href="index.html#about"    id="nav-about">About</a></li>
       <li><a href="index.html#projects" id="nav-projects">Projects</a></li>
-      <li><a href="cad.html"            id="nav-cad">3D Models</a></li>
-      <li><a href="software.html"       id="nav-software" class="active">Software</a></li>
+      <li><a href="cad.html"            id="nav-cad" class="active">3D Models</a></li>
+      <li><a href="software.html"       id="nav-software">Software</a></li>
       <li><a href="webdesign.html"      id="nav-webdesign">Web Design</a></li>
       <li><a href="team.html"           id="nav-experience">Team</a></li>
       <li><a href="contact.html"  id="nav-contact">Contact</a></li>
@@ -48,37 +51,46 @@
   </ul>
 </div>
 
-<!-- ══ SOFTWARE PAGE ═════════════════════════════════════════════ -->
-<div class="sw-page">
-  <div class="sw-page-inner">
+<!-- ══ CAD PAGE ═══════════════════════════════════════════════════ -->
+<div class="cadpg-page" id="cad-viewer">
+  <div class="cadpg-inner">
 
-    <div class="sw-page-left">
-      <div class="sw-page-label" id="sw-label">Active Product · easemanual.eu</div>
-      <h1 class="sw-page-title">Mechanical<br>ExpertEase</h1>
-      <p class="sw-page-desc" id="sw-desc">Powerful software automating the creation of technical studies for special-purpose vehicle licensing — per Greek regulation YA 80255/4693/19/2020. Built by engineers for engineers.</p>
-      <ul class="sw-page-features">
-        <li id="sw-f1">Technical calculations</li>
-        <li id="sw-f2">Load diagrams</li>
-        <li id="sw-f3">A3 vehicle drawings</li>
-        <li id="sw-f4">Auto Word report</li>
-        <li id="sw-f5">Shafts &amp; bearings</li>
-        <li id="sw-f6">Stability &amp; braking</li>
-        <li id="sw-f7">Welds &amp; springs</li>
-        <li id="sw-f8">Cranes &amp; platforms</li>
-      </ul>
-      <div class="sw-page-cta">
-        <a href="https://www.easemanual.eu" target="_blank" rel="noopener" class="btn-primary" id="sw-cta1">Open easemanual.eu →</a>
-        <a href="https://www.easemanual.eu/pricing" target="_blank" rel="noopener" class="btn-outline" id="sw-cta2">Pricing</a>
+    <!-- LEFT: info + controls -->
+    <div class="cadpg-left">
+      <div class="cadpg-label">Mechanical Design · STEP Files</div>
+      <h1 class="cadpg-title">3D Model<br>Viewer</h1>
+
+
+      <div class="cadpg-sidebar">
+        <div class="cad-file-label">
+          <span class="cad-file-icon">⬡</span>
+          <span>gym_rack.STEP</span>
+        </div>
+        <div class="cad-controls">
+          <button class="cad-btn" id="cadBtnWire"  onclick="stepToggleWireframe()">⧉ WIREFRAME</button>
+          <button class="cad-btn" id="cadBtnReset" onclick="stepResetCamera()">↺ RESET VIEW</button>
+        </div>
+        <div class="cad-hint">drag to orbit &nbsp;·&nbsp; scroll to zoom &nbsp;·&nbsp; right-drag to pan</div>
+        <div class="cad-legend">
+          <div class="cad-legend-row"><span class="cad-dot" style="background:#3b82f6"></span>Colours from STEP file</div>
+          <div class="cad-legend-row"><span class="cad-dot" style="background:#22a85a"></span>Real CAD geometry</div>
+        </div>
       </div>
     </div>
 
-    <div class="sw-page-right">
-      <img src="images/mec_expertaease.png" alt="Mechanical ExpertEase Software screenshot" class="sw-page-img">
+    <!-- RIGHT: canvas -->
+    <div class="cadpg-right">
+      <div class="cad-canvas-wrap cadpg-canvas-wrap">
+        <canvas id="stepCanvas"></canvas>
+        <div id="cad-loading" class="cad-loading-overlay">
+          <div class="cad-spinner"></div>
+          <div class="cad-loading-text" id="cad-loading-text">Loading CAD engine… (~63 MB, one-time)</div>
+        </div>
+      </div>
     </div>
 
   </div>
 </div>
-
 
 <footer>
   <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Expertease"></a>
@@ -87,5 +99,6 @@
 </footer>
 
 <script src="main.js" defer></script>
+<script src="step-viewer.js" defer></script>
 </body>
 </html>

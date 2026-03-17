@@ -17,7 +17,6 @@ const LANG = {
     edu4_deg:'MSc Strategic Product Design', edu4_name:'Διεθνές Πανεπιστήμιο Ελλάδος',
     edu5_deg:'MBA Leadership & Project Management', edu5_name:'Washington Univ. of Science & Technology',
     about_heading:'Σχετικά με Εμάς',
-    about_p1:'Η <strong>Expertease Designs</strong> είναι studio μηχανολογικού σχεδιασμού με επικεφαλής τον <strong>Δημήτριο Μουδιώτη</strong> — Μηχανολόγο Μηχανικό ΑΠΘ με 7+ χρόνια εμπειρίας σε ρομποτική, εξοπλισμό ασφαλείας, βιομηχανικές κατασκευές και precision fabrication. Τέσσερα μεταπτυχιακά από ιδρύματα σε Ελλάδα, Γαλλία και ΗΠΑ.',
     about_quote:'«Η μηχανική είναι η τέχνη να μετατρέπεις μια ιδέα σε κάτι που κρατάς στα χέρια σου.»',
     about_p2:'Σχεδιάζουμε και κατασκευάζουμε μηχανολογικές διατάξεις και εξοπλισμό — καλύπτοντας κάθε στάδιο από R&amp;D και CAD ως τον συντονισμό κατασκευής και τον ποιοτικό έλεγχο. Κάθε παράδοση περιλαμβάνει πλήρη τεκμηρίωση: σχέδια εξαρτημάτων, συναρμολόγησης, BOM και οδηγίες.',
     about_p3:'Βάση: <strong><span class="accent-red">Αθήνα</span></strong> — δουλεύουμε σε Ελλάδα και εξωτερικό.',
@@ -31,9 +30,9 @@ const LANG = {
     proc_2_title:'Σχεδιασμός', proc_2_text:'3D μοντέλο σε SolidWorks, FEA, πλήρες BOM και τεχνικά σχέδια (εξαρτημάτων, συναρμολόγησης, οδηγίες) — όλα έτοιμα για παραγωγή.',
     proc_3_title:'Παράδοση', proc_3_text:'Συντονίζουμε υπεργολάβους, επιβλέπουμε την κατασκευή και διασφαλίζουμε τήρηση προτύπων ποιότητας, αξιοπιστίας και ασφάλειας — παραδίδοντας δοκιμασμένο, έτοιμο προς λειτουργία αποτέλεσμα.',
     principles_label:'Αρχές μας',
-    prin_1_title:'Ακρίβεια', prin_1_text:'Κάθε διάσταση μετράει. Σχεδιάζουμε με ανοχές, ελέγχουμε με πρωτότυπα, παραδίδουμε μέρη που <span class="accent-red">ταιριάζουν από την πρώτη</span>.',
-    prin_2_title:'Ειλικρίνεια', prin_2_text:'<span class="accent-red">Ρεαλιστικά χρονοδιαγράμματα, διαφανές κόστος</span> — χωρίς εκπλήξεις, μόνο αποτελέσματα.',
-    prin_3_title:'Καινοτομία', prin_3_text:'Νέα εργαλεία, υλικά, μεθόδους — FEA, <span class="accent-red">προηγμένη κατασκευή</span> και design optimization σε κάθε project.',
+    prin_1_title:'Γνώση Κατασκευής', prin_1_text:'Σχεδιάζουμε γνωρίζοντας πώς κατασκευάζονται τα εξαρτήματα — κατεργασία, κοπή, συγκόλληση, εκτύπωση. Κάθε απόφαση αντικατοπτρίζει τους <span class="accent-red">πραγματικούς περιορισμούς</span> του εργαστηρίου, πριν το σχέδιο φτάσει εκεί.',
+    prin_2_title:'Μηδέν Επανεργασία', prin_2_text:'Τα σφάλματα κατασκευής είναι το <span class="accent-red">πραγματικό κόστος</span> — όχι τα υλικά. Σχεδιάζω για να τα εξαλείψω: ανοχές που τηρούνται, συναρμολογήσεις που ταιριάζουν από την πρώτη, προδιαγραφές ευθυγραμμισμένες με τις δυνατότητες του κατασκευαστή.',
+    prin_3_title:'Πλήρης Ανάληψη', prin_3_text:'Από τον σχεδιασμό, τους υπολογισμούς και τις προσομοιώσεις ως τον συντονισμό κατασκευής, την επικοινωνία με προμηθευτές, την επίβλεψη συναρμολόγησης και τον <span class="accent-red">τελικό έλεγχο</span> — ένας μηχανικός, πλήρης υπευθυνότητα.',
     prin_4_title:'Web Design', prin_4_text:'Φτιάχνουμε <span class="accent-green">πλήρως custom ιστοσελίδες</span> — χειρόγραφο κώδικα, χωρίς templates, χωρίς builders. <a href="webdesign.html" class="principle-cta" id="prin-4-cta-el">Δείτε τις Υπηρεσίες Web Design →</a>',
     wd_label:'Αποκλειστικό Digital · Χωρίς Templates',
     wd_desc:'Φτιάχνουμε πλήρως custom ιστοσελίδες από το μηδέν — χωρίς templates, χωρίς page builders, χωρίς συμβιβασμούς. Κάθε pixel είναι σκόπιμο. Κάθε αλληλεπίδραση σχεδιάζεται.',
@@ -103,7 +102,6 @@ const LANG = {
     edu4_deg:'MSc Strategic Product Design', edu4_name:'International Hellenic University',
     edu5_deg:'MBA Leadership & Project Management', edu5_name:'Washington Univ. of Science & Technology',
     about_heading:'About',
-    about_p1:'<strong>Expertease Designs</strong> is a mechanical engineering studio based in Athens, led by <strong>Dimitrios Moudiotis</strong> — Mechanical Engineer (AUTH) with 7+ years of experience spanning robotics, safety equipment, industrial machinery, and precision fabrication. Four postgraduate degrees from institutions in Greece, France, and the USA.',
     about_quote:'"Engineering is the art of turning an idea into something you can hold in your hands."',
     about_p2:'We design and build mechanical devices, products, and equipment — covering every stage from R&amp;D and CAD to manufacturing coordination and quality control. Every project is delivered with complete documentation: part drawings, assembly drawings, BOM structure, and instructions.',
     about_p3:'Based in <strong><span class="accent-red">Athens, Greece</span></strong> — available for projects across Greece and internationally.',
@@ -117,9 +115,9 @@ const LANG = {
     proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings (part, assembly, instructions) — every deliverable ready for production.',
     proc_3_title:'Deliver', proc_3_text:'We coordinate subcontractors, supervise fabrication, and make sure quality, reliability, and safety standards are met — then hand over a tested, production-ready assembly.',
     principles_label:'How We Work',
-    prin_1_title:'Precision', prin_1_text:'Every dimension matters. We design to tolerance, prototype to verify, and deliver parts that <span class="accent-red">fit first time</span>.',
-    prin_2_title:'Integrity', prin_2_text:'<span class="accent-red">Honest timelines, transparent costs</span>, and direct communication — no surprises, just results.',
-    prin_3_title:'Innovation', prin_3_text:'We constantly explore new tools, materials, and methods to deliver smarter solutions — FEA, <span class="accent-red">advanced manufacturing</span>, and design optimisation built into every workflow.',
+    prin_1_title:'Manufacturing Intelligence', prin_1_text:'We design knowing how parts are actually made — machined, bent, welded, printed. Every decision reflects the <span class="accent-red">real constraints</span> of the shop floor, before the drawing ever gets there.',
+    prin_2_title:'Zero Rework', prin_2_text:'Manufacturing errors are the <span class="accent-red">real cost</span> — not materials. I design to eliminate them: tolerances that can be held, assemblies that fit first time, specifications aligned with what the manufacturer can actually deliver.',
+    prin_3_title:'Full Ownership', prin_3_text:'From design, calculations, and simulations through manufacturing coordination, supplier communication, assembly oversight, and <span class="accent-red">final verification</span> — one engineer, full accountability.',
     prin_4_title:'Web Design', prin_4_text:'We also build <span class="accent-green">fully custom websites</span> — hand-coded from scratch. No templates, no builders, no limits. <a href="webdesign.html" class="principle-cta" id="prin-4-cta-en">See our Web Design →</a>',
     wd_label:'Bespoke Digital · No Templates',
     wd_desc:'We build fully custom websites from scratch — no templates, no page builders, no shortcuts. Every pixel is intentional. Every interaction is designed.',
@@ -200,7 +198,7 @@ function applyLang(lang) {
   set('edu4-deg',t.edu4_deg); set('edu4-name',t.edu4_name);
   set('edu5-deg',t.edu5_deg); set('edu5-name',t.edu5_name);
   set('about-heading',t.about_heading);
-  set('about-p1',t.about_p1,true); set('about-quote',t.about_quote);
+  set('about-quote',t.about_quote);
   set('about-p2',t.about_p2,true); set('about-p3',t.about_p3,true);
   set('about-p4',t.about_p4);
   set('val-1-title',t.val_1_title); set('val-1-text',t.val_1_text);
@@ -258,6 +256,10 @@ let portTimer = null;
 const colImgIdx    = { portColLeft: 0, portColRight: 0 };
 const colImgTimers = { portColLeft: null, portColRight: null };
 
+let thumbScrollTimer = null;
+let thumbScrollPaused = false;
+let thumbScrollResumeTimer = null;
+
 function updatePortDots() {
   document.querySelectorAll('.port-dot').forEach((d, i) => {
     d.classList.toggle('active', i === portLeft || i === portRight);
@@ -305,26 +307,90 @@ function buildPortThumbStrip() {
   if (!container) return;
   container.innerHTML = '';
   const lang = currentLang;
-  PORTFOLIO_DATA.forEach((p, i) => {
+  const MIN_FOR_LOOP = 4;
+  const shouldLoop = PORTFOLIO_DATA.length >= MIN_FOR_LOOP;
+
+  function makeItem(p, i) {
     const item = document.createElement('button');
     item.className = 'port-thumb-item';
     item.dataset.idx = i;
     const title = lang === 'el' ? p.titleEl : p.titleEn;
+    const num = String(i + 1).padStart(2, '0');
     item.innerHTML = `
       <div class="port-thumb-img-wrap">
         <img class="port-thumb-img" src="${p.images[0]}" alt="${title}" loading="lazy">
       </div>
       <div class="port-thumb-label">
-        <span class="port-thumb-num">0${i + 1} &nbsp;</span>${title}
+        <span class="port-thumb-num">${num} &nbsp;</span>${title}
       </div>`;
     item.addEventListener('click', () => openProjectModal(i));
-    container.appendChild(item);
+    return item;
+  }
+
+  clearInterval(thumbScrollTimer);
+
+  if (shouldLoop) {
+    const inner = document.createElement('div');
+    inner.className = 'port-thumb-inner';
+    // First set
+    PORTFOLIO_DATA.forEach((p, i) => inner.appendChild(makeItem(p, i)));
+    // Duplicate set for seamless loop
+    PORTFOLIO_DATA.forEach((p, i) => inner.appendChild(makeItem(p, i)));
+    container.appendChild(inner);
+    startThumbAutoScroll(container);
+  } else {
+    PORTFOLIO_DATA.forEach((p, i) => container.appendChild(makeItem(p, i)));
+  }
+
+  container.addEventListener('mouseenter', () => setThumbPaused(true));
+  container.addEventListener('mouseleave', () => setThumbPaused(false, 1200));
+}
+
+function startThumbAutoScroll(container) {
+  thumbScrollTimer = setInterval(() => {
+    if (thumbScrollPaused) return;
+    container.scrollLeft += 1;
+    const inner = container.querySelector('.port-thumb-inner');
+    if (inner && container.scrollLeft >= inner.scrollWidth / 2) {
+      container.scrollLeft -= inner.scrollWidth / 2;
+    }
+  }, 16);
+}
+
+function setThumbPaused(val, resumeAfterMs) {
+  thumbScrollPaused = val;
+  clearTimeout(thumbScrollResumeTimer);
+  if (val && resumeAfterMs) {
+    thumbScrollResumeTimer = setTimeout(() => { thumbScrollPaused = false; }, resumeAfterMs);
+  }
+}
+
+function initThumbNavButtons() {
+  const strip = document.getElementById('portThumbStrip');
+  const prev  = document.getElementById('portThumbPrev');
+  const next  = document.getElementById('portThumbNext');
+  if (!strip || !prev || !next) return;
+  const scrollAmt = 304; // ~2 items (138px + 14px gap = 152px × 2)
+
+  prev.addEventListener('click', () => {
+    setThumbPaused(true, 2000);
+    const inner = strip.querySelector('.port-thumb-inner');
+    if (inner && strip.scrollLeft < scrollAmt + 50) {
+      // Jump to equivalent position in second copy so we have room to scroll left
+      strip.scrollLeft = inner.scrollWidth / 2 + strip.scrollLeft;
+    }
+    strip.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
+  });
+
+  next.addEventListener('click', () => {
+    setThumbPaused(true, 2000);
+    strip.scrollBy({ left: scrollAmt, behavior: 'smooth' });
   });
 }
 
 function setThumbActive(idx) {
-  document.querySelectorAll('.port-thumb-item').forEach((el, i) => {
-    el.classList.toggle('active', i === idx);
+  document.querySelectorAll('.port-thumb-item').forEach(el => {
+    el.classList.toggle('active', Number(el.dataset.idx) === idx);
   });
 }
 
@@ -561,6 +627,7 @@ function initPortfolio() {
   renderPortfolio();
   initPortDrag();
   addPortImageClickHandlers();
+  initThumbNavButtons();
   setTimeout(startPortTimer, 3200);
 }
 
