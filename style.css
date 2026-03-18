@@ -1451,7 +1451,7 @@ footer {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   gap: 16px;
-  background: radial-gradient(ellipse at 60% 40%, #d8dde6 0%, #b0b8c4 45%, #868e99 100%);
+  background: var(--navy-mid);
   transition: opacity .4s;
   z-index: 5;
 }
@@ -1466,7 +1466,7 @@ footer {
 .cad-loading-text {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: rgba(0,0,0,.5);
+  color: rgba(255,255,255,.5);
   letter-spacing: 1px;
 }
 
@@ -1990,11 +1990,27 @@ footer {
 .cadpg-sidebar {
   display: flex; flex-direction: column; gap: 16px;
 }
+.cad-filelist-label {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+.cad-filelist {
+  list-style: none; display: flex; flex-direction: column; gap: 2px;
+  max-height: 260px; overflow-y: auto;
+}
+.cad-filelist-item {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .4px;
+  color: rgba(255,255,255,.55);
+  padding: 6px 10px; border-radius: 4px;
+  cursor: pointer; transition: background .15s, color .15s;
+}
+.cad-filelist-item:hover { background: rgba(96,165,250,.1); color: rgba(255,255,255,.85); }
+.cad-filelist-item.active { background: rgba(96,165,250,.18); color: #60a5fa; }
 .cadpg-right {
   display: flex; align-items: stretch;
 }
 .cadpg-canvas-wrap {
-  background: radial-gradient(ellipse at 60% 40%, #d8dde6 0%, #b0b8c4 45%, #868e99 100%);
+  background: transparent;
   height: auto !important;
   min-height: 520px;
   flex: 1;

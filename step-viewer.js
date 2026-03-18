@@ -48,19 +48,19 @@
 
     svScene = new THREE.Scene();
 
-    /* Even multi-directional lighting */
-    svScene.add(new THREE.HemisphereLight(0xffffff, 0xaabbcc, 1.8));
-    svScene.add(new THREE.AmbientLight(0xffffff, 1.5));
+    /* Full-coverage flat lighting — no dark faces */
+    svScene.add(new THREE.HemisphereLight(0xffffff, 0xffffff, 3.0));
+    svScene.add(new THREE.AmbientLight(0xffffff, 3.0));
 
     const lights = [
-      { color: 0xffffff, intensity: 2.8, pos: [ 5,  8,  5] },  /* key — top-front-right */
-      { color: 0xddeeff, intensity: 2.0, pos: [-5,  4, -4] },  /* fill — top-back-left  */
-      { color: 0xffffff, intensity: 1.6, pos: [ 0, 10,  0] },  /* top                   */
-      { color: 0xffeedd, intensity: 1.4, pos: [ 0, -8,  0] },  /* bottom bounce         */
-      { color: 0xeef4ff, intensity: 1.6, pos: [-6,  0,  6] },  /* left-front            */
-      { color: 0xffffff, intensity: 1.4, pos: [ 6,  0, -6] },  /* right-back            */
-      { color: 0xffd8a0, intensity: 1.2, pos: [ 0,  2, 10] },  /* front warm            */
-      { color: 0xccddff, intensity: 1.0, pos: [ 0,  2,-10] },  /* back cool             */
+      { color: 0xffffff, intensity: 4.0, pos: [ 5,  8,  5] },
+      { color: 0xffffff, intensity: 3.5, pos: [-5,  4, -4] },
+      { color: 0xffffff, intensity: 3.0, pos: [ 0, 10,  0] },
+      { color: 0xffffff, intensity: 3.0, pos: [ 0, -8,  0] },
+      { color: 0xffffff, intensity: 3.0, pos: [-8,  0,  0] },
+      { color: 0xffffff, intensity: 3.0, pos: [ 8,  0,  0] },
+      { color: 0xffffff, intensity: 3.0, pos: [ 0,  0, 10] },
+      { color: 0xffffff, intensity: 3.0, pos: [ 0,  0,-10] },
     ];
     lights.forEach(({ color, intensity, pos }) => {
       const l = new THREE.DirectionalLight(color, intensity);
@@ -170,7 +170,7 @@
       if (!normals || normals.length === 0) geo.computeVertexNormals();
 
       svModel.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
-        color: hexColor, metalness: 0, roughness: 0.65, side: THREE.DoubleSide,
+        color: hexColor, metalness: 0, roughness: 1.0, side: THREE.DoubleSide,
       })));
     });
 
@@ -294,6 +294,24 @@
   };
 
   window.stepResetCamera = function () { fitCamera(); };
+
+  window.stepLoadFile = async function (url, filename, listItem) {
+    if (!occt) { return; }
+    /* Highlight active item */
+    document.querySelectorAll('.cad-filelist-item').forEach(el => el.classList.remove('active'));
+    if (listItem) listItem.classList.add('active');
+    showLoading();
+    setStatus('Fetching ' + filename + '…');
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const buf = new Uint8Array(await res.arrayBuffer());
+      await loadStepFromBuffer(buf, filename);
+    } catch (err) {
+      setStatus('Error: ' + err.message);
+      console.error('[step-viewer]', err);
+    }
+  };
 
   window.stepOpenFile = function () {
     document.getElementById('stepFileInput')?.click();
