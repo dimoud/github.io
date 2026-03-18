@@ -47,9 +47,9 @@
   const lerp     = (a, b, t) => a + (b - a) * t;
   const clamp    = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
-  /* wireframe scale, horizontal shift & vertical offset */
-  const WIRE_SCALE    = 1.1;
-  const WIRE_SHIFT    = -0.05;
+  /* wireframe scale, horizontal shift & vertical offset (recalculated on resize for mobile) */
+  let WIRE_SCALE    = 1.1;
+  let WIRE_SHIFT    = -0.05;
   const WIRE_OFFSET_Y = 50;   /* px — shift wireframe down */
 
   /* ── WIREFRAME LAYOUT (normalised 0-1 relative to container) */
@@ -373,6 +373,10 @@
     CY = cr.top;
     CW = cr.width  || 700;
     CH = cr.height || 520;
+
+    /* on mobile, don't scale or shift — keep animation inside the container */
+    WIRE_SCALE = CW < 520 ? 0.88 : 1.1;
+    WIRE_SHIFT = CW < 520 ? 0.0  : -0.05;
 
     initParticles();
   }

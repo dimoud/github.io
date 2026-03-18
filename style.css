@@ -1757,14 +1757,20 @@ footer {
 .wc-comment { color: rgba(255,255,255,.28); font-style: italic; }
 
 @media (max-width: 960px) {
-  .wd-page-inner { grid-template-columns: 1fr; gap: 32px; padding: 50px 24px; align-items: start; }
-  .wd-hero-canvas-wrap { min-height: 300px; }
-  .wd-page-left { text-align: center; align-items: center; }
-  .wd-page-cta { justify-content: center; }
+  /* flatten grid into flex so we can order canvas between title & desc */
+  .wd-page-inner { display: flex; flex-direction: column; gap: 20px; padding: 50px 24px; }
+  .wd-page-left  { display: contents; } /* dissolve wrapper — children become direct flex items */
+  .wd-page-label    { order: 1; text-align: center; align-self: center; }
+  .wd-page-title    { order: 2; text-align: center; }
+  .wd-page-right    { order: 3; width: 100%; margin-right: 0; } /* fix overflow: reset negative margin */
+  .wd-page-desc     { order: 4; text-align: center; }
+  .wd-page-features { order: 5; width: 100%; }
+  .wd-page-cta      { order: 6; justify-content: center; }
+  .wd-hero-canvas-wrap { min-height: 260px; }
 }
 @media (max-width: 640px) {
   .wd-page-inner { padding: 40px 16px; }
-  .wd-hero-canvas-wrap { min-height: 240px; }
+  .wd-hero-canvas-wrap { min-height: 220px; }
   .wd-code-body { font-size: 10px; padding: 16px 18px; }
 }
 
