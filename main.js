@@ -562,6 +562,27 @@ function buildProjectModal() {
     if (e.key === 'ArrowLeft')  modalNav(-1);
     if (e.key === 'ArrowRight') modalNav(+1);
   });
+
+  // Touch swipe
+  const gallery = m.querySelector('.port-modal-gallery');
+  let touchStartX = 0;
+  gallery.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  gallery.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) modalNav(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  // Horizontal wheel / trackpad swipe
+  let wheelCooldown = false;
+  gallery.addEventListener('wheel', e => {
+    if (wheelCooldown) return;
+    const delta = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) < 20) return;
+    e.preventDefault();
+    modalNav(delta > 0 ? 1 : -1);
+    wheelCooldown = true;
+    setTimeout(() => { wheelCooldown = false; }, 350);
+  }, { passive: false });
 }
 
 function openProjectModal(projectIdx) {
