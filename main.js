@@ -27,6 +27,7 @@ const LANG = {
     val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο ως συναρμολόγηση — σχεδιασμός, BOM, κατασκευή και παράδοση. Παραδίδουμε, δεν μεταβιβάζουμε.',
     val_3_title:'Διεθνή Πρότυπα', val_3_text:'Σπουδές σε 3 χώρες. Διεθνής μηχανολογική αυστηρότητα εφαρμοσμένη σε κάθε τοπικό έργο.',
     val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'DFM από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.',
+    about_bullets:'<li>7+ χρόνια μηχανολογικός σχεδιασμός, 3D printing & κατασκευή</li><li>Πλήρης κύκλος: CAD → BOM → κατασκευή → QC</li><li>FEA & DFM από την πρώτη μέρα</li><li>Αθήνα — δουλεύουμε Ελλάδα & εξωτερικό</li>',
     proc_label:'Πώς Δουλεύουμε',
     proc_1_title:'Brief', proc_1_text:'Αφιερώνουμε χρόνο να κατανοήσουμε τις ανάγκες, τους περιορισμούς και τους στόχους σας πριν πάρουμε οποιαδήποτε σχεδιαστική απόφαση — γιατί ένα σωστό brief οδηγεί σε σωστό αποτέλεσμα.',
     proc_2_title:'Σχεδιασμός', proc_2_text:'3D μοντέλο σε SolidWorks, FEA, πλήρες BOM και τεχνικά σχέδια (εξαρτημάτων, συναρμολόγησης, οδηγίες) — όλα έτοιμα για παραγωγή.',
@@ -118,6 +119,7 @@ const LANG = {
     val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.',
     val_3_title:'Global Standards', val_3_text:'Educated across 3 countries. International engineering rigour applied to every local project.',
     val_4_title:'Built to Make', val_4_text:'DFM from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.',
+    about_bullets:'<li>7+ years mechanical design, 3D printing & fabrication</li><li>Full cycle: CAD → BOM → fabrication → QC</li><li>FEA simulation & DFM from day one</li><li>Athens-based, working internationally</li>',
     proc_label:'How We Work',
     proc_1_title:'Brief', proc_1_text:'We take time to understand your requirements, constraints, and goals before committing to any design direction — because the right brief leads to the right outcome.',
     proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings (part, assembly, instructions) — every deliverable ready for production.',
@@ -219,6 +221,7 @@ function applyLang(lang) {
   set('val-2-title',t.val_2_title); set('val-2-text',t.val_2_text);
   set('val-3-title',t.val_3_title); set('val-3-text',t.val_3_text);
   set('val-4-title',t.val_4_title); set('val-4-text',t.val_4_text);
+  set('about-bullets',t.about_bullets,true);
   set('proc-label',t.proc_label);
   set('proc-1-title',t.proc_1_title); set('proc-1-text',t.proc_1_text);
   set('proc-2-title',t.proc_2_title); set('proc-2-text',t.proc_2_text);
