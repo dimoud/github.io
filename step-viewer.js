@@ -133,12 +133,29 @@
       return;
     }
 
-    /* Mid-grey palette — leaves room for highlights and shadows to show form */
-    const PALETTE = [0x8a9ab0, 0x7a8898, 0x9daabb, 0x8898a8, 0x6a7888, 0xaabbc8];
+    /* Fallback palette for parts with no STEP colour */
+    const PALETTE = [0x5b8dd9, 0xe07b54, 0x5bbf8a, 0xe0c254, 0xa07cc5, 0x4fb8cc,
+                     0xd9695b, 0x7bbf5b, 0xcc8844, 0x7799cc];
     svModel = new THREE.Group();
 
     result.meshes.forEach((mesh, idx) => {
-      const hexColor = PALETTE[idx % PALETTE.length];
+      let hexColor = PALETTE[idx % PALETTE.length];
+
+      if (mesh.color) {
+        let { r, g, b } = mesh.color;
+        const maxCh = Math.max(r, g, b);
+        if (maxCh > 0.01) {
+          /* Preserve hue but ensure the brightest channel is at least 0.55 */
+          const scale = Math.max(1, 0.55 / maxCh);
+          r = Math.min(r * scale, 1);
+          g = Math.min(g * scale, 1);
+          b = Math.min(b * scale, 1);
+          hexColor = (Math.round(r * 255) << 16) |
+                     (Math.round(g * 255) <<  8) |
+                      Math.round(b * 255);
+        }
+        /* if maxCh ≤ 0.01 the part is black — keep palette colour */
+      }
 
       const positions = mesh.position_array ||
         (mesh.attributes && mesh.attributes.position && mesh.attributes.position.array);
@@ -160,7 +177,7 @@
       if (!normals || normals.length === 0) geo.computeVertexNormals();
 
       svModel.add(new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
-        color: hexColor, specular: 0x111111, shininess: 4, side: THREE.DoubleSide,
+        color: hexColor, specular: 0x000000, shininess: 0, side: THREE.DoubleSide,
       })));
     });
 
