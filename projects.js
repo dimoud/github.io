@@ -238,8 +238,8 @@ const PORTFOLIO_DATA = [
   {
     catEn:'Laser Cutting · Brake Press · Welding', catEl:'Laser Cutting · Brake Press · Συγκόλληση',
     titleEn:'Sheet Metal Applications', titleEl:'Εφαρμογές Φύλλων Μετάλλου',
-    descEn:'Custom sheet metal work — LED wall décor, structural panels, and formed parts. 1.5–5mm steel, optimised DFM for fast fabrication and minimal waste.',
-    descEl:'Εφαρμογές από φύλλα μετάλλου — διακοσμητικά LED, δομικά πάνελ και διαμορφωμένα εξαρτήματα. Χάλυβας 1.5–5mm, βελτιστοποιημένο DFM.',
+    descEn:'Custom sheet metal work — LED wall décor, structural panels, and formed parts. 1.5–5mm steel, optimised for fast fabrication and minimal waste.',
+    descEl:'Εφαρμογές από φύλλα μετάλλου — διακοσμητικά LED, δομικά πάνελ και διαμορφωμένα εξαρτήματα. Χάλυβας 1.5–5mm, βελτιστοποιημένο σχεδιασμό.',
     badgeEn:'Sheet Metal', badgeEl:'Sheet Metal',
     images:[
       'images/sheetmetal/1.png',

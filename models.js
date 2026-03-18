@@ -946,7 +946,9 @@ function initThree() {
       if (entries[0].isIntersecting) {
         if (!animRunning) { animRunning = true; animate(); }
       } else {
-        animRunning = false;
+        /* On mobile the canvas is position:fixed (always visible),
+           so keep the loop running for the scroll-driven explode */
+        if (window.innerWidth > 960) animRunning = false;
       }
     }, { threshold: 0 }).observe(heroSection);
   }

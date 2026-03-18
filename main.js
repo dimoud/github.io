@@ -26,8 +26,8 @@ const LANG = {
     val_1_title:'Ακρίβεια', val_1_text:'FEA, ανοχές σε στοίβα, δοκιμές σε πραγματικές συνθήκες. Δεν προσεγγίζουμε.',
     val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο ως συναρμολόγηση — σχεδιασμός, BOM, κατασκευή και παράδοση. Παραδίδουμε, δεν μεταβιβάζουμε.',
     val_3_title:'Διεθνή Πρότυπα', val_3_text:'Σπουδές σε 3 χώρες. Διεθνής μηχανολογική αυστηρότητα εφαρμοσμένη σε κάθε τοπικό έργο.',
-    val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'DFM από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.',
-    about_bullets:'<li>7+ χρόνια μηχανολογικός σχεδιασμός, 3D printing & κατασκευή</li><li>Πλήρης κύκλος: CAD → BOM → κατασκευή → QC</li><li>FEA & DFM από την πρώτη μέρα</li><li>Αθήνα — δουλεύουμε Ελλάδα & εξωτερικό</li>',
+    val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'Σχεδιασμός για κατασκευή από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.',
+    about_bullets:'<li>7+ χρόνια μηχανολογικός σχεδιασμός, 3D printing & κατασκευή</li><li>Πλήρης κύκλος: CAD → BOM → κατασκευή → ποιοτικός έλεγχος</li><li>FEA & σχεδιασμός για κατασκευή από την πρώτη μέρα</li><li>Αθήνα — δουλεύουμε Ελλάδα & εξωτερικό</li>',
     proc_label:'Πώς Δουλεύουμε',
     proc_1_title:'Brief', proc_1_text:'Αφιερώνουμε χρόνο να κατανοήσουμε τις ανάγκες, τους περιορισμούς και τους στόχους σας πριν πάρουμε οποιαδήποτε σχεδιαστική απόφαση — γιατί ένα σωστό brief οδηγεί σε σωστό αποτέλεσμα.',
     proc_2_title:'Σχεδιασμός', proc_2_text:'3D μοντέλο σε SolidWorks, FEA, πλήρες BOM και τεχνικά σχέδια (εξαρτημάτων, συναρμολόγησης, οδηγίες) — όλα έτοιμα για παραγωγή.',
@@ -118,8 +118,8 @@ const LANG = {
     val_1_title:'Precision', val_1_text:'FEA-verified, tolerance-stacked, tested in real conditions. We don\'t approximate.',
     val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.',
     val_3_title:'Global Standards', val_3_text:'Educated across 3 countries. International engineering rigour applied to every local project.',
-    val_4_title:'Built to Make', val_4_text:'DFM from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.',
-    about_bullets:'<li>7+ years mechanical design, 3D printing & fabrication</li><li>Full cycle: CAD → BOM → fabrication → QC</li><li>FEA simulation & DFM from day one</li><li>Athens-based, working internationally</li>',
+    val_4_title:'Built to Make', val_4_text:'Design for Manufacturability from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.',
+    about_bullets:'<li>7+ years mechanical design, 3D printing & fabrication</li><li>Full cycle: CAD → BOM → fabrication → quality control</li><li>FEA simulation & Design for Manufacturability from day one</li><li>Athens-based, working internationally</li>',
     proc_label:'How We Work',
     proc_1_title:'Brief', proc_1_text:'We take time to understand your requirements, constraints, and goals before committing to any design direction — because the right brief leads to the right outcome.',
     proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings (part, assembly, instructions) — every deliverable ready for production.',
@@ -174,7 +174,7 @@ const LANG = {
     projects_heading:'Projects',
     sw_heading:'Software', sw_label:'Active Product · easemanual.eu',
     sw_desc:'Powerful software automating the creation of technical studies for special-purpose vehicle licensing — per Greek regulation YA 80255/4693/19/2020. Built by engineers for engineers.',
-    sw_f1:'Technical calculations', sw_f2:'Load diagrams', sw_f3:'A3 vehicle drawings', sw_f4:'Auto Word report',
+    sw_f1:'Technical calculations', sw_f2:'Load diagrams', sw_f3:'A3 vehicle drawings', sw_f4:'Automatic Word report',
     sw_f5:'Shafts & bearings', sw_f6:'Stability & braking', sw_f7:'Welds & springs', sw_f8:'Cranes & platforms',
     sw_cta1:'View Product →', sw_cta2:'Pricing',
     team_heading:'Team',
@@ -788,7 +788,7 @@ function initProcessAnimations() {
 ═══════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
-  applyLang(localStorage.getItem('lang') || 'en');
+  applyLang('en');
   initScroll();
   initHeroExplode();
   initPortfolio();
