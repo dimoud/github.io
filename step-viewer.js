@@ -160,7 +160,7 @@
       if (!normals || normals.length === 0) geo.computeVertexNormals();
 
       svModel.add(new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
-        color: hexColor, specular: 0x334455, shininess: 18, side: THREE.DoubleSide,
+        color: hexColor, specular: 0x111111, shininess: 4, side: THREE.DoubleSide,
       })));
     });
 
