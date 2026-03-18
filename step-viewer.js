@@ -49,7 +49,8 @@
     svScene = new THREE.Scene();
 
     /* Bright lighting so the piece pops on any dark background */
-    svScene.add(new THREE.AmbientLight(0xffffff, 2.2));
+    svScene.add(new THREE.HemisphereLight(0xffffff, 0x334466, 2.5));
+    svScene.add(new THREE.AmbientLight(0xffffff, 2.0));
     const key = new THREE.DirectionalLight(0xffffff, 3.5);
     key.position.set(3, 5, 4); svScene.add(key);
     const fill = new THREE.DirectionalLight(0xc8d8ff, 2.0);
@@ -130,7 +131,7 @@
       return;
     }
 
-    const PALETTE = [0x3b82f6, 0x778899, 0xb0c4de, 0x1a55d0, 0xd4af37, 0x444455];
+    const PALETTE = [0x5b9cf6, 0x90a8c0, 0xc8daf0, 0x4477e0, 0xe8c84a, 0x8899aa];
     svModel = new THREE.Group();
 
     result.meshes.forEach((mesh, idx) => {
@@ -161,7 +162,7 @@
       if (!normals || normals.length === 0) geo.computeVertexNormals();
 
       svModel.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
-        color: hexColor, metalness: 0.35, roughness: 0.5, side: THREE.DoubleSide,
+        color: hexColor, metalness: 0, roughness: 0.65, side: THREE.DoubleSide,
       })));
     });
 
