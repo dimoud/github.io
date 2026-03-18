@@ -2242,6 +2242,9 @@ hr.ec-rule { position: relative; z-index: 2; }
   .edu-name    { font-size: 9.5px; line-height: 1.3; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
   .edu-degree  { font-size: 7.5px; text-align: center; }
   .edu-country { font-size: 7.5px; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
+  .edu-city { display: block; }
+  .edu-sep  { display: none; }
+  .edu-nation { display: block; }
 
   /* FOOTER: keep as one horizontal line */
   footer {
