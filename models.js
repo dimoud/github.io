@@ -1228,7 +1228,7 @@ function resetModel() {
 
 function setScrollExplode(t) {
 
-  const SPIN_END = 0.30; /* first 30 % of scroll = spin phase */
+  const SPIN_END = 0.15; /* first 15 % of scroll = spin phase */
   const TARGET_Y = -1.27; /* ~-73°: 20° more before explode */
 
   if (t < 0.005) {

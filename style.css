@@ -1216,6 +1216,7 @@ footer {
   #hero3d { display: none; }
   #hero3d-drag { display: none; }
   .hero-stats { left: 0; right: 0; padding: 18px 28px; gap: 28px; }
+  .stat-num { font-size: 22px; }
 
   section { padding: 64px 24px; }
   #process { padding: 48px 24px; }
@@ -1249,7 +1250,7 @@ footer {
   nav { padding: 0 16px; }
   .hero-left { padding: 48px 16px 32px; }
   .hero-stats { gap: 20px; padding: 16px; }
-  .stat-num { font-size: 36px; }
+  .stat-num { font-size: 20px; }
 
   section { padding: 52px 16px; }
   #process { padding: 40px 16px; }

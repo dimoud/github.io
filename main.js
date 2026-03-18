@@ -714,9 +714,8 @@ function initHeroExplode() {
     const isMob = window.innerWidth <= 960;
 
     if (isMob) {
-      /* Mobile: full-page scroll (0→1) drives the explode/collapse */
-      const pageH    = Math.max(1, document.body.scrollHeight - window.innerHeight);
-      const progress = Math.max(0, Math.min(1, st / pageH));
+      /* Mobile: explosion completes within the hero section scroll zone */
+      const progress = Math.max(0, Math.min(1, st / (heroH * 0.65)));
       if (typeof setScrollExplode === 'function') setScrollExplode(progress);
 
       /* Canvas: full opacity inside hero, subtle outside */
@@ -724,11 +723,9 @@ function initHeroExplode() {
         canvas.style.opacity = st < heroH ? '0.4' : '0.14';
       }
 
-      /* Hero text fades while still scrolling within the hero section */
+      /* Hero text stays visible so text and explosion are seen together */
       if (heroLeft) {
-        const hp   = Math.max(0, Math.min(1, st / (heroH * 0.55)));
-        const fade = Math.max(0, 1 - Math.max(0, hp - 0.25) / 0.5);
-        heroLeft.style.opacity = fade;
+        heroLeft.style.opacity = '1';
       }
     } else {
       /* Desktop: original behaviour — explode only within hero */
