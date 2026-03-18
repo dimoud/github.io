@@ -11,9 +11,10 @@
 
   let occt        = null;   /* engine, kept alive for re-use */
   let svScene, svCamera, svRenderer, svControls;
-  let svModel     = null;
-  let svWireframe = false;
-  let svStarted   = false;
+  let svModel        = null;
+  let svWireframe    = false;
+  let svStarted      = false;
+  let svLastFilename = null;
 
   /* ── Boot: trigger on first scroll into view ─────────────── */
   function boot () {
@@ -171,11 +172,11 @@
     });
 
     svScene.add(svModel);
-    fitCamera();
+    fitCamera(filename);
     hideLoading();
 
-    /* Update filename label */
-    if (filename) updateFileLabel(filename);
+    /* Update filename label and remember for reset */
+    if (filename) { svLastFilename = filename; updateFileLabel(filename); }
   }
 
   /* ── Drag-and-drop + file input ───────────────────────────── */
@@ -233,8 +234,18 @@
     });
   }
 
+  /* ── Per-file camera presets ─────────────────────────────────
+     dir  : [dx, dy, dz] direction multipliers
+     scale: zoom multiplier (>1 = farther out, <1 = closer in)  */
+  const FILE_CAMERA = {
+    'shaft_3.STEP': { scale: 0.70, dir: [ 0.7,  1.0,  0.7] },  /* 30% closer, top-45°  */
+    'shaft_2.STEP': { scale: 1.00, dir: [ 1.4,  0.15, 0.1] },  /* side view            */
+    'sheet3.STEP':  { scale: 1.30, dir: [ 0.7,  1.0,  0.7] },  /* 30% farther out      */
+    'ancor.STEP':   { scale: 1.00, dir: [-0.7,  1.0, -0.7] },  /* opposite side        */
+  };
+
   /* ── Camera auto-fit ──────────────────────────────────────── */
-  function fitCamera () {
+  function fitCamera (filename) {
     if (!svModel) return;
 
     const box    = new THREE.Box3().setFromObject(svModel);
@@ -246,11 +257,14 @@
     svCamera.far  = maxDim * 200;
     svCamera.updateProjectionMatrix();
 
-    /* 45° elevation: Y = sqrt(X²+Z²), here X=Z=0.7 → diag ≈ 0.99 ≈ Y */
+    const preset      = (filename && FILE_CAMERA[filename]) || { scale: 1.0, dir: [0.7, 1.0, 0.7] };
+    const [dx, dy, dz] = preset.dir;
+    const s            = preset.scale;
+
     svCamera.position.set(
-      center.x + maxDim * 0.7,
-      center.y + maxDim * 1.0,
-      center.z + maxDim * 0.7
+      center.x + maxDim * dx * s,
+      center.y + maxDim * dy * s,
+      center.z + maxDim * dz * s
     );
     svCamera.lookAt(center);
 
@@ -290,7 +304,7 @@
     if (btn) btn.classList.toggle('active', svWireframe);
   };
 
-  window.stepResetCamera = function () { fitCamera(); };
+  window.stepResetCamera = function () { fitCamera(svLastFilename); };
 
   window.stepLoadFile = async function (url, filename, listItem) {
     if (!occt) { return; }
