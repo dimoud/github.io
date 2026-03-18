@@ -2025,10 +2025,43 @@ hr.ec-rule { position: relative; z-index: 2; }
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 960px) {
 
-  /* 3D MODEL: keep visible, reduced opacity so text stays readable */
-  #hero3d        { display: block; opacity: 0.4; }
-  #hero3d-drag   { display: block; width: 100%; top: 58%; height: 42%; right: 0; }
-  #hero3d-drag::after { display: none; }
+  /* 3D MODEL: fixed as full-page background on mobile, z-index BELOW text */
+  #hero3d {
+    display: block;
+    position: fixed !important;
+    left: 0; top: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 0;          /* behind everything */
+    opacity: 0.4;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  /* Drag overlay: disabled on mobile (scroll drives the animation instead) */
+  #hero3d-drag { display: none !important; }
+
+  /* Hero text: above the fixed canvas */
+  .hero-left    { z-index: 2; position: relative; }
+  .hero-right   { position: relative; z-index: 2; }
+  .hero-stats   { z-index: 2; position: relative; }
+
+  /* Hero titles: bright white with depth shadow for readability */
+  .hero-name    { color: #fff; text-shadow: 0 2px 24px rgba(0,5,30,0.55); }
+  .hero-title   { color: rgba(255,255,255,0.82) !important; text-shadow: 0 1px 14px rgba(0,5,30,0.45); }
+  .hero-tag     { text-shadow: 0 1px 12px rgba(0,5,30,0.45); }
+  .hero-tagline { text-shadow: 0 1px 10px rgba(0,5,30,0.4); }
+  .hero-desc    { color: rgba(255,255,255,0.78) !important; text-shadow: 0 1px 10px rgba(0,5,30,0.35); }
+  .hero-stats   { background: rgba(0,0,0,0.62); }
+
+  /* Sections: sit above the fixed canvas; slight transparency lets model show faintly */
+  #about        { position: relative; z-index: 1; background: rgba(242,246,252,0.93); }
+  #process      { position: relative; z-index: 1; background: rgba(15,29,56,0.95); }
+  #projects     { position: relative; z-index: 1; background: rgba(255,255,255,0.93); }
+  #team-index   { position: relative; z-index: 1; background: rgba(242,246,252,0.93); }
+  #contact      { position: relative; z-index: 1; background: rgba(242,246,252,0.93); }
+  footer        { position: relative; z-index: 1; }
+  .ticker       { position: relative; z-index: 1; }
+  .expertease-credit { position: relative; z-index: 1; }
 
   /* UNIVERSITY BANNERS: all 5 in one row, equal width, no scroll */
   .edu-cards {
@@ -2075,9 +2108,8 @@ hr.ec-rule { position: relative; z-index: 2; }
   .process-title  { font-size: clamp(22px, 6vw, 32px); }
   .contact-heading { font-size: clamp(26px, 7.5vw, 40px); }
 
-  /* HERO 3D on small mobile — more visible below text */
-  #hero3d      { opacity: 0.35; }
-  #hero3d-drag { top: 62%; height: 38%; }
+  /* HERO 3D on small mobile — slightly more subtle */
+  #hero3d { opacity: 0.32; }
 
   /* FOOTER compact on small mobile */
   footer {

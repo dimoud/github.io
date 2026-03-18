@@ -705,18 +705,39 @@ function initScroll() {
 function initHeroExplode() {
   const hero     = document.getElementById('hero');
   const heroLeft = hero ? hero.querySelector('.hero-left') : null;
+  const canvas   = document.getElementById('hero3d');
   if (!hero) return;
 
   window.addEventListener('scroll', () => {
-    const heroH    = hero.offsetHeight;
-    const progress = Math.max(0, Math.min(1, window.scrollY / (heroH * 0.55)));
+    const heroH = hero.offsetHeight;
+    const st    = window.scrollY;
+    const isMob = window.innerWidth <= 960;
 
-    if (typeof setScrollExplode === 'function') setScrollExplode(progress);
+    if (isMob) {
+      /* Mobile: full-page scroll (0→1) drives the explode/collapse */
+      const pageH    = Math.max(1, document.body.scrollHeight - window.innerHeight);
+      const progress = Math.max(0, Math.min(1, st / pageH));
+      if (typeof setScrollExplode === 'function') setScrollExplode(progress);
 
-    if (heroLeft) {
-      /* text fades out between 25 % and 75 % explosion progress */
-      const fade = Math.max(0, 1 - Math.max(0, progress - 0.25) / 0.5);
-      heroLeft.style.opacity = fade;
+      /* Canvas: full opacity inside hero, subtle outside */
+      if (canvas) {
+        canvas.style.opacity = st < heroH ? '0.4' : '0.14';
+      }
+
+      /* Hero text fades while still scrolling within the hero section */
+      if (heroLeft) {
+        const hp   = Math.max(0, Math.min(1, st / (heroH * 0.55)));
+        const fade = Math.max(0, 1 - Math.max(0, hp - 0.25) / 0.5);
+        heroLeft.style.opacity = fade;
+      }
+    } else {
+      /* Desktop: original behaviour — explode only within hero */
+      const progress = Math.max(0, Math.min(1, st / (heroH * 0.55)));
+      if (typeof setScrollExplode === 'function') setScrollExplode(progress);
+      if (heroLeft) {
+        const fade = Math.max(0, 1 - Math.max(0, progress - 0.25) / 0.5);
+        heroLeft.style.opacity = fade;
+      }
     }
   }, { passive: true });
 }
