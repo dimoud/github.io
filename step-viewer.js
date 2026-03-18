@@ -135,18 +135,10 @@
     }
 
     /* Palette: dark blue → grays → dark red, ordered by part size */
-    const PALETTE  = [0x1a2a7a, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0x7a1c1c];
-    /* Greyscale ramp for single-part files */
-    const SINGLES  = [0x909090, 0x7a7a7a, 0xa8a8a8, 0x686868, 0xb8b8b8];
-    const N        = result.meshes.length;
-
-    /* Single part: pick a greyscale from the filename hash */
-    const singleColor = (function () {
-      let h = 0;
-      const s = filename || '';
-      for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
-      return SINGLES[h % SINGLES.length];
-    })();
+    const PALETTE      = [0x1a2a7a, 0x444444, 0x666666, 0x888888, 0xaaaaaa, 0x7a1c1c];
+    /* Middle-dark grey for single-part files */
+    const singleColor  = 0x6e6e6e;
+    const N            = result.meshes.length;
 
     /* Bucket parts by vertex count (log-scale) so similar-sized parts share a color */
     const logCounts = result.meshes.map(mesh => {

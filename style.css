@@ -1139,6 +1139,7 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
   display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
   transition: background .25s, border-color .25s, transform .3s;
   position: relative; overflow: hidden;
+  text-decoration: none; color: inherit; cursor: pointer;
 }
 .edu-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; opacity:0; transition:opacity .3s; }
 .edu-card.blue::before   { background: var(--blue-lt); }
@@ -2179,12 +2180,14 @@ hr.ec-rule { position: relative; z-index: 2; }
     min-width: 0;
     padding: 12px 6px;
     gap: 6px;
+    text-align: center;
+    align-items: center;
   }
   .edu-logo-wrap { width: 40px; height: 40px; }
   .edu-logo-wrap img { width: 28px; height: 28px; }
-  .edu-name    { font-size: 9.5px; line-height: 1.3; }
-  .edu-degree  { font-size: 7.5px; }
-  .edu-country { font-size: 7.5px; }
+  .edu-name    { font-size: 9.5px; line-height: 1.3; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
+  .edu-degree  { font-size: 7.5px; text-align: center; }
+  .edu-country { font-size: 7.5px; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
 
   /* FOOTER: keep as one horizontal line */
   footer {
@@ -2229,12 +2232,12 @@ hr.ec-rule { position: relative; z-index: 2; }
   .footer-social-link svg { width: 14px; height: 14px; }
 
   /* UNIVERSITY BANNERS: even smaller on small mobile — still all in one row */
-  .edu-card { flex: 1; min-width: 0; padding: 10px 5px; gap: 5px; }
+  .edu-card { flex: 1; min-width: 0; padding: 10px 5px; gap: 5px; text-align: center; align-items: center; }
   .edu-logo-wrap { width: 34px; height: 34px; }
   .edu-logo-wrap img { width: 24px; height: 24px; }
-  .edu-name { font-size: 8.5px; line-height: 1.25; }
-  .edu-degree { font-size: 7px; }
-  .edu-country { font-size: 7px; }
+  .edu-name { font-size: 8.5px; line-height: 1.25; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
+  .edu-degree { font-size: 7px; text-align: center; }
+  .edu-country { font-size: 7px; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
 
   /* PROCESS VALUE CARDS: compact, clamp description text */
   .value-card {
@@ -2318,10 +2321,10 @@ hr.ec-rule { position: relative; z-index: 2; }
   footer { padding: 10px 12px; }
 
   /* Edu cards tiny on very small screens */
-  .edu-card { padding: 8px 4px; gap: 4px; }
+  .edu-card { padding: 8px 4px; gap: 4px; text-align: center; align-items: center; }
   .edu-logo-wrap { width: 28px; height: 28px; }
   .edu-logo-wrap img { width: 20px; height: 20px; }
-  .edu-name { font-size: 7.5px; }
+  .edu-name { font-size: 7.5px; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
   .edu-degree { display: none; }
-  .edu-country { font-size: 6.5px; }
+  .edu-country { font-size: 6.5px; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
 }
