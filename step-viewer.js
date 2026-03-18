@@ -48,19 +48,13 @@
 
     svScene = new THREE.Scene();
 
-    /* Full-coverage flat lighting — no dark faces */
-    svScene.add(new THREE.HemisphereLight(0xffffff, 0xffffff, 3.0));
-    svScene.add(new THREE.AmbientLight(0xffffff, 3.0));
+    /* 3-point studio lighting — shows form without blowing out */
+    svScene.add(new THREE.AmbientLight(0xffffff, 0.45));
 
     const lights = [
-      { color: 0xffffff, intensity: 4.0, pos: [ 5,  8,  5] },
-      { color: 0xffffff, intensity: 3.5, pos: [-5,  4, -4] },
-      { color: 0xffffff, intensity: 3.0, pos: [ 0, 10,  0] },
-      { color: 0xffffff, intensity: 3.0, pos: [ 0, -8,  0] },
-      { color: 0xffffff, intensity: 3.0, pos: [-8,  0,  0] },
-      { color: 0xffffff, intensity: 3.0, pos: [ 8,  0,  0] },
-      { color: 0xffffff, intensity: 3.0, pos: [ 0,  0, 10] },
-      { color: 0xffffff, intensity: 3.0, pos: [ 0,  0,-10] },
+      { color: 0xffffff, intensity: 2.2, pos: [ 4,  6,  5] },   /* key   — top-front-right */
+      { color: 0xddeeff, intensity: 0.9, pos: [-5,  2, -3] },   /* fill  — opposite side   */
+      { color: 0xffeedd, intensity: 0.7, pos: [ 1, -4, -5] },   /* rim   — back-bottom     */
     ];
     lights.forEach(({ color, intensity, pos }) => {
       const l = new THREE.DirectionalLight(color, intensity);
@@ -139,8 +133,8 @@
       return;
     }
 
-    /* Grey-scale palette — guaranteed visible regardless of STEP file colours */
-    const PALETTE = [0xb0b8c2, 0x9aa3ae, 0xc8cfd6, 0xa8b0bc, 0xd0d5db, 0x8891a0];
+    /* Mid-grey palette — leaves room for highlights and shadows to show form */
+    const PALETTE = [0x8a9ab0, 0x7a8898, 0x9daabb, 0x8898a8, 0x6a7888, 0xaabbc8];
     svModel = new THREE.Group();
 
     result.meshes.forEach((mesh, idx) => {
@@ -165,8 +159,8 @@
       }
       if (!normals || normals.length === 0) geo.computeVertexNormals();
 
-      svModel.add(new THREE.Mesh(geo, new THREE.MeshLambertMaterial({
-        color: hexColor, side: THREE.DoubleSide,
+      svModel.add(new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
+        color: hexColor, specular: 0x334455, shininess: 18, side: THREE.DoubleSide,
       })));
     });
 
