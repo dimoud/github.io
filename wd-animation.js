@@ -376,7 +376,7 @@
 
     /* on mobile, don't scale or shift — keep animation inside the container */
     WIRE_SCALE = CW < 520 ? 0.88 : 1.1;
-    WIRE_SHIFT = CW < 520 ? 0.0  : -0.05;
+    WIRE_SHIFT = CW < 520 ? 0.06 : -0.05;
 
     initParticles();
   }
