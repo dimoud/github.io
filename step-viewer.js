@@ -256,9 +256,9 @@
     svCamera.updateProjectionMatrix();
 
     svCamera.position.set(
-      center.x + maxDim * 2.0,
-      center.y + maxDim * 1.3,
-      center.z + maxDim * 2.0
+      center.x + maxDim * 0.85,
+      center.y + maxDim * 0.55,
+      center.z + maxDim * 0.85
     );
     svCamera.lookAt(center);
 
