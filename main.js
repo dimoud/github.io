@@ -103,7 +103,7 @@ const LANG = {
     hero_title:'Mechanical Design · 3D Printing · Project Management',
     hero_desc:'<strong>Expertease Designs</strong> — machine design, sheet metal, rapid prototyping, BOM, and project management. Athens-based, working internationally.',
     hero_cta_work:'View Projects →', hero_cta_contact:'Get in Touch',
-    stat_years:'Years Experience', stat_projects:'Projects Delivered', stat_degrees:'Postgrad Degrees',
+    stat_years:'Years Experience', stat_projects:'Projects Delivered', stat_degrees:'University Degrees',
     edu_strip:'Founder — Dimitrios Moudiotis · 5 Universities in 3 Countries',
     edu1_deg:'Dipl.-Ing.', edu1_name:'Mechanical Engineering',
     edu2_deg:'MSc General Engineering', edu2_name:'École Centrale Paris',
@@ -530,6 +530,9 @@ function initPortDrag() {
 ═══════════════════════════════════════════════════════════════ */
 let modalImgIdx = 0;
 let modalProject = null;
+let cflowIdx    = 0;
+let cflowImages = [];
+let cflowDragging = false;
 
 function buildProjectModal() {
   if (document.getElementById('portModal')) return;
@@ -545,6 +548,7 @@ function buildProjectModal() {
         <img class="port-modal-img" id="portModalImg" src="" alt="">
         <button class="port-modal-nav port-modal-next" id="portModalNext">›</button>
         <div class="port-modal-img-counter" id="portModalCounter"></div>
+        <div class="cflow-stage" id="cflowStage"></div>
       </div>
       <div class="port-modal-dots-row" id="portModalDots"></div>
       <div class="port-modal-info">
@@ -566,13 +570,37 @@ function buildProjectModal() {
     if (e.key === 'ArrowRight') modalNav(+1);
   });
 
-  // Touch swipe
+  // Touch swipe — desktop: snap on release; mobile: live coverflow drag
   const gallery = m.querySelector('.port-modal-gallery');
   let touchStartX = 0;
-  gallery.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  let touchActive = false;
+  gallery.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchActive = true;
+    const stage = document.getElementById('cflowStage');
+    if (stage) stage.querySelectorAll('.cflow-card').forEach(c => c.classList.remove('cflow-snap'));
+  }, { passive: true });
+  gallery.addEventListener('touchmove', e => {
+    if (!touchActive || window.innerWidth > 768) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const stage = document.getElementById('cflowStage');
+    const w = stage ? stage.offsetWidth * 0.62 : 220;
+    cflowRender(-(dx / w));
+  }, { passive: true });
   gallery.addEventListener('touchend', e => {
+    if (!touchActive) return;
+    touchActive = false;
     const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) modalNav(dx < 0 ? 1 : -1);
+    if (window.innerWidth <= 768) {
+      const stage = document.getElementById('cflowStage');
+      const w = stage ? stage.offsetWidth * 0.62 : 220;
+      const progress = -(dx / w);
+      if (progress > 0.28 && cflowIdx < cflowImages.length - 1) modalNav(1);
+      else if (progress < -0.28 && cflowIdx > 0) modalNav(-1);
+      else cflowGoTo(cflowIdx);
+    } else {
+      if (Math.abs(dx) > 40) modalNav(dx < 0 ? 1 : -1);
+    }
   }, { passive: true });
 
   // Horizontal wheel / trackpad swipe
@@ -588,6 +616,66 @@ function buildProjectModal() {
   }, { passive: false });
 }
 
+/* ── MOBILE COVERFLOW CAROUSEL ──────────────────────────────── */
+function cflowCardTransform(offset) {
+  // Large cylinder radius = gentle "big radius" arc
+  const R       = 440;
+  const stepRad = 38 * Math.PI / 180; // degrees between cards
+  const theta   = offset * stepRad;
+  const tx      = R * Math.sin(theta);
+  const tz      = R * Math.cos(theta) - R; // 0 at center, recedes at sides
+  const absOff  = Math.abs(offset);
+  const ty      = -Math.max(0, 1 - absOff * 2.8) * 20; // center card rises
+  const scale   = Math.max(0.45, 1 - absOff * 0.155);
+  const opacity = Math.max(0, 1 - absOff * 0.44);
+  return { tx, ty, tz, rotY: offset * 38, scale, opacity };
+}
+
+function cflowRender(dragOffset) {
+  const stage = document.getElementById('cflowStage');
+  if (!stage) return;
+  stage.querySelectorAll('.cflow-card').forEach((card, i) => {
+    const { tx, ty, tz, rotY, scale, opacity } = cflowCardTransform(i - cflowIdx - (dragOffset || 0));
+    card.style.transform = `translateX(${tx.toFixed(1)}px) translateY(${ty.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+    card.style.opacity   = opacity.toFixed(3);
+    card.style.zIndex    = Math.round(100 - Math.abs(i - cflowIdx - (dragOffset || 0)) * 18);
+  });
+}
+
+function buildCflowCards(images) {
+  const stage = document.getElementById('cflowStage');
+  if (!stage) return;
+  stage.innerHTML = '';
+  cflowImages = images;
+  cflowIdx    = 0;
+  images.forEach((src, i) => {
+    const card = document.createElement('div');
+    card.className = 'cflow-card';
+    const img = document.createElement('img');
+    img.src = src; img.alt = '';
+    card.appendChild(img);
+    card.addEventListener('click', () => { if (Math.abs(i - cflowIdx) >= 0.5) cflowGoTo(i); });
+    stage.appendChild(card);
+  });
+  cflowRender(0);
+}
+
+function cflowGoTo(idx) {
+  const stage = document.getElementById('cflowStage');
+  if (!stage) return;
+  cflowIdx = Math.max(0, Math.min(cflowImages.length - 1, idx));
+  stage.querySelectorAll('.cflow-card').forEach(c => c.classList.add('cflow-snap'));
+  cflowRender(0);
+  setTimeout(() => {
+    const s = document.getElementById('cflowStage');
+    if (s) s.querySelectorAll('.cflow-card').forEach(c => c.classList.remove('cflow-snap'));
+  }, 460);
+  modalImgIdx = cflowIdx;
+  const counter = document.getElementById('portModalCounter');
+  if (counter) counter.textContent = `${cflowIdx + 1} / ${cflowImages.length}`;
+  document.querySelectorAll('.port-modal-dot').forEach((d, i) => d.classList.toggle('active', i === cflowIdx));
+}
+
 function openProjectModal(projectIdx) {
   modalProject = PORTFOLIO_DATA[projectIdx];
   modalImgIdx  = 0;
@@ -596,6 +684,7 @@ function openProjectModal(projectIdx) {
   document.getElementById('portModalTitle').textContent = lang === 'el' ? modalProject.titleEl : modalProject.titleEn;
   document.getElementById('portModalDesc').textContent  = lang === 'el' ? modalProject.descEl  : modalProject.descEn;
   buildModalDots();
+  if (window.innerWidth <= 768) buildCflowCards(modalProject.images);
   modalSetImage(0);
   setThumbActive(projectIdx);
   const m = document.getElementById('portModal');
@@ -625,6 +714,7 @@ function buildModalDots() {
 function modalSetImage(idx) {
   if (!modalProject) return;
   modalImgIdx = (idx + modalProject.images.length) % modalProject.images.length;
+  if (window.innerWidth <= 768) { cflowGoTo(modalImgIdx); return; }
   const img = document.getElementById('portModalImg');
   img.style.opacity = '0';
   setTimeout(() => {

@@ -1020,6 +1020,68 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
   .port-modal-desc { font-size: 12px; }
 }
 
+/* ── MOBILE COVERFLOW ───────────────────────────────────────── */
+.cflow-stage { display: none; }
+
+@media (max-width: 768px) {
+  /* Gallery becomes the 3-D stage container */
+  .port-modal-gallery {
+    background: #0c1420;
+    height: 58vw;
+    max-height: 300px;
+    overflow: visible;
+    perspective: 1100px;
+    perspective-origin: 50% 55%;
+  }
+  /* Hide the desktop single-image controls */
+  .port-modal-img,
+  .port-modal-nav,
+  .port-modal-img-counter { display: none !important; }
+
+  /* 3-D stage — children live in the same perspective space */
+  .cflow-stage {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  /* Each image card */
+  .cflow-card {
+    position: absolute;
+    width: 64%;
+    height: 100%;
+    left: 18%;          /* centred horizontally */
+    top: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 14px 44px rgba(0,0,0,.32);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .cflow-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    -webkit-user-select: none; user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Snap-to class: added only during the settle animation */
+  .cflow-card.cflow-snap {
+    transition: transform .44s cubic-bezier(.25,.46,.45,.94),
+                opacity   .44s ease;
+  }
+
+  /* Slightly larger dot targets on mobile */
+  .port-modal-dot { width: 8px; height: 8px; }
+}
+
 .port-info { padding: 28px 36px 36px; flex: 1; }
 .port-badge {
   display: inline-block;
