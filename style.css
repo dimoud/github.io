@@ -27,7 +27,7 @@
   /* Dark navy palette — unified */
   --navy:      #080f1e;   /* nav, footer, deepest bg */
   --navy-mid:  #0f1d38;   /* dark section bg (process, cad-viewer) */
-  --navy-hero: #0c1e3e;   /* hero gradient base */
+  --navy-hero: #091a40;   /* hero gradient base */
 
   /* Legacy alias */
   --dark: var(--navy);
@@ -140,15 +140,15 @@ nav {
   min-height: 100vh;
   display: grid; grid-template-columns: 1fr 1fr;
   padding-top: 68px;
-  background: linear-gradient(150deg, var(--navy-hero) 0%, #1a3d7e 50%, var(--navy-hero) 100%);
+  background: linear-gradient(160deg, #060e22 0%, #0d2358 25%, #1a4aaa 55%, #0d2358 80%, #060e22 100%);
   position: relative; overflow: hidden;
 }
 #hero::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse at 15% 60%, rgba(37,99,235,.35) 0%, transparent 55%),
-    radial-gradient(ellipse at 88% 20%, rgba(96,165,250,.22) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 100%, rgba(20,60,180,.55) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 55%, rgba(59,130,246,.50) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(37,99,235,.38) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 90%, rgba(96,165,250,.30) 0%, transparent 55%);
 }
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
@@ -170,7 +170,7 @@ nav {
 }
 .hero-name span {
   display: inline-block;
-  background: linear-gradient(90deg, var(--blue-lt) 0%, var(--blue-lt) 30%, #c8dffe 50%, var(--blue-lt) 70%, var(--blue-lt) 100%);
+  background: linear-gradient(90deg, #7ec8ff 0%, #a8d8ff 30%, #ffffff 50%, #a8d8ff 70%, #7ec8ff 100%);
   background-size: 300% 100%;
   background-position: 0% 0;
   -webkit-background-clip: text;
@@ -186,7 +186,7 @@ nav {
 .hero-title {
   font-family: var(--font-serif); font-style: italic;
   font-size: clamp(15px, 1.6vw, 20px);
-  color: rgba(255,255,255,.55); margin-top: 8px;
+  color: rgba(255,255,255,.88); margin-top: 8px;
   opacity: 0; animation: fadeUp .8s .45s forwards;
 }
 .hero-tagline {
@@ -196,7 +196,7 @@ nav {
   opacity: 0; animation: fadeUp .8s .5s forwards;
 }
 .hero-desc {
-  font-size: 15.5px; line-height: 1.85; color: rgba(255,255,255,.6);
+  font-size: 15.5px; line-height: 1.85; color: rgba(255,255,255,.85);
   margin-top: 28px; max-width: 420px;
   opacity: 0; animation: fadeUp .8s .6s forwards;
 }

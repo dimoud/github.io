@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jet Turbine Engine</title>
+<style>
+  html,body{margin:0;padding:0;background:#d6e8f5;overflow:hidden;width:100%;height:100%;}
+  canvas{display:block;background:transparent;}
+  #btn{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+    padding:10px 28px;font-size:15px;font-weight:700;letter-spacing:.04em;
+    background:rgba(220,235,248,0.90);color:#1a4a72;border:1.5px solid #6aa8d0;
+    border-radius:24px;cursor:pointer;z-index:10;box-shadow:0 2px 16px #0004;
+    transition:background .2s,color .2s;}
+  #btn:hover{background:rgba(180,215,240,0.95);color:#0d2e4a;}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<button id="btn">&#9881; Explode</button>
+<script>
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+let W,H,S;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;S=Math.min(W,H)/520;}
+resize();
+window.addEventListener('resize',resize);
+
+let VY=0.38, VX=0.20;
+// No cut zone — all internal parts rendered fully
+
+function v3(x,y,z){return{x,y,z};}
+function norm3(v){const l=Math.sqrt(v.x*v.x+v.y*v.y+v.z*v.z)||1;return{x:v.x/l,y:v.y/l,z:v.z/l};}
+function dot3(a,b){return a.x*b.x+a.y*b.y+a.z*b.z;}
+function cross3(a,b){return{x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x};}
+function sub3(a,b){return{x:a.x-b.x,y:a.y-b.y,z:a.z-b.z};}
+function scale3(v,s){return{x:v.x*s,y:v.y*s,z:v.z*s};}
+function rX(p,a){const c=Math.cos(a),s2=Math.sin(a);return{x:p.x,y:p.y*c-p.z*s2,z:p.y*s2+p.z*c};}
+function rY(p,a){const c=Math.cos(a),s2=Math.sin(a);return{x:p.x*c+p.z*s2,y:p.y,z:-p.x*s2+p.z*c};}
+function toView(p){return rY(rX(p,VX),VY);}
+
+const FOV=680, CAM_Z=-950;
+function proj(p){
+  const vp=toView(p);
+  const dz=vp.z-CAM_Z;
+  const f=FOV/Math.abs(dz);
+  return[W/2+vp.x*f*S, H/2-vp.y*f*S, vp.z];
+}
+
+let LIGHT=norm3({x:0,y:0,z:1});
+function updateLight(){LIGHT=norm3(toView(v3(-0.5,-0.70,-0.4)));}
+
+function lit(pts3d,bR,bG,bB,amb,spec){
+  if(amb===undefined) amb=0.30;
+  if(spec===undefined) spec=0.60;
+  if(pts3d.length<3) return 'rgb('+Math.round(bR*amb)+','+Math.round(bG*amb)+','+Math.round(bB*amb)+')';
+  const vps=pts3d.map(p=>toView(p));
+  const e1=sub3(vps[1],vps[0]),e2=sub3(vps[2],vps[0]);
+  const n=norm3(cross3(e1,e2));
+  const diff=Math.max(0,dot3(n,LIGHT));
+  const ref=sub3(scale3(n,2*dot3(n,LIGHT)),LIGHT);
+  const sp=Math.pow(Math.max(0,dot3(ref,norm3({x:0,y:0,z:-1}))),64)*spec;
+  const r=Math.min(255,Math.round(bR*(amb+diff*(1-amb))+sp*255));
+  const g=Math.min(255,Math.round(bG*(amb+diff*(1-amb))+sp*255));
+  const b=Math.min(255,Math.round(bB*(amb+diff*(1-amb))+sp*255));
+  return 'rgb('+r+','+g+','+b+')';
+}
+
+let explodeT=0,explodeTarget=0;
+function toggleExplode(){
+  explodeTarget=explodeTarget===0?1:0;
+  document.getElementById('btn').textContent=explodeTarget===1?'\uD83D\uDD27 Assemble':'\u2699 Explode';
+}
+document.getElementById('btn').addEventListener('click',toggleExplode);
+canvas.addEventListener('click',function(e){
+  // Only toggle if the click wasn't a drag (mouse moved less than 5px)
+  if(Math.abs(e.clientX-lastX)<5&&Math.abs(e.clientY-lastY)<5) toggleExplode();
+});
+function getOffset(sec){
+  const ex=explodeT*60*S;
+  const Z=[-3.8,-2.6,-1.6,-0.8,0,0.9,1.9,3.0,4.2];
+  return (sec>=0&&sec<=8)?Z[sec]*ex:0;
+}
+
+let FACES=[];
+function pushFace(pts3d,color){
+  const projs=pts3d.map(p=>proj(p));
+  const depth=projs.reduce((s,pp)=>s+pp[2],0)/projs.length;
+  FACES.push({projs,color,depth});
+}
+function drawFace(f){
+  ctx.beginPath();
+  ctx.moveTo(f.projs[0][0],f.projs[0][1]);
+  for(let j=1;j<f.projs.length;j++) ctx.lineTo(f.projs[j][0],f.projs[j][1]);
+  ctx.closePath();
+  ctx.fillStyle=f.color;
+  ctx.fill();
+}
+function flushFaces(){
+  FACES.sort((a,b)=>b.depth-a.depth);
+  for(const f of FACES) drawFace(f);
+  FACES=[];
+}
+
+function cyl(z1,z2,r1,r2,bR,bG,bB,sec,N){
+  if(N===undefined) N=28;
+  const oz=getOffset(sec); const d=Math.round;
+  const wt=3*S; const ri1=Math.max(S,r1-wt), ri2=Math.max(S,r2-wt);
+  const bRc=d(bR*0.88),bGc=d(bG*0.88),bBc=d(bB*0.90);
+  for(let i=0;i<N;i++){
+    const a0=i/N*Math.PI*2,a1=(i+1)/N*Math.PI*2;
+    const c0=Math.cos(a0),s0=Math.sin(a0),c1=Math.cos(a1),s1=Math.sin(a1);
+    const pO=[v3(r1*c0,r1*s0,z1+oz),v3(r1*c1,r1*s1,z1+oz),v3(r2*c1,r2*s1,z2+oz),v3(r2*c0,r2*s0,z2+oz)];
+    pushFace(pO,lit(pO,bR,bG,bB));
+    const pF=[v3(ri1*c1,ri1*s1,z1+oz),v3(r1*c1,r1*s1,z1+oz),v3(r1*c0,r1*s0,z1+oz),v3(ri1*c0,ri1*s0,z1+oz)];
+    pushFace(pF,lit(pF,bRc,bGc,bBc,0.28,0.62));
+    const pR=[v3(r2*c1,r2*s1,z2+oz),v3(ri2*c1,ri2*s1,z2+oz),v3(ri2*c0,ri2*s0,z2+oz),v3(r2*c0,r2*s0,z2+oz)];
+    pushFace(pR,lit(pR,bRc,bGc,bBc,0.28,0.62));
+  }
+}
+function ann(z,rO,rI,bR,bG,bB,sec,N){
+  if(N===undefined) N=28;
+  const oz=getOffset(sec); const tk=4*S; const d=Math.round;
+  const bRs=d(bR*0.72),bGs=d(bG*0.72),bBs=d(bB*0.74);
+  for(let i=0;i<N;i++){
+    const a0=i/N*Math.PI*2,a1=(i+1)/N*Math.PI*2;
+    const c0=Math.cos(a0),s0=Math.sin(a0),c1=Math.cos(a1),s1=Math.sin(a1);
+    const pF=[v3(rI*c0,rI*s0,z+oz),v3(rO*c0,rO*s0,z+oz),v3(rO*c1,rO*s1,z+oz),v3(rI*c1,rI*s1,z+oz)];
+    pushFace(pF,lit(pF,bR,bG,bB));
+    const pOr=[v3(rO*c0,rO*s0,z+oz),v3(rO*c1,rO*s1,z+oz),v3(rO*c1,rO*s1,z-tk+oz),v3(rO*c0,rO*s0,z-tk+oz)];
+    pushFace(pOr,lit(pOr,bRs,bGs,bBs));
+  }
+}
+function dsc(z,r,bR,bG,bB,sec,N){
+  if(N===undefined) N=28;
+  const oz=getOffset(sec); const tk=4*S; const d=Math.round;
+  for(let i=0;i<N;i++){
+    const a0=i/N*Math.PI*2,a1=(i+1)/N*Math.PI*2;
+    const c0=Math.cos(a0),s0=Math.sin(a0),c1=Math.cos(a1),s1=Math.sin(a1);
+    const pFr=[v3(0,0,z+oz),v3(r*c0,r*s0,z+oz),v3(r*c1,r*s1,z+oz)];
+    pushFace(pFr,lit(pFr,bR,bG,bB));
+    const rim=[v3(r*c0,r*s0,z+oz),v3(r*c1,r*s1,z+oz),v3(r*c1,r*s1,z-tk+oz),v3(r*c0,r*s0,z-tk+oz)];
+    pushFace(rim,lit(rim,d(bR*0.70),d(bG*0.70),d(bB*0.72)));
+  }
+}
+
+// ── Fan blade — metallic (fixed-angle lit), thick LE, root platform ──
+function fanBlade(idx,N,spin,Rh,Rt,z0,sec){
+  const oz=getOffset(sec);
+  const ba=idx/N*Math.PI*2+spin;
+  const sweep=0.44, camber=0.18, thk=0.058;
+  const nZ=6, zb=z0+oz;
+  const dz=255*S*0.085, camZ=camber*dz;
+  // Colour computed once at fixed angle — metallic, no flicker
+  const baL=idx/N*Math.PI*2, rM=(Rh+Rt)*0.5;
+  const rP=[v3(rM*Math.cos(baL),rM*Math.sin(baL),z0),v3(Rt*Math.cos(baL),Rt*Math.sin(baL),z0),
+            v3(Rt*Math.cos(baL+0.14),Rt*Math.sin(baL+0.14),z0+dz+camZ),v3(rM*Math.cos(baL+0.14),rM*Math.sin(baL+0.14),z0+dz+camZ)];
+  const colP=lit(rP,210,222,248,0.26,0.88);
+  const colS=lit([v3(rM*Math.cos(baL+thk),rM*Math.sin(baL+thk),z0),v3(Rt*Math.cos(baL+thk),Rt*Math.sin(baL+thk),z0),
+                  v3(Rt*Math.cos(baL+0.14),Rt*Math.sin(baL+0.14),z0+dz+camZ),v3(rM*Math.cos(baL+0.14),rM*Math.sin(baL+0.14),z0+dz+camZ)],162,172,205,0.24,0.72);
+  const colLE=lit([v3(rM*Math.cos(baL),rM*Math.sin(baL),z0),v3(Rt*Math.cos(baL),Rt*Math.sin(baL),z0),
+                   v3(Rt*Math.cos(baL+thk),Rt*Math.sin(baL+thk),z0),v3(rM*Math.cos(baL+thk),rM*Math.sin(baL+thk),z0)],242,248,255,0.38,0.96);
+  for(let j=0;j<nZ;j++){
+    const t0=j/nZ,t1=(j+1)/nZ;
+    const r0=Rh+(Rt-Rh)*t0,r1=Rh+(Rt-Rh)*t1;
+    const tw0=ba+t0*sweep,tw1=ba+t1*sweep;
+    const pp=[v3(r0*Math.cos(tw0),r0*Math.sin(tw0),zb),v3(r1*Math.cos(tw1),r1*Math.sin(tw1),zb),
+              v3(r1*Math.cos(tw1+0.14),r1*Math.sin(tw1+0.14),zb+dz+camZ),v3(r0*Math.cos(tw0+0.14),r0*Math.sin(tw0+0.14),zb+dz+camZ)];
+    const ps=[v3(r0*Math.cos(tw0+thk),r0*Math.sin(tw0+thk),zb),v3(r1*Math.cos(tw1+thk),r1*Math.sin(tw1+thk),zb),
+              v3(r1*Math.cos(tw1+0.14),r1*Math.sin(tw1+0.14),zb+dz+camZ),v3(r0*Math.cos(tw0+0.14),r0*Math.sin(tw0+0.14),zb+dz+camZ)];
+    pushFace(pp,colP); pushFace([ps[0],ps[3],ps[2],ps[1]],colS); pushFace([pp[0],pp[1],ps[1],ps[0]],colLE);
+  }
+  // Root platform (4 segments)
+  const pltA=0.05, pltR=3*S, pltSpan=0.14+thk+pltA*2;
+  for(let j=0;j<4;j++){
+    const a0=ba-pltA+j/4*pltSpan, a1=ba-pltA+(j+1)/4*pltSpan;
+    pushFace([v3(Rh*Math.cos(a0),Rh*Math.sin(a0),zb),v3((Rh-pltR)*Math.cos(a0),(Rh-pltR)*Math.sin(a0),zb),
+              v3((Rh-pltR)*Math.cos(a1),(Rh-pltR)*Math.sin(a1),zb),v3(Rh*Math.cos(a1),Rh*Math.sin(a1),zb)],colP);
+  }
+}
+
+// ── Axial blade — metallic (fixed-angle lit), thick LE, root platform ──
+function axiaBlade(idx,N,spin,Ri,Ro,z0,chord,cam,bR,bG,bB,sec){
+  const oz=getOffset(sec);
+  const ba=idx/N*Math.PI*2+spin;
+  const nZ=3, thk=0.035;
+  const zb=z0+oz, dz=chord*S, camZ=cam*dz;
+  // Colour computed once at fixed angle — metallic, no flicker
+  const baL=idx/N*Math.PI*2, rM=(Ri+Ro)*0.5;
+  const colP=lit([v3(rM*Math.cos(baL),rM*Math.sin(baL),z0),v3(Ro*Math.cos(baL),Ro*Math.sin(baL),z0),
+                  v3(Ro*Math.cos(baL+0.14),Ro*Math.sin(baL+0.14),z0+dz+camZ),v3(rM*Math.cos(baL+0.14),rM*Math.sin(baL+0.14),z0+dz+camZ)],bR,bG,bB,0.28,0.85);
+  const colS=lit([v3(rM*Math.cos(baL+thk),rM*Math.sin(baL+thk),z0),v3(Ro*Math.cos(baL+thk),Ro*Math.sin(baL+thk),z0),
+                  v3(Ro*Math.cos(baL+0.14),Ro*Math.sin(baL+0.14),z0+dz+camZ),v3(rM*Math.cos(baL+0.14),rM*Math.sin(baL+0.14),z0+dz+camZ)],Math.round(bR*0.72),Math.round(bG*0.72),Math.round(bB*0.72),0.26,0.70);
+  const colLE=lit([v3(rM*Math.cos(baL),rM*Math.sin(baL),z0),v3(Ro*Math.cos(baL),Ro*Math.sin(baL),z0),
+                   v3(Ro*Math.cos(baL+thk),Ro*Math.sin(baL+thk),z0),v3(rM*Math.cos(baL+thk),rM*Math.sin(baL+thk),z0)],Math.min(255,bR+45),Math.min(255,bG+42),Math.min(255,bB+38),0.40,0.96);
+  for(let j=0;j<nZ;j++){
+    const t0=j/nZ,t1=(j+1)/nZ;
+    const r0=Ri+(Ro-Ri)*t0,r1=Ri+(Ro-Ri)*t1;
+    const pp=[v3(r0*Math.cos(ba),r0*Math.sin(ba),zb),v3(r1*Math.cos(ba),r1*Math.sin(ba),zb),
+              v3(r1*Math.cos(ba+0.14),r1*Math.sin(ba+0.14),zb+dz+camZ),v3(r0*Math.cos(ba+0.14),r0*Math.sin(ba+0.14),zb+dz+camZ)];
+    const ps=[v3(r0*Math.cos(ba+thk),r0*Math.sin(ba+thk),zb),v3(r1*Math.cos(ba+thk),r1*Math.sin(ba+thk),zb),
+              v3(r1*Math.cos(ba+0.14),r1*Math.sin(ba+0.14),zb+dz+camZ),v3(r0*Math.cos(ba+0.14),r0*Math.sin(ba+0.14),zb+dz+camZ)];
+    pushFace(pp,colP); pushFace([ps[0],ps[3],ps[2],ps[1]],colS); pushFace([pp[0],pp[1],ps[1],ps[0]],colLE);
+  }
+  // Root platform (3 segments)
+  const pltA=0.04, pltR=2*S, pltSpan=0.14+thk+pltA*2;
+  for(let j=0;j<3;j++){
+    const a0=ba-pltA+j/3*pltSpan, a1=ba-pltA+(j+1)/3*pltSpan;
+    pushFace([v3(Ri*Math.cos(a0),Ri*Math.sin(a0),zb),v3((Ri-pltR)*Math.cos(a0),(Ri-pltR)*Math.sin(a0),zb),
+              v3((Ri-pltR)*Math.cos(a1),(Ri-pltR)*Math.sin(a1),zb),v3(Ri*Math.cos(a1),Ri*Math.sin(a1),zb)],colP);
+  }
+}
+
+// ── Spinner nose cone ──
+function spn(Rh,zBase,zTip,spin,sec){
+  const oz=getOffset(sec); const N=32;
+  for(let i=0;i<N;i++){
+    const a0=i/N*Math.PI*2+spin,a1=(i+1)/N*Math.PI*2+spin;
+    const pts=[v3(Rh*Math.cos(a0),Rh*Math.sin(a0),zBase+oz),v3(Rh*Math.cos(a1),Rh*Math.sin(a1),zBase+oz),v3(0,0,zTip+oz)];
+    pushFace(pts,lit(pts,192,198,215,0.36,0.68));
+  }
+}
+
+// ── Drag to rotate ──
+let dragging=false,lastX=0,lastY=0;
+canvas.addEventListener('mousedown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;});
+window.addEventListener('mouseup',()=>{dragging=false;});
+window.addEventListener('mousemove',e=>{
+  if(!dragging) return;
+  VY+=(e.clientX-lastX)*0.008; VX-=(e.clientY-lastY)*0.008;
+  VX=Math.max(-1.4,Math.min(1.4,VX));
+  lastX=e.clientX; lastY=e.clientY;
+});
+canvas.addEventListener('touchstart',e=>{dragging=true;lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;e.preventDefault();},{passive:false});
+window.addEventListener('touchend',()=>{dragging=false;});
+window.addEventListener('touchmove',e=>{
+  if(!dragging) return;
+  VY+=(e.touches[0].clientX-lastX)*0.008; VX-=(e.touches[0].clientY-lastY)*0.008;
+  VX=Math.max(-1.4,Math.min(1.4,VX));
+  lastX=e.touches[0].clientX; lastY=e.touches[0].clientY;
+  e.preventDefault();},{passive:false});
+
+// ─────────────────────── TVC nozzle ───────────────────────
+let spinAngle=0, tvcAngle=0;
+
+function buildTVC(u){
+  const oz=getOffset(8);
+  const tvc=tvcAngle;
+  const zG=420*u;
+  const Lp=74*u, rGo=46*u, rGi=24*u, rEo=54*u, rEi=18*u;
+  const Np=16, Na=8;
+
+  function tP(r,phi,L){
+    const x=r*Math.cos(phi), yR=r*Math.sin(phi);
+    return v3(x, yR*Math.cos(tvc)-L*Math.sin(tvc), zG+oz+yR*Math.sin(tvc)+L*Math.cos(tvc));
+  }
+  function gP(r,phi){return v3(r*Math.cos(phi),r*Math.sin(phi),zG+oz);}
+  function rP(r,phi){return v3(r*Math.cos(phi),r*Math.sin(phi),0);}
+
+  // Gimbal collar
+  cyl(zG-10*u,zG+3*u,rGo-1*u,rGo+4*u,60,58,56,8,36);
+  ann(zG-10*u,rGo-1*u,rGi,58,56,54,8,32);
+
+  // Actuator arms — full circle interior
+  for(let i=0;i<Na;i++){
+    const phi=i/Na*Math.PI*2+Math.PI/Na, w=0.028;
+    const p0=gP(rGo+2*u,phi-w),p1=gP(rGo+2*u,phi+w);
+    const p2=tP(rGo+6*u,phi+w,Lp*0.46),p3=tP(rGo+6*u,phi-w,Lp*0.46);
+    pushFace([p0,p1,p2,p3],lit([p0,p1,p2,p3],86,84,80,0.42,0.55),true);
+  }
+
+  // Outer petals — full circle interior
+  for(let i=0;i<Np;i++){
+    const phi0=i/Np*Math.PI*2,phi1=(i+1)/Np*Math.PI*2;
+    const b0=gP(rGo,phi0),b1=gP(rGo,phi1);
+    const e0=tP(rEo,phi0,Lp),e1=tP(rEo,phi1,Lp);
+    pushFace([b0,b1,e1,e0],lit([b0,b1,e1,e0],50,47,44,0.28,0.70),true);
+    const es=tP(rEo+1.5*u,phi0,Lp),bs=gP(rGo+1.5*u,phi0);
+    pushFace([b0,bs,es,e0],lit([b0,bs,es,e0],68,64,60,0.36,0.76),true);
+  }
+
+  // Inner hot liner — full circle interior
+  for(let i=0;i<Np;i++){
+    const phi0=i/Np*Math.PI*2,phi1=(i+1)/Np*Math.PI*2;
+    const b0=gP(rGi,phi0),b1=gP(rGi,phi1);
+    const e0=tP(rEi,phi0,Lp),e1=tP(rEi,phi1,Lp);
+    pushFace([e0,e1,b1,b0],lit([e0,e1,b1,b0],72,52,38,0.32,0.42),true);
+  }
+
+  // Exit lip — full circle interior
+  for(let i=0;i<Np;i++){
+    const phi0=i/Np*Math.PI*2,phi1=(i+1)/Np*Math.PI*2;
+    const eo0=tP(rEo,phi0,Lp),eo1=tP(rEo,phi1,Lp);
+    const ei0=tP(rEi,phi0,Lp),ei1=tP(rEi,phi1,Lp);
+    pushFace([ei0,eo0,eo1,ei1],lit([ei0,eo0,eo1,ei1],54,50,46,0.34,0.58),true);
+  }
+
+  // Centre exhaust plug — full circle interior
+  for(let i=0;i<22;i++){
+    const phi0=i/22*Math.PI*2,phi1=(i+1)/22*Math.PI*2;
+    const base0=tP(rEi,phi0,Lp),base1=tP(rEi,phi1,Lp),tip=tP(0,0,Lp+60*u);
+    pushFace([base0,base1,tip],lit([base0,base1,tip],44,41,38,0.30,0.58),true);
+  }
+}
+
+// ─────────────────────── Engine geometry ───────────────────────
+function buildEngine(){
+  FACES=[];
+  spinAngle+=0.005;
+  tvcAngle=0;
+  const sp=spinAngle, u=S;
+
+  // ═══ SEC 0: Inlet spinner ═══
+  spn(32*u,-198*u,-265*u,sp*2.2,0);
+
+  // ═══ SEC 1: Fan ═══
+  cyl(-240*u,-150*u, 28*u,32*u, 88,92,110, 1);
+  for(let i=0;i<16;i++) fanBlade(i,16,sp*2.2,38*u,92*u,-202*u,1);
+  dsc(-200*u,32*u, 95,100,118, 1);
+  cyl(-225*u,-90*u, 20*u,18*u, 105,110,132,1); dsc(-225*u,20*u,108,112,135,1);
+
+  // ═══ SEC 2: OGV ═══
+  for(let i=0;i<22;i++) axiaBlade(i,22,0,36*u,88*u,-130*u,14,0.06,158,164,188,2);
+
+  // ═══ SEC 3: LP Compressor (stages 1–2) ═══
+  cyl(-100*u,0*u, 28*u,33*u, 55,58,72, 3);
+  for(let i=0;i<28;i++) axiaBlade(i,28,sp*3.0,     44*u,76*u,-80*u,11, 0.15,192,198,220,3);
+  ann(-82*u,77*u,43*u, 72,78,92,3); dsc(-82*u,44*u,80,85,100,3);
+  for(let i=0;i<32;i++) axiaBlade(i,32,0.07,        42*u,74*u,-55*u,10,-0.10,115,120,140,3);
+  ann(-55*u,75*u,43*u, 68,74,88,3);
+  cyl(-52*u,-28*u,43*u,48*u, 62,66,80,3);
+  for(let i=0;i<30;i++) axiaBlade(i,30,sp*3.0+0.3,  48*u,74*u,-28*u,10, 0.15,188,194,218,3);
+  ann(-28*u,75*u,47*u, 68,74,88,3); dsc(-28*u,48*u,78,82,98,3);
+  for(let i=0;i<34;i++) axiaBlade(i,34,0.12,         46*u,72*u,-5*u,  9,-0.10,112,118,138,3);
+  ann(-5*u,73*u,46*u, 65,70,85,3);
+  cyl(-90*u,0*u, 18*u,18*u, 98,102,125,3);
+
+  // ═══ SEC 4: HP Compressor (stages 3–4) ═══
+  cyl(0*u,80*u, 33*u,42*u, 55,58,72, 4);
+  cyl(2*u,24*u,47*u,52*u, 60,64,78,4);
+  for(let i=0;i<32;i++) axiaBlade(i,32,sp*3.0+0.6,  52*u,72*u, 24*u, 9, 0.15,185,190,215,4);
+  ann(24*u,73*u,51*u, 65,70,85,4); dsc(24*u,52*u,75,80,95,4);
+  for(let i=0;i<36;i++) axiaBlade(i,36,0.17,         50*u,70*u, 48*u, 8,-0.10,108,115,135,4);
+  ann(48*u,71*u,50*u, 62,68,82,4);
+  cyl(52*u,80*u,52*u,58*u, 58,62,76,4);
+  ann(80*u,58*u,52*u, 68,72,88,4);
+  cyl(0*u,80*u, 18*u,18*u, 98,102,125,4);
+
+  // ═══ SEC 5: Combustor ═══
+  cyl(85*u,175*u, 54*u,58*u, 240,138,48,5);
+  cyl(85*u,175*u, 37*u,41*u, 215,112,40,5);
+  ann(85*u,54*u,41*u,  255,165,58,5);
+  ann(175*u,54*u,41*u, 245,152,52,5);
+  for(let ring=0;ring<6;ring++){const zr=90*u+ring*15*u;cyl(zr,zr+8*u,42*u,54*u,255,185,50,5);}
+  cyl(80*u,180*u, 20*u,32*u, 82,86,105,5);
+  ann(80*u,32*u,20*u, 80,84,102,5); ann(180*u,32*u,20*u,80,84,102,5);
+  cyl(80*u,185*u, 18*u,18*u, 98,102,125,5);
+
+  // ═══ SEC 6: HP Turbine ═══
+  cyl(180*u,212*u,38*u,52*u, 52,50,46,6);
+  for(let i=0;i<26;i++) axiaBlade(i,26,sp*2.8,      52*u,67*u,182*u,12, 0.32,248,210,78,6);
+  ann(182*u,68*u,51*u, 55,52,48,6); ann(212*u,68*u,51*u,185,155,72,6);
+  for(let i=0;i<28;i++) axiaBlade(i,28,0.05,          50*u,66*u,214*u,11,-0.32,178,148,70,6);
+  ann(226*u,67*u,50*u, 178,148,68,6);
+  cyl(226*u,262*u,42*u,56*u, 50,48,45,6);
+  for(let i=0;i<26;i++) axiaBlade(i,26,sp*2.8+0.4,  56*u,69*u,252*u,12, 0.32,235,192,68,6);
+  ann(252*u,70*u,55*u, 168,140,62,6);
+  cyl(185*u,262*u, 14*u,14*u, 88,92,112,6);
+
+  // ═══ SEC 7: LP Turbine ═══
+  cyl(262*u,288*u,44*u,58*u, 48,46,42,7);
+  for(let i=0;i<30;i++) axiaBlade(i,30,sp*1.8,        58*u,72*u,262*u,13, 0.30,218,175,60,7);
+  ann(262*u,73*u,57*u, 155,128,55,7); ann(288*u,73*u,57*u,155,128,55,7);
+  for(let i=0;i<32;i++) axiaBlade(i,32,0.08,           56*u,71*u,290*u,12,-0.30,145,118,52,7);
+  ann(302*u,72*u,56*u, 148,122,52,7);
+  cyl(302*u,325*u,46*u,60*u, 46,44,40,7);
+  for(let i=0;i<32;i++) axiaBlade(i,32,sp*1.8+0.5,   60*u,75*u,302*u,13, 0.30,205,162,55,7);
+  ann(302*u,76*u,59*u, 148,122,52,7); ann(325*u,76*u,59*u,145,120,50,7);
+  for(let i=0;i<28;i++) axiaBlade(i,28,0.11,           58*u,73*u,327*u,11,-0.28,138,112,48,7);
+  ann(340*u,74*u,58*u, 142,116,48,7);
+  cyl(262*u,345*u, 18*u,18*u, 98,102,125,7);
+
+  // ═══ SEC 8: Nozzle + TVC ═══
+  cyl(340*u,420*u, 40*u,24*u, 38,36,34,8);
+  ann(420*u,46*u,24*u,44,42,40,8);
+  ann(420*u,46*u,0, 36,34,32,8);
+  spn(17*u,420*u,474*u,0,8);
+  cyl(420*u,458*u,0,17*u, 38,36,34,8);
+  cyl(345*u,426*u, 9*u, 9*u, 78,82,100,8); dsc(426*u,9*u,80,84,102,8);
+  buildTVC(u);
+}
+
+// ─────────────────────── TVC exit helper ───────────────────────
+function tvcExitPt(L){
+  const oz=getOffset(8), zG=420*S;
+  return v3(0, -L*Math.sin(tvcAngle), zG+oz+L*Math.cos(tvcAngle));
+}
+
+// ─────────────────────── Continuous afterburner flame ───────────────────────
+function drawFlame(){
+  const t=Date.now()*0.001;
+  const flk=0.96+Math.sin(t*13.1)*0.025+Math.sin(t*7.4)*0.015;
+  const wobX=Math.sin(t*4.8)*1.4*S, wobY=Math.cos(t*3.9)*1.0*S;
+
+  // Flame always coaxial — straight along engine Z axis from nozzle exit center
+  const oz4=getOffset(8), zNoz=420*S+oz4+74*S;
+  const base=proj(v3(0,0,zNoz));
+  const tipR=proj(v3(0,0,zNoz+290*S));
+  const dx=tipR[0]-base[0]+wobX, dy=tipR[1]-base[1]+wobY;
+  const flen=Math.sqrt(dx*dx+dy*dy)||1;
+  const ax=dx/flen, ay=dy/flen, px=-ay, py=ax;
+  const tip=[base[0]+dx, base[1]+dy];
+
+  const prev=ctx.globalCompositeOperation;
+
+  // Layer 1 — wide orange heat envelope
+  ctx.globalCompositeOperation='screen';
+  const envW=30*S*flk;
+  const envG=ctx.createLinearGradient(base[0],base[1],tip[0],tip[1]);
+  envG.addColorStop(0.00,'rgba(255,120,20,0.0)');
+  envG.addColorStop(0.04,'rgba(255,160,40,0.52)');
+  envG.addColorStop(0.35,'rgba(255,100,15,0.40)');
+  envG.addColorStop(0.68,'rgba(200,55,8,0.22)');
+  envG.addColorStop(1.00,'rgba(0,0,0,0)');
+  ctx.beginPath();
+  ctx.moveTo(base[0]+px*envW,base[1]+py*envW);
+  ctx.quadraticCurveTo(base[0]+dx*0.55+px*envW*0.7,base[1]+dy*0.55+py*envW*0.7,tip[0]+px*2*S,tip[1]+py*2*S);
+  ctx.lineTo(tip[0]-px*2*S,tip[1]-py*2*S);
+  ctx.quadraticCurveTo(base[0]+dx*0.55-px*envW*0.7,base[1]+dy*0.55-py*envW*0.7,base[0]-px*envW,base[1]-py*envW);
+  ctx.closePath();
+  ctx.fillStyle=envG; ctx.fill();
+
+  // Layer 2 — inner flame body, orange-yellow
+  const midW=14*S*flk;
+  const midG=ctx.createLinearGradient(base[0],base[1],tip[0],tip[1]);
+  midG.addColorStop(0.00,'rgba(255,180,60,0.0)');
+  midG.addColorStop(0.03,'rgba(255,225,100,0.88)');
+  midG.addColorStop(0.28,'rgba(255,170,40,0.75)');
+  midG.addColorStop(0.58,'rgba(255,100,18,0.48)');
+  midG.addColorStop(0.84,'rgba(180,50,8,0.18)');
+  midG.addColorStop(1.00,'rgba(0,0,0,0)');
+  const midTip=[base[0]+dx*0.82,base[1]+dy*0.82];
+  ctx.beginPath();
+  ctx.moveTo(base[0]+px*midW,base[1]+py*midW);
+  ctx.quadraticCurveTo(base[0]+dx*0.45+px*midW*0.5,base[1]+dy*0.45+py*midW*0.5,midTip[0]+px*1.5*S,midTip[1]+py*1.5*S);
+  ctx.lineTo(midTip[0]-px*1.5*S,midTip[1]-py*1.5*S);
+  ctx.quadraticCurveTo(base[0]+dx*0.45-px*midW*0.5,base[1]+dy*0.45-py*midW*0.5,base[0]-px*midW,base[1]-py*midW);
+  ctx.closePath();
+  ctx.fillStyle=midG; ctx.fill();
+
+  // Layer 3 — blue-white hot core streak
+  ctx.globalCompositeOperation='lighter';
+  const coreG=ctx.createLinearGradient(base[0],base[1],base[0]+dx*0.5,base[1]+dy*0.5);
+  coreG.addColorStop(0.00,'rgba(180,220,255,0.0)');
+  coreG.addColorStop(0.03,'rgba(255,255,255,0.95)');
+  coreG.addColorStop(0.18,'rgba(255,250,220,0.88)');
+  coreG.addColorStop(0.45,'rgba(255,220,120,0.60)');
+  coreG.addColorStop(1.00,'rgba(0,0,0,0)');
+  ctx.strokeStyle=coreG; ctx.lineWidth=6*S*flk; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(base[0],base[1]); ctx.lineTo(base[0]+dx*0.44,base[1]+dy*0.44); ctx.stroke();
+
+  // Layer 4 — bright exit ring glow
+  ctx.globalCompositeOperation='screen';
+  const ringG=ctx.createRadialGradient(base[0],base[1],0,base[0],base[1],24*S*flk);
+  ringG.addColorStop(0.00,'rgba(255,255,255,0.88)');
+  ringG.addColorStop(0.25,'rgba(255,240,180,0.62)');
+  ringG.addColorStop(0.55,'rgba(255,140,30,0.28)');
+  ringG.addColorStop(1.00,'rgba(0,0,0,0)');
+  ctx.fillStyle=ringG;
+  ctx.beginPath(); ctx.arc(base[0],base[1],24*S*flk,0,Math.PI*2); ctx.fill();
+
+  ctx.globalCompositeOperation=prev;
+}
+
+// ─────────────────────── Background (transparent) ───────────────────────
+function drawBackground(){
+  ctx.clearRect(0,0,W,H);
+}
+
+function drawGlow(x,y,r,col){
+  const prev=ctx.globalCompositeOperation;
+  ctx.globalCompositeOperation='screen';
+  const grd=ctx.createRadialGradient(x,y,r*0.08,x,y,r);
+  grd.addColorStop(0,col); grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+  ctx.globalCompositeOperation=prev;
+}
+function screenCenter(z3d,sec){const p=proj(v3(0,0,z3d+getOffset(sec)));return[p[0],p[1]];}
+
+function drawVignette(){
+  // no vignette on transparent/light background
+}
+
+function frame(){
+  drawBackground();
+  explodeT+=(explodeTarget-explodeT)*0.045;
+  if(!dragging) VY+=0.0008;
+  updateLight();
+  buildEngine();
+  flushFaces();
+  drawVignette();
+  // Only exhaust glows — interior glows bleed through solid casing in screen blend
+  const oz4f=getOffset(8),zNf=420*S+oz4f;
+  var c4t=proj(v3(0,0,zNf+74*S));       drawGlow(c4t[0],c4t[1],52*S,'rgba(255,85,16,0.28)');
+  var c4i=proj(v3(0,0,zNf+74*S+38*S));  drawGlow(c4i[0],c4i[1],30*S,'rgba(255,148,40,0.32)');
+  drawFlame();
+  requestAnimationFrame(frame);
+}
+
+frame();
+</script>
+</body>
+</html>
