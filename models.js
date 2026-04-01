@@ -910,9 +910,6 @@ function initThree() {
 
   if (!canvas || typeof THREE==='undefined') { console.warn('Three.js not ready'); return; }
 
-  // Skip 3D canvas on mobile — saves ~600KB JS parse + render overhead
-  if (window.innerWidth < 768) return;
-
   animRunning = true;
 
   const parent=canvas.parentElement, W=parent.clientWidth||1280, H=parent.clientHeight||700;

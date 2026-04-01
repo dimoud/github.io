@@ -697,8 +697,8 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
 #team-index { background: var(--bg2); padding: 60px 64px 52px; }
 .team-index-header { margin-bottom: 44px; }
 .founder-card {
-  display: grid; grid-template-columns: 220px 1fr; gap: 52px; align-items: center;
-  max-width: 900px;
+  display: grid; grid-template-columns: 220px 2fr; gap: 52px; align-items: center;
+  max-width: 1100px; margin: 0 auto;
 }
 .founder-card-photo {
   position: relative; width: 200px; height: 200px; flex-shrink: 0;
@@ -719,7 +719,7 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
   color: var(--blue-lt); display: flex; align-items: center; gap: 10px;
 }
 .founder-card-label::before { content:''; width:16px; height:1px; background:var(--blue-lt); }
-.founder-card-name { font-family: var(--font-display); font-size: clamp(32px,3vw,48px); color: var(--dark); letter-spacing:1px; line-height:1; }
+.founder-card-name { font-family: var(--font-display); font-size: clamp(32px,3vw,48px); color: var(--dark); letter-spacing:1px; line-height:1; white-space: nowrap; }
 .founder-card-bio { font-size:14.5px; line-height:1.82; color: var(--muted); max-width:480px; }
 .founder-card-stats { display:flex; gap:0; margin-top:4px; }
 .founder-card-stat {
