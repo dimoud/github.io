@@ -27,6 +27,7 @@ let currentModelIdx = 0;
 let modelCycleTimer = null;
 
 let rightHalfX = 4.5;
+const GEAR_OFFSET_X = 1.0; // shift gear ~3cm left on desktop
 
 let scrollExplodeActive = false, scrollExplodeT = 0, scrollTargetY = 0;
 
@@ -909,6 +910,9 @@ function initThree() {
 
   if (!canvas || typeof THREE==='undefined') { console.warn('Three.js not ready'); return; }
 
+  // Skip 3D canvas on mobile — saves ~600KB JS parse + render overhead
+  if (window.innerWidth < 768) return;
+
   animRunning = true;
 
   const parent=canvas.parentElement, W=parent.clientWidth||1280, H=parent.clientHeight||700;
@@ -927,7 +931,7 @@ function initThree() {
 
   camera.position.set(0,2.5,20); camera.lookAt(0,.5,0);
 
-  rightHalfX = Math.tan(19*Math.PI/180) * 20 * (W/H) * 0.5;
+  rightHalfX = Math.tan(19*Math.PI/180) * 20 * (W/H) * 0.5 - GEAR_OFFSET_X;
 
   clock=new THREE.Clock();
 
@@ -1053,7 +1057,7 @@ function setupDrag(dragEl, parent) {
 
   window.addEventListener('touchmove',e=>{if(!isDragging)return;rotGroup.rotation.y+=(e.touches[0].clientX-prevMouse.x)*.010;prevMouse={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
 
-  window.addEventListener('resize',()=>{const W2=parent.clientWidth||1280,H2=parent.clientHeight||700;camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);rightHalfX=Math.tan(19*Math.PI/180)*20*(W2/H2)*0.5;if(rotGroup&&!scrollExplodeActive)rotGroup.position.x=rightHalfX;});
+  window.addEventListener('resize',()=>{const W2=parent.clientWidth||1280,H2=parent.clientHeight||700;camera.aspect=W2/H2;camera.updateProjectionMatrix();renderer.setSize(W2,H2);rightHalfX=Math.tan(19*Math.PI/180)*20*(W2/H2)*0.5-GEAR_OFFSET_X;if(rotGroup&&!scrollExplodeActive)rotGroup.position.x=rightHalfX;});
 
 }
 
