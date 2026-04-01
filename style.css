@@ -761,6 +761,7 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
   .founder-card-label { justify-content:center; }
   .founder-card-stats { justify-content:center; }
   .founder-card-actions { justify-content:center; }
+  .founder-card-name { white-space: normal; }
 }
 @media (max-width:640px) {
   #team-index { padding: 48px 16px 40px; }
