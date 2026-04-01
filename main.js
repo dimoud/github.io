@@ -75,6 +75,21 @@ const LANG = {
     wd_why_good_5:'Pixel-perfect σε κάθε συσκευή και μέγεθος οθόνης',
     wd_why_good_6:'Χωρίς plugins, χωρίς βάρος — μόνο ό,τι χρειάζεται',
     wd_why_good_7:'Κατέχεις πλήρως τα source files',
+    wd_work_label:'// Οι Δουλειές μας',
+    wd_work_title:'Sites που Φτιάξαμε',
+    wd_work_sub:'Κάθε project είναι χειρόγραφος κώδικας — μοναδικό στον σχεδιασμό, ακριβές στην εκτέλεση.',
+    wd_proj_1_name:'Σταύρος Μάλλιαρης',
+    wd_proj_1_role:'Τεχνικός Ασφαλείας · Μελέτες & Συμβουλευτική',
+    wd_proj_1_desc:'Επαγγελματικό site για πιστοποιημένο τεχνικό ασφαλείας — δίγλωσσο, με καθαρή τυπογραφία και δομημένη παρουσίαση υπηρεσιών.',
+    wd_proj_1_link:'Δείτε το Site',
+    wd_proj_2_name:'Βάϊος Λιάπης',
+    wd_proj_2_role:'Πολιτικός Μηχανικός · Αθήνα',
+    wd_proj_2_desc:'Portfolio και επαγγελματική παρουσία για πολιτικό μηχανικό — ξεκάθαρη δομή υπηρεσιών και design που μεταδίδει εμπειρία με μια ματιά.',
+    wd_proj_2_link:'Δείτε το Site',
+    wd_proj_3_name:'Τεχνικό Γραφείο Γκούβελης',
+    wd_proj_3_role:'Μηχανολόγος Μηχανικός · Θεσσαλονίκη',
+    wd_proj_3_desc:'Site τεχνικού γραφείου εξειδικευμένου σε μελέτες οχημάτων και εγκρίσεις τύπου — φτιαγμένο για αξιοπιστία και lead generation.',
+    wd_proj_3_link:'Δείτε το Site',
     wd_cta_label:'// Ας Φτιάξουμε Κάτι',
     wd_cta_title:'Έχεις μια ιστοσελίδα<br>στο μυαλό σου;',
     wd_cta_text:'Πες μας για την επιχείρησή σου και τι χρειάζεσαι. Θα σχεδιάσουμε και θα φτιάξουμε μια ιστοσελίδα που σε αντιπροσωπεύει πραγματικά — από το πρώτο pixel ως το τελευταίο deploy.',
@@ -167,6 +182,21 @@ const LANG = {
     wd_why_good_5:'Pixel-perfect on every device and screen size',
     wd_why_good_6:'No plugins, no bloat — just what the project needs',
     wd_why_good_7:'You own the source files, completely',
+    wd_work_label:'// Our Work',
+    wd_work_title:'Sites We\'ve Built',
+    wd_work_sub:'Every project is hand-coded from scratch — unique in design, precise in execution.',
+    wd_proj_1_name:'Stavros Malliaris',
+    wd_proj_1_role:'Safety Engineer · Health &amp; Safety Consulting',
+    wd_proj_1_desc:'Professional services website for a certified safety engineer — bilingual, conversion-focused, with clean typography and a structured service layout.',
+    wd_proj_1_link:'View Site',
+    wd_proj_2_name:'Vaios Liapis',
+    wd_proj_2_role:'Civil Engineer · Athens',
+    wd_proj_2_desc:'Portfolio and professional presence for a civil engineer — clear service structure, strong personal brand, and a design that communicates expertise at a glance.',
+    wd_proj_2_link:'View Site',
+    wd_proj_3_name:'Gkouvelis Technical Office',
+    wd_proj_3_role:'Mechanical Engineer · Thessaloniki',
+    wd_proj_3_desc:'Technical office website specialising in vehicle studies and type approvals — built for clarity, trust, and lead generation in a competitive technical services market.',
+    wd_proj_3_link:'View Site',
     wd_cta_label:'// Let\'s Build Something',
     wd_cta_title:'Got a website<br>in mind?',
     wd_cta_text:'Tell us about your business and what you need. We\'ll design and build a website that genuinely represents you — from the first pixel to the final deploy.',
@@ -255,6 +285,10 @@ function applyLang(lang) {
   set('wd-why-label',t.wd_why_label);
   set('wd-why-bad-head',t.wd_why_bad_head); set('wd-why-good-head',t.wd_why_good_head);
   for(let i=1;i<=7;i++){ set('wd-why-bad-'+i,t['wd_why_bad_'+i]); set('wd-why-good-'+i,t['wd_why_good_'+i]); }
+  set('wd-work-label',t.wd_work_label); set('wd-work-title',t.wd_work_title); set('wd-work-sub',t.wd_work_sub);
+  set('wd-proj-1-name',t.wd_proj_1_name); set('wd-proj-1-role',t.wd_proj_1_role,true); set('wd-proj-1-desc',t.wd_proj_1_desc); set('wd-proj-1-link',t.wd_proj_1_link);
+  set('wd-proj-2-name',t.wd_proj_2_name); set('wd-proj-2-role',t.wd_proj_2_role,true); set('wd-proj-2-desc',t.wd_proj_2_desc); set('wd-proj-2-link',t.wd_proj_2_link);
+  set('wd-proj-3-name',t.wd_proj_3_name); set('wd-proj-3-role',t.wd_proj_3_role,true); set('wd-proj-3-desc',t.wd_proj_3_desc); set('wd-proj-3-link',t.wd_proj_3_link);
   set('wd-cta-label',t.wd_cta_label); set('wd-cta-title',t.wd_cta_title,true);
   set('wd-cta-text',t.wd_cta_text); set('wd-cta-btn1',t.wd_cta_btn1); set('wd-cta-btn2',t.wd_cta_btn2);
   set('contact-label',t.contact_label); set('contact-heading',t.contact_heading,true);
