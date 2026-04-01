@@ -13,7 +13,12 @@
       "WebFetch(domain:unsplash.com)",
       "WebFetch(domain:api.unsplash.com)",
       "WebFetch(domain:images.unsplash.com)",
-      "Bash(grep -E \"\\\\.\\(css|png|jpeg|jpg\\)$\")"
+      "Bash(grep -E \"\\\\.\\(css|png|jpeg|jpg\\)$\")",
+      "Bash(grep -E \"\\\\.\\(xml|txt|json|html\\)$\")",
+      "Bash(grep -E \"preload|preconnect|prefetch|defer|async\" /a/WORK_PROJECTS/WEBSITES/github/dimoud.github.io/*.html)",
+      "Bash(grep -i \"viewport\\\\|charset\\\\|lang\" /a/WORK_PROJECTS/WEBSITES/github/dimoud.github.io/*.html)",
+      "Bash(grep -i \"schema\\\\|json-ld\\\\|@context\\\\|@type\\\\|itemscope\" /a/WORK_PROJECTS/WEBSITES/github/dimoud.github.io/*.html)",
+      "Bash(wc -l /a/WORK_PROJECTS/WEBSITES/github/dimoud.github.io/*.html)"
     ]
   }
 }
