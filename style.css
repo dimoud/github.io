@@ -246,6 +246,10 @@ nav {
   transition: border-color .25s, color .25s, transform .25s;
 }
 .hero-cta-phone { padding: 14px 22px; letter-spacing: 1px; }
+@media (max-width: 960px) {
+  .hero-cta-phone { display: none; }
+  .nav-cta { display: none; }
+}
 .btn-sm { font-size: 10px; padding: 10px 22px; min-height: 40px; }
 .btn-outline:hover { border-color: var(--blue-lt); color: var(--blue-lt); transform: translate(-2px,-2px); }
 
@@ -397,6 +401,21 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
 }
 .value-title { font-family: var(--font-display); font-size: 22px; letter-spacing: .5px; color: var(--dark); margin-bottom: 10px; line-height: 1.1; }
 .value-text { font-size: 13px; line-height: 1.76; color: var(--muted); }
+
+/* ── CALIPER ANIMATION ───────────────────────────────────────── */
+#caliperWrap {
+  margin: 48px auto 8px;
+  max-width: 700px;
+  width: 100%;
+  color: var(--blue);
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+#caliperWrap.vis { opacity: 1; }
+#caliperSvg { width: 100%; height: auto; display: block; }
+@media (max-width: 640px) {
+  #caliperWrap { margin: 32px auto 4px; }
+}
 
 /* ── PROCESS ─────────────────────────────────────────────────── */
 #process {
@@ -697,8 +716,8 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
 #team-index { background: var(--bg2); padding: 60px 64px 52px; }
 .team-index-header { margin-bottom: 44px; }
 .founder-card {
-  display: grid; grid-template-columns: 220px 2fr; gap: 52px; align-items: center;
-  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 220px 1fr; gap: 64px; align-items: center;
+  max-width: 860px; margin: 0 auto;
 }
 .founder-card-photo {
   position: relative; width: 200px; height: 200px; flex-shrink: 0;
@@ -719,8 +738,8 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
   color: var(--blue-lt); display: flex; align-items: center; gap: 10px;
 }
 .founder-card-label::before { content:''; width:16px; height:1px; background:var(--blue-lt); }
-.founder-card-name { font-family: var(--font-display); font-size: clamp(32px,3vw,48px); color: var(--dark); letter-spacing:1px; line-height:1; white-space: nowrap; }
-.founder-card-bio { font-size:14.5px; line-height:1.82; color: var(--muted); max-width:480px; }
+.founder-card-name { font-family: var(--font-display); font-size: clamp(28px,3.2vw,48px); color: var(--dark); letter-spacing:1px; line-height:1; white-space: nowrap; }
+.founder-card-bio { font-size:14.5px; line-height:1.82; color: var(--muted); }
 .founder-card-stats { display:flex; gap:0; margin-top:4px; }
 .founder-card-stat {
   display:flex; flex-direction:column; gap:3px; padding:14px 22px;
@@ -756,12 +775,12 @@ section { padding: 100px 64px; position: relative; z-index: 1; }
 #team-index .btn-outline:hover { border-color: var(--blue-lt); color: var(--blue-lt); }
 
 @media (max-width: 860px) {
-  .founder-card { grid-template-columns: 1fr; gap:32px; text-align:center; }
+  .founder-card { grid-template-columns: 1fr; gap:32px; text-align:center; max-width: 480px; }
   .founder-card-photo { margin:0 auto; }
   .founder-card-label { justify-content:center; }
   .founder-card-stats { justify-content:center; }
   .founder-card-actions { justify-content:center; }
-  .founder-card-name { white-space: normal; }
+  .founder-card-name { white-space: normal; font-size: clamp(32px,8vw,44px); }
 }
 @media (max-width:640px) {
   #team-index { padding: 48px 16px 40px; }
@@ -2331,7 +2350,10 @@ hr.ec-rule { position: relative; z-index: 2; }
 
   /* FONT SIZES: section titles & hero — reduce minimums */
   .section-title  { font-size: clamp(30px, 8.5vw, 52px); }
-  .hero-name      { font-size: clamp(42px, 13vw, 70px); }
+  .hero-name      { font-size: clamp(48px, 15vw, 80px); text-align: center; }
+  .hero-title     { text-align: center; }
+  .hero-tagline   { text-align: center; }
+  .hero-cta       { justify-content: center; }
   .process-title  { font-size: clamp(22px, 6vw, 32px); }
   .contact-heading { font-size: clamp(26px, 7.5vw, 40px); }
 
@@ -2435,7 +2457,7 @@ hr.ec-rule { position: relative; z-index: 2; }
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
   .section-title { font-size: clamp(26px, 8vw, 40px); }
-  .hero-name     { font-size: clamp(36px, 12vw, 56px); }
+  .hero-name     { font-size: clamp(41px, 14vw, 64px); text-align: center; }
 
   /* Footer: hide location text to save space */
   #footer-loc { display: none; }

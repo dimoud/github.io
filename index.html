@@ -296,6 +296,33 @@ hr.ec-rule{background:linear-gradient(90deg,transparent,rgba(201,168,108,.25),tr
       </div>
     </div>
   </div>
+  <!-- CALIPER ANIMATION -->
+  <div id="caliperWrap">
+    <svg id="caliperSvg" viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Fixed left jaw -->
+      <g id="calLeftJaw" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="60" y="30" width="28" height="60" rx="2" stroke-width="1.5"/>
+        <line x1="88" y1="55" x2="88" y2="65" stroke-width="3"/>
+        <rect x="88" y="44" width="220" height="32" rx="2" stroke-width="1.2"/>
+        <line x1="88" y1="30" x2="88" y2="44" stroke-width="1.2"/>
+        <line x1="88" y1="90" x2="88" y2="76" stroke-width="1.2"/>
+      </g>
+      <!-- Moving right jaw group -->
+      <g id="calJawGroup" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="350" y="30" width="28" height="60" rx="2" stroke-width="1.5"/>
+        <line x1="350" y1="55" x2="350" y2="65" stroke-width="3"/>
+        <line x1="350" y1="30" x2="350" y2="44" stroke-width="1.2"/>
+        <line x1="350" y1="90" x2="350" y2="76" stroke-width="1.2"/>
+      </g>
+      <!-- Dimension line & ticks -->
+      <line id="calDimLine" x1="88" x2="88" y1="104" y2="104" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <line x1="88" y1="100" x2="88" y2="108" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <line id="calDimTickR" x1="88" y1="100" x2="88" y2="108" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <!-- Measurement label -->
+      <text id="caliperVal" x="88" y="118" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="currentColor" opacity="0.6">0.000 m</text>
+    </svg>
+  </div>
+
   <div class="sec-meas" data-sec-meas>
     <div class="sm-inner">
       <span class="sm-arr">◄</span>
