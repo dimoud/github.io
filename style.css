@@ -1571,9 +1571,11 @@ footer {
   .port-thumb-item { width: 130px; }
   .port-thumb-img-wrap { height: 86px; }
   .port-thumb-label { font-size: 10.5px; white-space: normal; line-height: 1.3; padding: 6px 7px 8px; }
-  /* Hide the 2-column viewer + footer — strip is the full UI */
-  .portfolio-stage { display: none; }
-  .port-footer     { display: none; }
+  /* Strip sits above the viewer — add spacing */
+  .port-thumb-wrap { margin-bottom: 20px; }
+
+  /* Viewer: single column, compact */
+  .portfolio-stage { grid-template-columns: 1fr; }
   .port-sep        { display: none; }
   .port-badge      { display: none !important; }
   .port-cat        { display: none; }

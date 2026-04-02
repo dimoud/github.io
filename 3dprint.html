@@ -26,6 +26,18 @@
 <style>
 /* ── 3D PRINT PAGE – page-specific overrides ─────────────────── */
 
+/* Estimate Cost button — filled background */
+.pr-cta-estimate {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.35);
+  color: #fff;
+}
+.pr-cta-estimate:hover {
+  background: rgba(255,255,255,.22);
+  border-color: #fff;
+  color: #fff;
+}
+
 /* Offerings section */
 .pr-offerings { padding: 52px 56px 48px !important; }
 .pr-offerings .wd-offer-card--hl { border-top-color: var(--blue); }
@@ -304,13 +316,13 @@
   .pr-offerings .wd-offer-text { font-size: 11.5px; line-height: 1.6; }
 
   /* Projects: infinite scroll strip on mobile */
-  .pr-work .portfolio-stage  { display: none; }
-  .pr-work .port-footer      { display: none; }
   #prThumbWrap {
     display: flex;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     gap: 0;
   }
+  /* Viewer: single column, compact */
+  .pr-work .portfolio-stage  { grid-template-columns: 1fr; }
   #prThumbPrev,
   #prThumbNext { display: none; }
   .pr-work .port-thumb-item     { width: 130px; }
@@ -652,18 +664,11 @@
       Laser&nbsp;Engrave
     </h1>
 
-    <p class="pr-hero-desc" id="pr-desc">From idea to finished part — custom 3D printing, reverse engineering, and laser cutting &amp; engraving. Functional prototypes, one-off parts, and decorative work produced in-house.</p>
-
-    <div class="pr-hero-tags">
-      <span class="pr-hero-tag">FDM · PLA · PETG · ABS</span>
-      <span class="pr-hero-tag">Laser Cut</span>
-      <span class="pr-hero-tag">Laser Engrave</span>
-      <span class="pr-hero-tag">Reverse Engineering</span>
-    </div>
+    <p class="pr-hero-desc" id="pr-desc">From idea to finished part — custom 3D printing, reverse engineering, and laser cutting &amp; engraving. Functional prototypes and decorative work produced in-house.</p>
 
     <div class="pr-hero-cta">
       <a href="contact.html" class="btn-primary" id="pr-cta1">Get a Quote →</a>
-      <a href="#prEstimator" class="btn-outline" id="pr-cta2">Estimate Cost</a>
+      <a href="#prEstimator" class="btn-outline pr-cta-estimate" id="pr-cta2">Estimate Cost</a>
     </div>
   </div>
 
