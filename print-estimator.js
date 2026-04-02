@@ -99,7 +99,7 @@
       d.addEventListener('click', () => {
         if (pLeft === i || pRight === i) return;
         pLeft = i;
-        renderCol(document.getElementById('prColLeft'), pLeft);
+        renderCol(document.getElementById('prColLeft'), pLeft, true);
         updateDots();
         resetTimer();
       });
@@ -129,11 +129,11 @@
   }
 
   /* ── Render one column ── */
-  function renderCol(colEl, idx) {
+  function renderCol(colEl, idx, animate) {
     if (!colEl) return;
     const p = DATA[idx];
-    colEl.classList.add('port-fade-out');
-    setTimeout(() => {
+
+    function fill() {
       const img = colEl.querySelector('.port-img');
       if (img) { img.src = p.images[0]; img.alt = p.titleEn; img.style.opacity = '1'; }
       const badge = colEl.querySelector('.port-badge');
@@ -146,7 +146,14 @@
       if (desc) desc.textContent = p.descEn;
       colEl.classList.remove('port-fade-out');
       startColCycle(colEl, p);
-    }, 500);
+    }
+
+    if (animate) {
+      colEl.classList.add('port-fade-out');
+      setTimeout(fill, 420);
+    } else {
+      fill();
+    }
   }
 
   /* ── Thumb strip ── */
@@ -225,8 +232,8 @@
 
   /* ── Full render ── */
   function renderAll() {
-    renderCol(document.getElementById('prColLeft'),  pLeft);
-    renderCol(document.getElementById('prColRight'), pRight);
+    renderCol(document.getElementById('prColLeft'),  pLeft,  false);
+    renderCol(document.getElementById('prColRight'), pRight, false);
     updateDots();
     buildThumbStrip();
   }
@@ -240,10 +247,10 @@
       const ni = avail[Math.floor(Math.random() * avail.length)];
       if (Math.random() < 0.5) {
         pLeft = ni;
-        renderCol(document.getElementById('prColLeft'), pLeft);
+        renderCol(document.getElementById('prColLeft'), pLeft, true);
       } else {
         pRight = ni;
-        renderCol(document.getElementById('prColRight'), pRight);
+        renderCol(document.getElementById('prColRight'), pRight, true);
       }
       updateDots();
     }, 7000);
@@ -269,8 +276,8 @@
       activeCol.style.transform = '';
       const isLeft = activeCol.id === 'prColLeft';
       if (dragged) {
-        if (isLeft  && dx >  90) { const t = pLeft; pLeft = pRight; pRight = t; renderAll(); resetTimer(); }
-        if (!isLeft && dx < -90) { const t = pLeft; pLeft = pRight; pRight = t; renderAll(); resetTimer(); }
+        if (isLeft  && dx >  90) { const t = pLeft; pLeft = pRight; pRight = t; renderCol(document.getElementById('prColLeft'), pLeft, true); renderCol(document.getElementById('prColRight'), pRight, true); updateDots(); resetTimer(); }
+        if (!isLeft && dx < -90) { const t = pLeft; pLeft = pRight; pRight = t; renderCol(document.getElementById('prColLeft'), pLeft, true); renderCol(document.getElementById('prColRight'), pRight, true); updateDots(); resetTimer(); }
       }
       activeCol = null; dragged = false; dx = 0;
     };
