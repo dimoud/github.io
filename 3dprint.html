@@ -238,14 +238,28 @@
     padding-top: 64px;
   }
   .pr-hero-left  { padding: 44px 24px 32px; }
+  .pr-hero-right { margin-left: 0; z-index: 2; }
   .pr-hero-right::before { display: none; }
   .pr-hero-title { font-size: clamp(40px, 9vw, 60px); }
+
+  /* Reset oversized project cards on tablet */
+  .pr-work .portfolio-stage  { min-height: 620px; }
+  .pr-work .port-image-wrap  { height: 52vh; min-height: 300px; }
+  .pr-work .port-thumb-item  { width: 138px; }
+  .pr-work .port-thumb-img-wrap { height: 83px; }
 }
 @media (max-width: 640px) {
   .pr-hero-left  { padding: 34px 18px 26px; }
   .pr-hero-title { font-size: clamp(32px, 10vw, 50px); }
   .pr-hero-desc  { font-size: 14px; }
   .pr-hero-indicators { bottom: 14px; right: 14px; }
+
+  /* Offerings padding */
+  .pr-offerings { padding: 40px 20px 36px !important; }
+
+  /* Projects */
+  .pr-work .portfolio-stage  { min-height: unset; }
+  .pr-work .port-image-wrap  { height: 48vw; min-height: 200px; }
 }
 
 /* ── ESTIMATOR ───────────────────────────────────────────────── */
