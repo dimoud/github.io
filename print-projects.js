@@ -64,5 +64,57 @@ const PRINT_PROJECTS = [
     urlLabel: '3D Print · Custom Electronics Housing',
     images: ['images/dog_repellant/1.png', 'images/dog_repellant/2.png', 'images/dog_repellant/3.png', 'images/dog_repellant/4.png', 'images/dog_repellant/5.png', 'images/dog_repellant/6.png', 'images/dog_repellant/dog_repeller.png', 'images/dog_repellant/dog_repeller 2.png'],
     rev: true
+  },
+  {
+    catEn: 'Laser Cut · Sheet Metal · Structural Bracket',
+    catEl: 'Laser Cut · Φύλλο Μετάλλου · Δομικό Στήριγμα',
+    titleEn: 'Steel Extension Bracket',
+    titleEl: 'Χαλύβδινος Βραχίονας Επέκτασης',
+    descEn: 'Laser-cut and brake-pressed steel extension bracket — engineered to provide structural reach and offset for industrial and commercial mounting applications. Tight tolerances, durable finish.',
+    descEl: 'Laser-cut και διαμορφωμένος χαλύβδινος βραχίονας επέκτασης — για δομική επέκταση και μετατόπιση σε βιομηχανικές και εμπορικές εφαρμογές. Στενές ανοχές, ανθεκτική επιφάνεια.',
+    tagEn: 'Laser Cutting,Brake Press,Sheet Metal,Custom Bracket',
+    tagEl: 'Laser Cutting,Brake Press,Φύλλο Μετάλλου,Εξατομικευμένο Στήριγμα',
+    urlLabel: 'Laser Cut · Brake Press · Sheet Metal',
+    images: ['images/extension/1.png', 'images/extension/2.png', 'images/extension/3.png', 'images/extension/4.png'],
+    rev: false
+  },
+  {
+    catEn: '3D Print · Laser Cut · Custom Fabrication Tools',
+    catEl: '3D Printing · Laser Cut · Εξατομικευμένα Εργαλεία',
+    titleEn: 'Custom Fabrication Tools',
+    titleEl: 'Εξατομικευμένα Εργαλεία Κατασκευής',
+    descEn: 'Purpose-built fabrication tools and jigs — trailer assembly tools, custom fixtures, and a Xiaomi Smart Band charger holder. Designed in-house and produced via 3D printing and laser cutting for fast, precise production.',
+    descEl: 'Εξατομικευμένα εργαλεία κατασκευής — εργαλεία συναρμολόγησης τρέιλερ, ειδικές βάσεις και θήκη φόρτισης Xiaomi Smart Band. Σχεδιασμένα και κατασκευασμένα εσωτερικά.',
+    tagEn: 'FDM / PLA,Laser Cutting,Jig & Fixture,Trailer Tool,Charger Holder',
+    tagEl: 'FDM / PLA,Laser Cutting,Βάσεις & Εργαλεία,Εργαλείο Τρέιλερ,Θήκη Φόρτισης',
+    urlLabel: '3D Print & Laser · Custom Tools & Jigs',
+    images: [
+      'images/tools/trailer_tool.png', 'images/tools/trailer_tool 2.png', 'images/tools/trailer_tool 3.png',
+      'images/tools/xiami_smart_band_charger.png',
+      'images/tools/1.png', 'images/tools/2.png', 'images/tools/3.png', 'images/tools/4.png',
+      'images/tools/5.png', 'images/tools/6.png', 'images/tools/7.png', 'images/tools/8.png', 'images/tools/9.png',
+      'images/tools/Untitled Project 2.png', 'images/tools/Untitled Project 3.png', 'images/tools/Untitled Project 4.png'
+    ],
+    rev: true
+  },
+  {
+    catEn: '3D Print · Reverse Engineering · Automotive',
+    catEl: '3D Printing · Αντίστροφη Μηχανική · Αυτοκίνητο',
+    titleEn: 'Car Window Winder Handle',
+    titleEl: 'Χερούλι Χειροκίνητου Παραθύρου Αυτοκινήτου',
+    descEn: 'Reverse-engineered car window winder handle — measured, modelled, and printed as an exact OEM replacement for a discontinued part. Includes cut-section and exploded assembly views confirming internal geometry and fit.',
+    descEl: 'Χερούλι χειροκίνητου παραθύρου αυτοκινήτου από αντίστροφη μηχανική — μετρήθηκε, μοντελοποιήθηκε και εκτυπώθηκε ως ακριβές αντίγραφο OEM εξαρτήματος. Τομές και εκρηκτική προβολή για επαλήθευση εσωτερικής γεωμετρίας.',
+    tagEn: 'FDM / PLA,Reverse Engineering,Automotive,OEM Replacement',
+    tagEl: 'FDM / PLA,Αντίστροφη Μηχανική,Αυτοκίνητο,Αντικατάσταση OEM',
+    urlLabel: '3D Print · Reverse Engineering · Automotive Part',
+    images: [
+      'images/car_ww_handle/handle_car_ww_2.PNG',
+      'images/car_ww_handle/handle_car_ww_3.PNG',
+      'images/car_ww_handle/handle_car_ww_4.PNG',
+      'images/car_ww_handle/handle_car_ww_cut_view_1.PNG',
+      'images/car_ww_handle/hand;e_car_ww_cut_view.PNG',
+      'images/car_ww_handle/handle_car_ww_explode.PNG'
+    ],
+    rev: false
   }
 ];
