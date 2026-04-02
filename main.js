@@ -23,19 +23,19 @@ const LANG = {
     about_p2:'Σχεδιάζουμε και κατασκευάζουμε μηχανολογικές διατάξεις και εξοπλισμό — καλύπτοντας κάθε στάδιο από R&amp;D και CAD ως τον συντονισμό κατασκευής και τον ποιοτικό έλεγχο. Κάθε παράδοση περιλαμβάνει πλήρη τεκμηρίωση: σχέδια εξαρτημάτων, συναρμολόγησης, BOM και οδηγίες.',
     about_p3:'Βάση: <strong><span class="accent-red">Αθήνα</span></strong> — δουλεύουμε σε Ελλάδα και εξωτερικό.',
     about_p4:'Βελτιστοποιούμε την επιλογή υλικών, κατασκευή και συναρμολόγηση για οικονομική αποδοτικότητα και βιωσιμότητα — συντονίζουμε υπεργολάβους, επιβλέπουμε την κατασκευή και διασφαλίζουμε ότι κάθε παράδοση πληροί τα πρότυπα ποιότητας, αξιοπιστίας και ασφάλειας (ISO).',
-    val_1_title:'Ακρίβεια', val_1_text:'FEA, ανοχές σε στοίβα, δοκιμές σε πραγματικές συνθήκες. Χωρίς προσεγγίσεις.',
-    val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο ως συναρμολόγηση — σχεδιασμός, BOM, κατασκευή και παράδοση. Παραδίδουμε, δεν μεταβιβάζουμε.',
-    val_3_title:'Διεθνή Πρότυπα', val_3_text:'Σπουδές σε 3 χώρες. Διεθνής μηχανολογική αυστηρότητα εφαρμοσμένη σε κάθε τοπικό έργο.',
-    val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'Σχεδιασμός για κατασκευή από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.',
+    val_1_title:'Ακρίβεια', val_1_text:'Επαλήθευση με FEA, έλεγχος ανοχών, δοκιμές σε πραγματικές συνθήκες. Χωρίς υποθέσεις.', val_1_text_mobile:'Επαλήθευση με FEA, έλεγχος ανοχών. Χωρίς υποθέσεις.',
+    val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο ως συναρμολόγηση — σχεδιασμός, BOM, κατασκευή και παράδοση. Παραδίδουμε, δεν μεταβιβάζουμε.', val_2_text_mobile:'Σχεδιασμός, BOM, κατασκευή, παράδοση. Παραδίδουμε — δεν μεταβιβάζουμε.',
+    val_3_title:'Διεθνή Πρότυπα', val_3_text:'Σπουδές σε 3 χώρες. Διεθνής μηχανολογική αυστηρότητα εφαρμοσμένη σε κάθε τοπικό έργο.', val_3_text_mobile:'Σπουδές σε 3 χώρες. Διεθνής αυστηρότητα, τοπικά εφαρμοσμένη.',
+    val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'Σχεδιασμός για κατασκευή από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.', val_4_text_mobile:'DFM από την πρώτη μέρα. Γρήγορη παραγωγή, ελάχιστα απόβλητα.',
     about_bullets:'<li>7+ χρόνια μηχανολογικός σχεδιασμός, 3D printing & κατασκευή</li><li>Πλήρης κύκλος: CAD → BOM → κατασκευή → ποιοτικός έλεγχος</li><li>FEA & σχεδιασμός για κατασκευή από την πρώτη μέρα</li><li>Αθήνα — δουλεύουμε Ελλάδα & εξωτερικό</li>',
     proc_label:'Πώς Δουλεύουμε',
     proc_1_title:'Brief', proc_1_text:'Αφιερώνουμε χρόνο να κατανοήσουμε τις ανάγκες, τους περιορισμούς και τους στόχους σας πριν πάρουμε οποιαδήποτε σχεδιαστική απόφαση — γιατί ένα σωστό brief οδηγεί σε σωστό αποτέλεσμα.',
     proc_2_title:'Σχεδιασμός', proc_2_text:'3D μοντέλο σε SolidWorks, FEA, πλήρες BOM και τεχνικά σχέδια (εξαρτημάτων, συναρμολόγησης, οδηγίες) — όλα έτοιμα για παραγωγή.',
     proc_3_title:'Παράδοση', proc_3_text:'Συντονίζουμε υπεργολάβους, επιβλέπουμε την κατασκευή και διασφαλίζουμε τήρηση προτύπων ποιότητας, αξιοπιστίας και ασφάλειας — παραδίδοντας δοκιμασμένο, έτοιμο προς λειτουργία αποτέλεσμα.',
     principles_label:'Αρχές μας',
-    prin_1_title:'Γνώση Κατασκευής', prin_1_text:'Σχεδιάζουμε γνωρίζοντας πώς κατασκευάζονται τα εξαρτήματα — κατεργασία, κοπή, συγκόλληση, εκτύπωση. Κάθε απόφαση αντικατοπτρίζει τους <span class="accent-red">πραγματικούς περιορισμούς</span> του εργαστηρίου, πριν το σχέδιο φτάσει εκεί.',
-    prin_2_title:'Σωστά Εξαρχής', prin_2_text:'Τα λάθη στην κατασκευή είναι το <span class="accent-red">πραγματικό κόστος</span> — όχι τα υλικά. Σχεδιάζουμε ώστε να μην υπάρχουν: ανοχές που τηρούνται, εξαρτήματα που ταιριάζουν από την πρώτη φορά, προδιαγραφές που ανταποκρίνονται στο τι μπορεί να κάνει ο κατασκευαστής.',
-    prin_3_title:'Πλήρης Ανάληψη', prin_3_text:'Από τον σχεδιασμό, τους υπολογισμούς και τις προσομοιώσεις ως τον συντονισμό κατασκευής, την επικοινωνία με προμηθευτές, την επίβλεψη συναρμολόγησης και τον <span class="accent-red">τελικό έλεγχο</span> — ένας μηχανικός, πλήρης υπευθυνότητα.',
+    prin_1_title:'Γνώση Κατασκευής', prin_1_text:'Σχεδιάζουμε γνωρίζοντας πώς κατασκευάζονται τα εξαρτήματα — κατεργασία, κοπή, συγκόλληση, εκτύπωση. Κάθε απόφαση αντικατοπτρίζει τους <span class="accent-red">πραγματικούς περιορισμούς</span> του εργαστηρίου, πριν το σχέδιο φτάσει εκεί.', prin_1_text_mobile:'Σχεδιασμός με γνώση της κατασκευής. Πραγματικοί περιορισμοί εργαστηρίου, από την αρχή.',
+    prin_2_title:'Σωστά Εξαρχής', prin_2_text:'Τα λάθη στην κατασκευή είναι το <span class="accent-red">πραγματικό κόστος</span> — όχι τα υλικά. Σχεδιάζουμε ώστε να μην υπάρχουν: ανοχές που τηρούνται, εξαρτήματα που ταιριάζουν από την πρώτη φορά, προδιαγραφές που ανταποκρίνονται στο τι μπορεί να κάνει ο κατασκευαστής.', prin_2_text_mobile:'Ανοχές που τηρούνται. Εξαρτήματα που ταιριάζουν από την πρώτη φορά.',
+    prin_3_title:'Πλήρης Ανάληψη', prin_3_text:'Από τον σχεδιασμό, τους υπολογισμούς και τις προσομοιώσεις ως τον συντονισμό κατασκευής, την επικοινωνία με προμηθευτές, την επίβλεψη συναρμολόγησης και τον <span class="accent-red">τελικό έλεγχο</span> — ένας μηχανικός, πλήρης υπευθυνότητα.', prin_3_text_mobile:'Ένας μηχανικός — από τον σχεδιασμό ως τον τελικό έλεγχο.',
     prin_4_title:'Web Design', prin_4_text:'Φτιάχνουμε <span class="accent-green">πλήρως custom ιστοσελίδες</span> — χειρόγραφο κώδικα, χωρίς templates, χωρίς builders. <a href="webdesign.html" class="principle-cta" id="prin-4-cta-el">Δείτε τις Υπηρεσίες Web Design →</a>',
     wd_label:'Αποκλειστικό Digital · Χωρίς Templates',
     wd_desc:'Φτιάχνουμε πλήρως custom ιστοσελίδες από το μηδέν — χωρίς templates, χωρίς page builders, χωρίς συμβιβασμούς. Κάθε pixel είναι σκόπιμο. Κάθε αλληλεπίδραση σχεδιάζεται.',
@@ -174,19 +174,19 @@ const LANG = {
     about_p2:'We design and build mechanical devices, products, and equipment — covering every stage from R&amp;D and CAD to manufacturing coordination and quality control. Every project is delivered with complete documentation: part drawings, assembly drawings, BOM structure, and instructions.',
     about_p3:'Based in <strong><span class="accent-red">Athens, Greece</span></strong> — available for projects across Greece and internationally.',
     about_p4:'We optimise material selection, manufacturing, and assembly for cost-effectiveness and sustainability — coordinating subcontractors, supervising construction, and enforcing ISO quality, reliability, and safety standards on every deliverable.',
-    val_1_title:'Precision', val_1_text:'FEA-verified, tolerance-stacked, tested in real conditions. We don\'t approximate.',
-    val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.',
-    val_3_title:'Global Standards', val_3_text:'Educated across 3 countries. International engineering rigour applied to every local project.',
-    val_4_title:'Built to Make', val_4_text:'Design for Manufacturability from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.',
+    val_1_title:'Precision', val_1_text:'FEA-verified, tolerance-stacked, tested in real conditions. We don\'t approximate.', val_1_text_mobile:'FEA-verified, tolerance-stacked. No approximations.',
+    val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.', val_2_text_mobile:'Design, BOM, fabrication, handover. We deliver — we don\'t hand off.',
+    val_3_title:'Global Standards', val_3_text:'Educated across 3 countries. International engineering rigour applied to every local project.', val_3_text_mobile:'Educated across 3 countries. International rigour, applied locally.',
+    val_4_title:'Built to Make', val_4_text:'Design for Manufacturability from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.', val_4_text_mobile:'DFM from day one. Fast to fabricate, minimal waste, fits first time.',
     about_bullets:'<li>7+ years mechanical design, 3D printing & fabrication</li><li>Full cycle: CAD → BOM → fabrication → quality control</li><li>FEA simulation & Design for Manufacturability from day one</li><li>Athens-based, working internationally</li>',
     proc_label:'How We Work',
     proc_1_title:'Brief', proc_1_text:'We take time to understand your requirements, constraints, and goals before committing to any design direction — because the right brief leads to the right outcome.',
     proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings (part, assembly, instructions) — every deliverable ready for production.',
     proc_3_title:'Deliver', proc_3_text:'We coordinate subcontractors, supervise fabrication, and make sure quality, reliability, and safety standards are met — then hand over a tested, production-ready assembly.',
     principles_label:'How We Work',
-    prin_1_title:'Manufacturing Intelligence', prin_1_text:'We design knowing how parts are actually made — machined, bent, welded, printed. Every decision reflects the <span class="accent-red">real constraints</span> of the shop floor, before the drawing ever gets there.',
-    prin_2_title:'Zero Rework', prin_2_text:'Manufacturing errors are the <span class="accent-red">real cost</span> — not materials. I design to eliminate them: tolerances that can be held, assemblies that fit first time, specifications aligned with what the manufacturer can actually deliver.',
-    prin_3_title:'Full Ownership', prin_3_text:'From design, calculations, and simulations through manufacturing coordination, supplier communication, assembly oversight, and <span class="accent-red">final verification</span> — one engineer, full accountability.',
+    prin_1_title:'Manufacturing Intelligence', prin_1_text:'We design knowing how parts are actually made — machined, bent, welded, printed. Every decision reflects the <span class="accent-red">real constraints</span> of the shop floor, before the drawing ever gets there.', prin_1_text_mobile:'Designed for how parts are actually made. Real shop floor constraints, before the drawing gets there.',
+    prin_2_title:'Zero Rework', prin_2_text:'Manufacturing errors are the <span class="accent-red">real cost</span> — not materials. I design to eliminate them: tolerances that can be held, assemblies that fit first time, specifications aligned with what the manufacturer can actually deliver.', prin_2_text_mobile:'Tolerances that can be held. Assemblies that fit first time.',
+    prin_3_title:'Full Ownership', prin_3_text:'From design, calculations, and simulations through manufacturing coordination, supplier communication, assembly oversight, and <span class="accent-red">final verification</span> — one engineer, full accountability.', prin_3_text_mobile:'One engineer — from design and simulation through fabrication and final verification.',
     prin_4_title:'Web Design', prin_4_text:'We also build <span class="accent-green">fully custom websites</span> — hand-coded from scratch. No templates, no builders, no limits. <a href="webdesign.html" class="principle-cta" id="prin-4-cta-en">See our Web Design →</a>',
     wd_label:'Bespoke Digital · No Templates',
     wd_desc:'We build fully custom websites from scratch — no templates, no page builders, no shortcuts. Every pixel is intentional. Every interaction is designed.',
@@ -335,19 +335,20 @@ function applyLang(lang) {
   set('about-quote',t.about_quote);
   set('about-p2',t.about_p2,true); set('about-p3',t.about_p3,true);
   set('about-p4',t.about_p4);
-  set('val-1-title',t.val_1_title); set('val-1-text',t.val_1_text);
-  set('val-2-title',t.val_2_title); set('val-2-text',t.val_2_text);
-  set('val-3-title',t.val_3_title); set('val-3-text',t.val_3_text);
-  set('val-4-title',t.val_4_title); set('val-4-text',t.val_4_text);
+  const isMob = window.innerWidth <= 640;
+  set('val-1-title',t.val_1_title); set('val-1-text', isMob && t.val_1_text_mobile ? t.val_1_text_mobile : t.val_1_text);
+  set('val-2-title',t.val_2_title); set('val-2-text', isMob && t.val_2_text_mobile ? t.val_2_text_mobile : t.val_2_text);
+  set('val-3-title',t.val_3_title); set('val-3-text', isMob && t.val_3_text_mobile ? t.val_3_text_mobile : t.val_3_text);
+  set('val-4-title',t.val_4_title); set('val-4-text', isMob && t.val_4_text_mobile ? t.val_4_text_mobile : t.val_4_text);
   set('about-bullets',t.about_bullets,true);
   set('proc-label',t.proc_label);
   set('proc-1-title',t.proc_1_title); set('proc-1-text',t.proc_1_text);
   set('proc-2-title',t.proc_2_title); set('proc-2-text',t.proc_2_text);
   set('proc-3-title',t.proc_3_title); set('proc-3-text',t.proc_3_text);
   set('principles-label',t.principles_label);
-  set('prin-1-title',t.prin_1_title); set('prin-1-text',t.prin_1_text,true);
-  set('prin-2-title',t.prin_2_title); set('prin-2-text',t.prin_2_text,true);
-  set('prin-3-title',t.prin_3_title); set('prin-3-text',t.prin_3_text,true);
+  set('prin-1-title',t.prin_1_title); set('prin-1-text', isMob && t.prin_1_text_mobile ? t.prin_1_text_mobile : t.prin_1_text, !isMob);
+  set('prin-2-title',t.prin_2_title); set('prin-2-text', isMob && t.prin_2_text_mobile ? t.prin_2_text_mobile : t.prin_2_text, !isMob);
+  set('prin-3-title',t.prin_3_title); set('prin-3-text', isMob && t.prin_3_text_mobile ? t.prin_3_text_mobile : t.prin_3_text, !isMob);
   set('prin-4-title',t.prin_4_title); set('prin-4-text',t.prin_4_text,true);
   set('team-heading',t.team_heading);
   set('founder-name',t.founder_name,true);
