@@ -2781,31 +2781,56 @@ hr.ec-rule { position: relative; z-index: 2; }
   .edu-degree { font-size: 7px; text-align: center; }
   .edu-country { font-size: 7px; overflow-wrap: break-word; word-break: break-word; width: 100%; text-align: center; }
 
-  /* PROCESS VALUE CARDS: compact, clamp description text */
-  .value-card {
-    padding: 20px 16px 16px;
-  }
-  .value-card .value-text {
-    font-size: 12px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .value-bilingual .en { font-size: 20px; }
-  .value-heading { font-size: 20px; }
+  /* PROCESS FLOW: hide animated diagram on mobile */
+  .process-flow { display: none; }
 
-  /* ABOUT VALUE ITEMS: compact, clamp text */
-  .value-item { padding: 18px 16px 16px; }
-  .value-item .value-text {
-    font-size: 12px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  /* PROCESS VALUE CARDS: 2-per-row, icon+title inline, hide text */
+  .values-section .values-grid { grid-template-columns: 1fr 1fr; }
+  .value-card {
+    padding: 14px 12px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
-  .value-title  { font-size: 18px; }
-  .vi-icon-wrap { width: 38px; height: 38px; margin-bottom: 12px; }
+  .value-card .value-icon {
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .value-bilingual {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 0;
+    flex: 1;
+  }
+  .value-bilingual .en { font-size: 15px; }
+  .value-bilingual .el { font-size: 10px; }
+  .value-heading { font-size: 15px; margin-bottom: 0; flex: 1; }
+  .value-card .value-text { display: none; }
+
+  /* ABOUT VALUE ITEMS: 2-per-row, icon+title inline, hide text */
+  .values-grid { grid-template-columns: 1fr 1fr !important; }
+  .value-item {
+    padding: 12px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .vi-icon-wrap {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .value-title { font-size: 14px; margin-bottom: 0; line-height: 1.2; flex: 1; }
+  .value-item .value-text { display: none; }
+  .value-num { font-size: 8px; top: 6px; right: 8px; }
 
   /* ABOUT SECTION: show mobile bullet summary, hide long paragraphs */
   .about-text #about-p2,
