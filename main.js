@@ -507,8 +507,11 @@ function buildPortThumbStrip() {
     PORTFOLIO_DATA.forEach((p, i) => container.appendChild(makeItem(p, i)));
   }
 
-  container.addEventListener('mouseenter', () => setThumbPaused(true));
-  container.addEventListener('mouseleave', () => setThumbPaused(false, 1200));
+  container.addEventListener('mouseenter',  () => setThumbPaused(true));
+  container.addEventListener('mouseleave',  () => setThumbPaused(false, 1200));
+  container.addEventListener('touchstart',  () => setThumbPaused(true),        { passive: true });
+  container.addEventListener('touchend',    () => setThumbPaused(false, 1800), { passive: true });
+  container.addEventListener('touchcancel', () => setThumbPaused(false, 1800), { passive: true });
 }
 
 function startThumbAutoScroll(container) {

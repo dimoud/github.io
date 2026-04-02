@@ -1558,8 +1558,23 @@ footer {
   .values-grid { grid-template-columns: 1fr; }
   .principles-grid { grid-template-columns: 1fr; }
 
-  /* ── PORTFOLIO: strip down to image + title only on mobile ── */
-  .port-thumb-wrap { display: none; }
+  /* ── PORTFOLIO: infinite scroll strip on mobile ── */
+  .port-thumb-wrap {
+    display: flex;
+    margin-bottom: 0;
+    gap: 0;
+  }
+  /* Hide prev/next arrow buttons — touch scroll replaces them */
+  .port-thumb-prev,
+  .port-thumb-next { display: none; }
+  /* Bigger cards for tap comfort */
+  .port-thumb-item { width: 130px; }
+  .port-thumb-img-wrap { height: 86px; }
+  .port-thumb-label { font-size: 10.5px; white-space: normal; line-height: 1.3; padding: 6px 7px 8px; }
+  /* Hide the 2-column viewer + footer — strip is the full UI */
+  .portfolio-stage { display: none; }
+  .port-footer     { display: none; }
+  .port-sep        { display: none; }
   .port-badge      { display: none !important; }
   .port-cat        { display: none; }
   .port-desc       { display: none; }
