@@ -6,9 +6,9 @@ const EXP_YEARS = new Date().getFullYear() - 2019;
 const LANG = {
   el: {
     nav_about:'Σχετικά', nav_projects:'Έργα', nav_software:'Λογισμικό',
-    nav_webdesign:'Web Design', nav_experience:'Ομάδα', nav_contact:'Επικοινωνία',
+    nav_webdesign:'Web Design', nav_3dprint:'3D Print', nav_experience:'Ομάδα', nav_contact:'Επικοινωνία',
     hero_tag:'// Μηχανολογικό Studio — Αθήνα',
-    hero_title:'Μηχανολογικός Σχεδιασμός · 3D Printing',
+    hero_title:'Μηχανολογικός Σχεδιασμός · 3D Printing · Laser Cut & Engrave',
     hero_desc:'Η <strong>Expertease Designs</strong> είναι studio μηχανολογικού σχεδιασμού και 3D printing — από το concept ως την κατασκευή.',
     hero_cta_work:'Δείτε τα Έργα →', hero_cta_contact:'Επικοινωνήστε',
     stat_years:'Χρόνια Εμπειρίας', stat_projects:'Παραδοθέντα Έργα', stat_degrees:'Μεταπτυχιακά',
@@ -112,12 +112,54 @@ const LANG = {
     contact_heading:'Έχετε κάποιο project;',
     contact_sub:'Ένα εξάρτημα ή ολόκληρο project — η Expertease είναι εδώ.',
     footer_copy:'© 2026 Expertease Designs', footer_loc:'Αθήνα, Ελλάδα',
+    pr_label:'Εξατομικευμένη Κατασκευή · Αθήνα',
+    pr_title:'3D Print<br>Laser Cut<br>&amp; Engrave',
+    pr_desc:'Από ιδέα σε έτοιμο εξάρτημα — αναλαμβάνουμε custom 3D printing, αντίστροφη μηχανική και laser cutting &amp; engraving. Λειτουργικά πρωτότυπα, μεμονωμένα εξαρτήματα και διακοσμητικές εργασίες εσωτερικά.',
+    pr_f1:'FDM 3D Printing', pr_f2:'Custom Σχέδια',
+    pr_f3:'Αντίστροφη Μηχανική', pr_f4:'Laser Cutting',
+    pr_f5:'Laser Engraving', pr_f6:'PLA · PETG · ABS',
+    pr_f7:'Ξύλο · Ακρυλικό · Μέταλλο', pr_f8:'Πρωτότυπο Ίδιας Μέρας',
+    pr_cta1:'Ζητήστε Προσφορά →', pr_cta2:'Δείτε όλα τα Έργα',
+    pr_off_label:'// Τι Κάνουμε',
+    pr_off1_name:'Custom 3D Printing',
+    pr_off1_text:'FDM printing σε PLA, PETG, ABS και specialty filaments. Από λειτουργικά στηρίγματα και περιβλήματα ως καλλιτεχνικά αντικείμενα — σχεδιασμός σε SolidWorks και εκτύπωση στις προδιαγραφές.',
+    pr_off2_name:'Αντίστροφη Μηχανική',
+    pr_off2_text:'Σπασμένο ή διακοπέν εξάρτημα; Μετράμε, μοντελοποιούμε και εκτυπώνουμε ακριβές αντίγραφο. Γρηγορότερα και φθηνότερα από την εύρεση — με δυνατότητα βελτίωσης.',
+    pr_off3_name:'Laser Cutting',
+    pr_off3_text:'Ακριβείς κοπές σε ξύλο, ακρυλικό, χαρτόνι, δέρμα και λεπτά μέταλλα. Καθαρά άκρα, στενές ανοχές, γρήγορη παράδοση — ιδανικό για εξαρτήματα και διακοσμητικά πάνελ.',
+    pr_off4_name:'Laser Engraving',
+    pr_off4_text:'Μόνιμη χάραξη σε ξύλο, ανοδιωμένο αλουμίνιο, δέρμα, γυαλί και βαμμένα μέταλλα. Λογότυπα, σειριακοί αριθμοί, έργα τέχνης, εξατομικευμένα δώρα.',
+    pr_work_label:'// Δουλειές μας',
+    pr_work_title:'Εξαρτήματα που Φτιάξαμε',
+    pr_work_sub:'Κάθε project σχεδιάζεται, εκτυπώνεται ή κόβεται εσωτερικά — ακριβές στην εκτέλεση, κατασκευασμένο για να αντέχει.',
+    pr_proj_1_name:'Αυτόματος Τροφοδότης Γάτας',
+    pr_proj_1_role:'3D Print · Custom Σχεδιασμός Προϊόντος',
+    pr_proj_1_desc:'Πλήρως custom αυτόματος τροφοδότης γάτας — μηχανισμός χρονισμένης διανομής, εργονομική δεξαμενή και εύκολη συναρμολόγηση. Κάθε εξάρτημα σε SolidWorks και εκτυπωμένο σε PLA.',
+    pr_proj_1_link:'Επικοινωνήστε',
+    pr_proj_2_name:'Επιτραπέζιος Ανεμιστήρας',
+    pr_proj_2_role:'3D Print · Σχεδιασμός Προϊόντος · Αεροδυναμική',
+    pr_proj_2_desc:'Custom επιτραπέζιος ανεμιστήρας με βελτιστοποιημένη γεωμετρία πτερύγων και συμπαγές περίβλημα — αθόρυβη λειτουργία και μέγιστη ροή αέρα. Πλήρως εκτυπωμένη συναρμολόγηση.',
+    pr_proj_2_link:'Επικοινωνήστε',
+    pr_proj_3_name:'Μεταλλική Διακόσμηση Τοίχου',
+    pr_proj_3_role:'Laser Cut · Εσωτερική Διακόσμηση · Φύλλο Μετάλλου',
+    pr_proj_3_desc:'Custom laser-cut μεταλλική διακόσμηση τοίχου — περίπλοκα σχέδια από φύλλο χάλυβα, βαφή σκόνης. Κατάλληλο για οικιακούς και εμπορικούς χώρους. Διαθέσιμα custom μεγέθη και μοτίβα.',
+    pr_proj_3_link:'Επικοινωνήστε',
+    pr_proj_4_name:'Συσκευή Απώθησης Σκύλων',
+    pr_proj_4_role:'3D Print · Περίβλημα Ηλεκτρονικών · Custom Σχέδιο',
+    pr_proj_4_desc:'Συμπαγής συσκευή απώθησης σκύλων — πλήρως custom περίβλημα σχεδιασμένο γύρω από τα ηλεκτρονικά. Αδιάβροχο, καθαρή εφαρμογή, snap-close συναρμολόγηση.',
+    pr_proj_4_link:'Επικοινωνήστε',
+    pr_cta_label:'// Ας Φτιάξουμε Κάτι',
+    pr_cta_title:'Έχεις κάποιο εξάρτημα<br>στο μυαλό σου;',
+    pr_cta_text:'Στείλε μας ένα σκίτσο, ένα σπασμένο εξάρτημα ή απλώς μια περιγραφή. Θα το σχεδιάσουμε, εκτυπώσουμε ή κόψουμε — και θα σου παραδώσουμε έτοιμο κομμάτι.',
+    pr_cta_price_from:'Ξεκινάμε από',
+    pr_cta_btn1:'Ζητήστε Προσφορά →',
+    pr_cta_perk1:'✓ Custom σχεδιασμός συμπεριλαμβάνεται', pr_cta_perk2:'✓ Γρήγορη παράδοση', pr_cta_perk3:'✓ Διαθέσιμη αντίστροφη μηχανική',
   },
   en: {
     nav_about:'About', nav_projects:'Projects', nav_software:'Software',
-    nav_webdesign:'Web Design', nav_experience:'Team', nav_contact:'Contact',
+    nav_webdesign:'Web Design', nav_3dprint:'3D Print', nav_experience:'Team', nav_contact:'Contact',
     hero_tag:'// Mechanical Design & 3D Printing Studio — Athens, GR',
-    hero_title:'Mechanical Design · 3D Printing',
+    hero_title:'Mechanical Design · 3D Printing · Laser Cut & Engrave',
     hero_desc:'<strong>Expertease Designs</strong> — machine design, sheet metal, rapid prototyping, BOM, and project management. Athens-based, working internationally.',
     hero_cta_work:'View Projects →', hero_cta_contact:'Get in Touch',
     stat_years:'Years Experience', stat_projects:'Projects Delivered', stat_degrees:'University Degrees',
@@ -221,6 +263,48 @@ const LANG = {
     contact_heading:'Got a project in mind?',
     contact_sub:'From designing a single component to managing an entire project — Expertease is here.',
     footer_copy:'© 2026 Expertease Designs', footer_loc:'Athens, Greece',
+    pr_label:'Custom Fabrication · Athens, GR',
+    pr_title:'3D Print<br>Laser Cut<br>&amp; Engrave',
+    pr_desc:'From idea to finished part — we handle custom 3D printing, reverse engineering, and laser cutting &amp; engraving. Functional prototypes, one-off parts, and decorative work produced in-house.',
+    pr_f1:'FDM 3D Printing', pr_f2:'Custom Designs',
+    pr_f3:'Reverse Engineering', pr_f4:'Laser Cutting',
+    pr_f5:'Laser Engraving', pr_f6:'PLA · PETG · ABS',
+    pr_f7:'Wood · Acrylic · Metal', pr_f8:'Same-Day Prototyping',
+    pr_cta1:'Get a Quote →', pr_cta2:'View All Projects',
+    pr_off_label:'// What We Do',
+    pr_off1_name:'Custom 3D Printing',
+    pr_off1_text:'FDM printing in PLA, PETG, ABS, and specialty filaments. From functional brackets and enclosures to artistic objects — designed in SolidWorks and printed to spec.',
+    pr_off2_name:'Reverse Engineering',
+    pr_off2_text:'Broken or discontinued part? We measure, model, and print an exact replacement. Faster and cheaper than sourcing — with the option to improve on the original design.',
+    pr_off3_name:'Laser Cutting',
+    pr_off3_text:'Precision cuts on wood, acrylic, cardboard, leather, and thin metals. Clean edges, tight tolerances, and fast turnaround — ideal for parts, enclosures, and decorative panels.',
+    pr_off4_name:'Laser Engraving',
+    pr_off4_text:'Permanent marking on wood, anodised aluminium, leather, glass, and coated metals. Logos, serial numbers, artwork, personalised gifts — whatever the surface calls for.',
+    pr_work_label:'// Our Work',
+    pr_work_title:'Parts We\'ve Made',
+    pr_work_sub:'Every project is designed, printed, or cut in-house — precise in execution, built to last.',
+    pr_proj_1_name:'Automatic Cat Feeder',
+    pr_proj_1_role:'3D Print · Custom Product Design',
+    pr_proj_1_desc:'Fully custom-designed automated cat feeder — timed dispensing mechanism, ergonomic hopper, and easy-clean assembly. Every part modelled in SolidWorks and printed in PLA.',
+    pr_proj_1_link:'Get in Touch',
+    pr_proj_2_name:'Desk Fan',
+    pr_proj_2_role:'3D Print · Product Design · Aerodynamics',
+    pr_proj_2_desc:'Custom desktop fan with optimised blade geometry and compact housing — designed for quiet operation and maximum airflow. Fully 3D-printed assembly, motor-ready enclosure.',
+    pr_proj_2_link:'Get in Touch',
+    pr_proj_3_name:'Metal Wall Décor',
+    pr_proj_3_role:'Laser Cut · Interior Design · Sheet Metal',
+    pr_proj_3_desc:'Custom laser-cut steel wall décor — intricate patterns cut from sheet steel, powder-coated finish. Suitable for residential and commercial interiors. Custom sizes and motifs available.',
+    pr_proj_3_link:'Get in Touch',
+    pr_proj_4_name:'Dog Repellent Device',
+    pr_proj_4_role:'3D Print · Electronics Enclosure · Custom Design',
+    pr_proj_4_desc:'Compact ultrasonic dog repellent device — fully custom housing designed around the electronics. Weatherproof enclosure, clean fit, snap-close assembly. Reverse-engineered from client brief.',
+    pr_proj_4_link:'Get in Touch',
+    pr_cta_label:'// Let\'s Make Something',
+    pr_cta_title:'Got a part<br>in mind?',
+    pr_cta_text:'Send us a sketch, a broken part, or just a description. We\'ll design, print, or cut it — and deliver a finished piece ready to use.',
+    pr_cta_price_from:'Starting from',
+    pr_cta_btn1:'Get a Quote →',
+    pr_cta_perk1:'✓ Custom design included', pr_cta_perk2:'✓ Fast turnaround', pr_cta_perk3:'✓ Reverse engineering available',
   }
 };
 
@@ -235,7 +319,7 @@ function applyLang(lang) {
   document.documentElement.lang = lang === 'el' ? 'el' : 'en';
   const set = (id, val, html=false) => { const el=document.getElementById(id); if(!el)return; html?el.innerHTML=val:el.textContent=val; };
   set('nav-about',t.nav_about); set('nav-projects',t.nav_projects);
-  set('nav-software',t.nav_software); set('nav-webdesign',t.nav_webdesign); set('nav-experience',t.nav_experience); set('nav-contact',t.nav_contact);
+  set('nav-software',t.nav_software); set('nav-webdesign',t.nav_webdesign); set('nav-3dprint',t.nav_3dprint); set('nav-experience',t.nav_experience); set('nav-contact',t.nav_contact);
   set('hero-tag',t.hero_tag); set('hero-title',t.hero_title);
   set('hero-desc',t.hero_desc,true);
   set('hero-cta-work',t.hero_cta_work); set('hero-cta-contact',t.hero_cta_contact);
@@ -297,10 +381,28 @@ function applyLang(lang) {
   set('wd-cta-text',t.wd_cta_text); set('wd-cta-price-from',t.wd_cta_price_from);
   set('wd-cta-btn1',t.wd_cta_btn1); set('wd-cta-btn2',t.wd_cta_btn2);
   set('wd-cta-perk1',t.wd_cta_perk1); set('wd-cta-perk2',t.wd_cta_perk2); set('wd-cta-perk3',t.wd_cta_perk3);
+  // 3dprint.html
+  set('pr-label',t.pr_label); set('pr-title',t.pr_title,true); set('pr-desc',t.pr_desc,true);
+  for(let i=1;i<=8;i++) set('pr-f'+i,t['pr_f'+i]);
+  set('pr-cta1',t.pr_cta1); set('pr-cta2',t.pr_cta2);
+  set('pr-off-label',t.pr_off_label);
+  set('pr-off1-name',t.pr_off1_name); set('pr-off1-text',t.pr_off1_text);
+  set('pr-off2-name',t.pr_off2_name); set('pr-off2-text',t.pr_off2_text);
+  set('pr-off3-name',t.pr_off3_name); set('pr-off3-text',t.pr_off3_text);
+  set('pr-off4-name',t.pr_off4_name); set('pr-off4-text',t.pr_off4_text);
+  set('pr-work-label',t.pr_work_label); set('pr-work-title',t.pr_work_title); set('pr-work-sub',t.pr_work_sub);
+  set('pr-proj-1-name',t.pr_proj_1_name); set('pr-proj-1-role',t.pr_proj_1_role); set('pr-proj-1-desc',t.pr_proj_1_desc); set('pr-proj-1-link',t.pr_proj_1_link);
+  set('pr-proj-2-name',t.pr_proj_2_name); set('pr-proj-2-role',t.pr_proj_2_role); set('pr-proj-2-desc',t.pr_proj_2_desc); set('pr-proj-2-link',t.pr_proj_2_link);
+  set('pr-proj-3-name',t.pr_proj_3_name); set('pr-proj-3-role',t.pr_proj_3_role); set('pr-proj-3-desc',t.pr_proj_3_desc); set('pr-proj-3-link',t.pr_proj_3_link);
+  set('pr-proj-4-name',t.pr_proj_4_name); set('pr-proj-4-role',t.pr_proj_4_role); set('pr-proj-4-desc',t.pr_proj_4_desc); set('pr-proj-4-link',t.pr_proj_4_link);
+  set('pr-cta-label',t.pr_cta_label); set('pr-cta-title',t.pr_cta_title,true);
+  set('pr-cta-text',t.pr_cta_text); set('pr-cta-price-from',t.pr_cta_price_from);
+  set('pr-cta-btn1',t.pr_cta_btn1);
+  set('pr-cta-perk1',t.pr_cta_perk1); set('pr-cta-perk2',t.pr_cta_perk2); set('pr-cta-perk3',t.pr_cta_perk3);
   set('contact-label',t.contact_label); set('contact-heading',t.contact_heading,true);
   set('contact-sub',t.contact_sub);
   set('footer-copy',t.footer_copy); set('footer-loc',t.footer_loc);
-  const mmap = {'mnav-about':t.nav_about,'mnav-projects':t.nav_projects,'mnav-software':t.nav_software,'mnav-webdesign':t.nav_webdesign,'mnav-experience':t.nav_experience,'mnav-contact':t.nav_contact};
+  const mmap = {'mnav-about':t.nav_about,'mnav-projects':t.nav_projects,'mnav-software':t.nav_software,'mnav-webdesign':t.nav_webdesign,'mnav-3dprint':t.nav_3dprint,'mnav-experience':t.nav_experience,'mnav-contact':t.nav_contact};
   Object.entries(mmap).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.textContent=val; });
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
   localStorage.setItem('lang',lang);

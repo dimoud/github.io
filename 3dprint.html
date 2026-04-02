@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Print · Laser Cut & Engrave — Expertease Designs</title>
+<meta name="description" content="Custom 3D printing, laser cutting and engraving in Athens, Greece. FDM prototypes, reverse-engineered parts, custom designs, decorative laser work and functional fabrication.">
+<link rel="canonical" href="https://expertease.eu/3dprint.html">
+<link rel="icon" href="https://expertease.eu/images/logo.png" type="image/png">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://expertease.eu/3dprint.html">
+<meta property="og:site_name" content="Expertease Designs">
+<meta property="og:title" content="3D Print · Laser Cut & Engrave — Expertease Designs">
+<meta property="og:description" content="Custom 3D printing, laser cutting and engraving in Athens, Greece. FDM prototypes, reverse-engineered parts, custom designs and functional fabrication.">
+<meta property="og:image" content="https://expertease.eu/images/logo.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3D Print · Laser Cut & Engrave — Expertease Designs">
+<meta name="twitter:description" content="Custom 3D printing, laser cutting and engraving in Athens, Greece. FDM prototypes, reverse-engineered parts, custom designs and functional fabrication.">
+<meta name="twitter:image" content="https://expertease.eu/images/logo.png">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── 3D PRINT PAGE – page-specific overrides ─────────────────── */
+
+/* Hero image mosaic on the right side */
+.pr-hero-mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+  min-height: 420px;
+  padding: 24px 0 24px 24px;
+}
+.pr-hero-mosaic-img {
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.pr-hero-mosaic-img:first-child {
+  grid-row: span 2;
+  border-radius: 8px;
+}
+.pr-hero-mosaic-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .55s ease;
+}
+.pr-hero-mosaic-img:hover img { transform: scale(1.04); }
+
+/* Offerings section – reuse wd-offerings but override label color */
+.pr-offerings .wd-offer-card--hl { border-top-color: var(--blue); }
+
+/* Projects section – inherits wd-work but with slight accent shift */
+.pr-work { background: var(--bg2); }
+.pr-work::before { background: none; }
+
+/* CTA accent: keep same wd-cta look */
+
+@media (max-width: 960px) {
+  .pr-hero-mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    min-height: 240px;
+    padding: 0;
+    gap: 8px;
+  }
+  .pr-hero-mosaic-img:first-child { grid-row: span 1; }
+}
+@media (max-width: 640px) {
+  .pr-hero-mosaic { grid-template-columns: 1fr 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Expertease" fetchpriority="high"></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#about"    id="nav-about">About</a></li>
+      <li><a href="index.html#projects" id="nav-projects">Projects</a></li>
+      <li><a href="webdesign.html"      id="nav-webdesign">Web Design</a></li>
+      <li><a href="software.html"       id="nav-software">Software</a></li>
+      <li><a href="cad.html"            id="nav-cad">3D Models</a></li>
+      <li><a href="3dprint.html"        id="nav-3dprint" class="active">3D Print</a></li>
+      <li><a href="team.html"           id="nav-experience">Team</a></li>
+      <li><a href="contact.html"        id="nav-contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn"        data-lang="el">🇬🇷 ΕΛ</button>
+      <button class="lang-btn active" data-lang="en">🇬🇧 EN</button>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="index.html#about"    id="mnav-about"      onclick="closeMobileNav()">About</a></li>
+    <li><a href="index.html#projects" id="mnav-projects"   onclick="closeMobileNav()">Projects</a></li>
+    <li><a href="webdesign.html"      id="mnav-webdesign"  onclick="closeMobileNav()">Web Design</a></li>
+    <li><a href="software.html"       id="mnav-software"   onclick="closeMobileNav()">Software</a></li>
+    <li><a href="cad.html"            id="mnav-cad"        onclick="closeMobileNav()">3D Models</a></li>
+    <li><a href="3dprint.html"        id="mnav-3dprint"    onclick="closeMobileNav()">3D Print</a></li>
+    <li><a href="team.html"           id="mnav-experience" onclick="closeMobileNav()">Team</a></li>
+    <li><a href="contact.html"        id="mnav-contact"    onclick="closeMobileNav()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<div class="wd-page">
+  <div class="wd-page-inner">
+
+    <div class="wd-page-left">
+      <div class="wd-page-label" id="pr-label">Custom Fabrication · Athens, GR</div>
+      <h1 class="wd-page-title" id="pr-title">3D Print<br>Laser Cut<br>&amp; Engrave</h1>
+      <p class="wd-page-desc" id="pr-desc">From idea to finished part — we handle custom 3D printing, reverse engineering, and laser cutting &amp; engraving. Functional prototypes, one-off parts, and decorative work produced in-house.</p>
+      <ul class="wd-page-features">
+        <li id="pr-f1">FDM 3D Printing</li>
+        <li id="pr-f2">Custom Designs</li>
+        <li id="pr-f3">Reverse Engineering</li>
+        <li id="pr-f4">Laser Cutting</li>
+        <li id="pr-f5">Laser Engraving</li>
+        <li id="pr-f6">PLA · PETG · ABS</li>
+        <li id="pr-f7">Wood · Acrylic · Metal</li>
+        <li id="pr-f8">Same-Day Prototyping</li>
+      </ul>
+      <div class="wd-page-cta">
+        <a href="contact.html" class="btn-primary" id="pr-cta1">Get a Quote →</a>
+        <a href="index.html#projects" class="btn-outline" id="pr-cta2">View All Projects</a>
+      </div>
+    </div>
+
+    <div class="wd-page-right">
+      <div class="pr-hero-mosaic">
+        <div class="pr-hero-mosaic-img">
+          <img src="images/catfeeder/1.png" alt="3D printed cat feeder" loading="eager">
+        </div>
+        <div class="pr-hero-mosaic-img">
+          <img src="images/desk_fan/1.png" alt="3D printed desk fan" loading="eager">
+        </div>
+        <div class="pr-hero-mosaic-img">
+          <img src="images/wall_decor/1.png" alt="Laser cut wall decor" loading="eager">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ TICKER ══════════════════════════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">FDM 3D Printing <span>✦</span></span>
+    <span class="ticker-item">Custom Designs <span>✦</span></span>
+    <span class="ticker-item">Reverse Engineering <span>✦</span></span>
+    <span class="ticker-item">Laser Cutting <span>✦</span></span>
+    <span class="ticker-item">Laser Engraving <span>✦</span></span>
+    <span class="ticker-item">PLA · PETG · ABS <span>✦</span></span>
+    <span class="ticker-item">Wood · Acrylic · Metal <span>✦</span></span>
+    <span class="ticker-item">Same-Day Prototyping <span>✦</span></span>
+    <span class="ticker-item">FDM 3D Printing <span>✦</span></span>
+    <span class="ticker-item">Custom Designs <span>✦</span></span>
+    <span class="ticker-item">Reverse Engineering <span>✦</span></span>
+    <span class="ticker-item">Laser Cutting <span>✦</span></span>
+    <span class="ticker-item">Laser Engraving <span>✦</span></span>
+    <span class="ticker-item">PLA · PETG · ABS <span>✦</span></span>
+    <span class="ticker-item">Wood · Acrylic · Metal <span>✦</span></span>
+    <span class="ticker-item">Same-Day Prototyping <span>✦</span></span>
+  </div>
+</div>
+
+<!-- ══ WHAT WE DO ════════════════════════════════════════════════ -->
+<section class="wd-offerings pr-offerings">
+  <div class="wd-offerings-inner">
+    <div class="wd-offerings-label" id="pr-off-label">// What We Do</div>
+    <div class="wd-offerings-grid">
+
+      <div class="wd-offer-card">
+        <div class="wd-offer-num">01</div>
+        <div class="wd-offer-name" id="pr-off1-name">Custom 3D Printing</div>
+        <p class="wd-offer-text" id="pr-off1-text">FDM printing in PLA, PETG, ABS, and specialty filaments. From functional brackets and enclosures to artistic objects — designed in SolidWorks and printed to spec.</p>
+      </div>
+
+      <div class="wd-offer-card">
+        <div class="wd-offer-num">02</div>
+        <div class="wd-offer-name" id="pr-off2-name">Reverse Engineering</div>
+        <p class="wd-offer-text" id="pr-off2-text">Broken or discontinued part? We measure, model, and print an exact replacement. Faster and cheaper than sourcing — with the option to improve on the original design.</p>
+      </div>
+
+      <div class="wd-offer-card">
+        <div class="wd-offer-num">03</div>
+        <div class="wd-offer-name" id="pr-off3-name">Laser Cutting</div>
+        <p class="wd-offer-text" id="pr-off3-text">Precision cuts on wood, acrylic, cardboard, leather, and thin metals. Clean edges, tight tolerances, and fast turnaround — ideal for parts, enclosures, and decorative panels.</p>
+      </div>
+
+      <div class="wd-offer-card wd-offer-card--hl">
+        <div class="wd-offer-num">04</div>
+        <div class="wd-offer-name" id="pr-off4-name">Laser Engraving</div>
+        <p class="wd-offer-text" id="pr-off4-text">Permanent marking on wood, anodised aluminium, leather, glass, and coated metals. Logos, serial numbers, artwork, personalised gifts — whatever the surface calls for.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUR WORK ═══════════════════════════════════════════════ -->
+<section class="wd-work pr-work">
+  <div class="wd-work-inner">
+
+    <div class="wd-work-header">
+      <div class="wd-work-label" id="pr-work-label">// Our Work</div>
+      <h2 class="wd-work-title" id="pr-work-title">Parts We've Made</h2>
+      <p class="wd-work-sub" id="pr-work-sub">Every project is designed, printed, or cut in-house — precise in execution, built to last.</p>
+    </div>
+
+    <!-- CARD 01 — Cat Feeder -->
+    <article class="wd-project-card reveal-up" id="pr-proj-1">
+      <div class="wd-proj-preview">
+        <div class="wd-proj-browser">
+          <div class="wd-proj-bar">
+            <span class="wd-proj-dot wd-dot-r"></span>
+            <span class="wd-proj-dot wd-dot-y"></span>
+            <span class="wd-proj-dot wd-dot-g"></span>
+            <span class="wd-proj-url" id="pr-proj-1-url">3D Print · PLA · Custom Design</span>
+          </div>
+          <div class="wd-proj-frame-wrap" style="padding-bottom:68%;">
+            <img src="images/catfeeder/1.png" alt="Automatic Cat Feeder" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            <div class="wd-proj-frame-overlay"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wd-proj-info">
+        <div class="wd-proj-num">01</div>
+        <h3 class="wd-proj-name" id="pr-proj-1-name">Automatic Cat Feeder</h3>
+        <p class="wd-proj-role" id="pr-proj-1-role">3D Print · Custom Product Design</p>
+        <p class="wd-proj-desc" id="pr-proj-1-desc">Fully custom-designed automated cat feeder — timed dispensing mechanism, ergonomic hopper, and easy-clean assembly. Every part modelled in SolidWorks and printed in PLA.</p>
+        <ul class="wd-proj-tags">
+          <li>FDM / PLA</li><li>Custom Design</li><li>SolidWorks</li><li>Functional Part</li>
+        </ul>
+        <a href="contact.html" class="wd-proj-link">
+          <span id="pr-proj-1-link">Get in Touch</span> <span class="wd-proj-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- CARD 02 — Desk Fan -->
+    <article class="wd-project-card wd-project-card--rev reveal-up" id="pr-proj-2">
+      <div class="wd-proj-preview">
+        <div class="wd-proj-browser">
+          <div class="wd-proj-bar">
+            <span class="wd-proj-dot wd-dot-r"></span>
+            <span class="wd-proj-dot wd-dot-y"></span>
+            <span class="wd-proj-dot wd-dot-g"></span>
+            <span class="wd-proj-url" id="pr-proj-2-url">3D Print · PETG · Optimised Blades</span>
+          </div>
+          <div class="wd-proj-frame-wrap" style="padding-bottom:68%;">
+            <img src="images/desk_fan/1.png" alt="Desk Fan" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            <div class="wd-proj-frame-overlay"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wd-proj-info">
+        <div class="wd-proj-num">02</div>
+        <h3 class="wd-proj-name" id="pr-proj-2-name">Desk Fan</h3>
+        <p class="wd-proj-role" id="pr-proj-2-role">3D Print · Product Design · Aerodynamics</p>
+        <p class="wd-proj-desc" id="pr-proj-2-desc">Custom desktop fan with optimised blade geometry and compact housing — designed for quiet operation and maximum airflow. Fully 3D-printed assembly, motor-ready enclosure.</p>
+        <ul class="wd-proj-tags">
+          <li>FDM / PETG</li><li>Blade Geometry</li><li>Product Design</li><li>Assembly</li>
+        </ul>
+        <a href="contact.html" class="wd-proj-link">
+          <span id="pr-proj-2-link">Get in Touch</span> <span class="wd-proj-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- CARD 03 — Laser Wall Decor -->
+    <article class="wd-project-card reveal-up" id="pr-proj-3">
+      <div class="wd-proj-preview">
+        <div class="wd-proj-browser">
+          <div class="wd-proj-bar">
+            <span class="wd-proj-dot wd-dot-r"></span>
+            <span class="wd-proj-dot wd-dot-y"></span>
+            <span class="wd-proj-dot wd-dot-g"></span>
+            <span class="wd-proj-url" id="pr-proj-3-url">Laser Cut · Steel Sheet · Powder Coat</span>
+          </div>
+          <div class="wd-proj-frame-wrap" style="padding-bottom:68%;">
+            <img src="images/wall_decor/1.png" alt="Laser Cut Wall Decor" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            <div class="wd-proj-frame-overlay"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wd-proj-info">
+        <div class="wd-proj-num">03</div>
+        <h3 class="wd-proj-name" id="pr-proj-3-name">Metal Wall Décor</h3>
+        <p class="wd-proj-role" id="pr-proj-3-role">Laser Cut · Interior Design · Sheet Metal</p>
+        <p class="wd-proj-desc" id="pr-proj-3-desc">Custom laser-cut steel wall décor — intricate patterns cut from sheet steel, powder-coated finish. Suitable for residential and commercial interiors. Custom sizes and motifs available.</p>
+        <ul class="wd-proj-tags">
+          <li>Laser Cutting</li><li>Steel Sheet</li><li>Powder Coat</li><li>Custom Pattern</li>
+        </ul>
+        <a href="contact.html" class="wd-proj-link">
+          <span id="pr-proj-3-link">Get in Touch</span> <span class="wd-proj-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- CARD 04 — Dog Repellent -->
+    <article class="wd-project-card wd-project-card--rev reveal-up" id="pr-proj-4">
+      <div class="wd-proj-preview">
+        <div class="wd-proj-browser">
+          <div class="wd-proj-bar">
+            <span class="wd-proj-dot wd-dot-r"></span>
+            <span class="wd-proj-dot wd-dot-y"></span>
+            <span class="wd-proj-dot wd-dot-g"></span>
+            <span class="wd-proj-url" id="pr-proj-4-url">3D Print · Custom Electronics Housing</span>
+          </div>
+          <div class="wd-proj-frame-wrap" style="padding-bottom:68%;">
+            <img src="images/dog_repellant/1.png" alt="Dog Repellent Device" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            <div class="wd-proj-frame-overlay"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wd-proj-info">
+        <div class="wd-proj-num">04</div>
+        <h3 class="wd-proj-name" id="pr-proj-4-name">Dog Repellent Device</h3>
+        <p class="wd-proj-role" id="pr-proj-4-role">3D Print · Electronics Enclosure · Custom Design</p>
+        <p class="wd-proj-desc" id="pr-proj-4-desc">Compact ultrasonic dog repellent device — fully custom housing designed around the electronics. Weatherproof enclosure, clean fit, snap-close assembly. Reverse-engineered from client brief.</p>
+        <ul class="wd-proj-tags">
+          <li>FDM / ABS</li><li>Electronics Housing</li><li>Weatherproof</li><li>Custom Brief</li>
+        </ul>
+        <a href="contact.html" class="wd-proj-link">
+          <span id="pr-proj-4-link">Get in Touch</span> <span class="wd-proj-arrow">→</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══ CTA ══════════════════════════════════════════════════════ -->
+<section class="wd-cta">
+  <div class="wd-cta-card">
+    <div class="wd-cta-left">
+      <div class="wd-cta-label" id="pr-cta-label">// Let's Make Something</div>
+      <h2 class="wd-cta-title" id="pr-cta-title">Got a part in mind?</h2>
+      <p class="wd-cta-text" id="pr-cta-text">Send us a sketch, a broken part, or just a description. We'll design, print, or cut it — and deliver a finished piece ready to use.</p>
+    </div>
+    <div class="wd-cta-right">
+      <div class="wd-cta-price-block">
+        <span class="wd-cta-price-from" id="pr-cta-price-from">Starting from</span>
+        <span class="wd-cta-price-num">€20</span>
+      </div>
+      <a href="contact.html" class="wd-cta-btn" id="pr-cta-btn1">Get a Quote →</a>
+      <ul class="wd-cta-perks">
+        <li id="pr-cta-perk1">✓ Custom design included</li>
+        <li id="pr-cta-perk2">✓ Fast turnaround</li>
+        <li id="pr-cta-perk3">✓ Reverse engineering available</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Expertease"></a>
+  <div class="footer-text" id="footer-copy">© 2026 Expertease Designs</div>
+  <div class="footer-text" id="footer-loc">Athens, Greece</div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
