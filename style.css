@@ -1743,9 +1743,9 @@ footer {
   .fcs-label { font-size: 7px; letter-spacing: 1px; }
 
   /* Process nodes: slightly more compact */
-  .pf-icon { width: 44px; height: 44px; font-size: 18px; }
-  .pf-node { grid-template-columns: 44px 1fr; }
-  .pf-arrow { margin-left: 25px; } /* (44/2 + 4) − 1 = 25 */
+  .pf-icon { width: 36px; height: 36px; font-size: 15px; }
+  .pf-node { width: 60px; }
+  .pf-arrow { width: 16px; margin: 0; }
 }
 
 /* ── CAD VIEWER ─────────────────────────────────────────────── */
@@ -2549,7 +2549,7 @@ footer {
   .wd-compare { grid-template-columns: 1fr; }
   .wd-cta     { padding: 48px 20px; }
   .wd-cta-card { grid-template-columns: 1fr; }
-  .wd-cta-left  { padding: 40px 32px; }
+  .wd-cta-left  { padding: 40px 32px; text-align: center; align-items: center; }
   .wd-cta-right { padding: 40px 32px; align-items: center; }
 }
 @media (max-width: 640px) {
@@ -2809,26 +2809,47 @@ hr.ec-rule { position: relative; z-index: 2; }
   }
   .process-flow::-webkit-scrollbar { display: none; }
   .process-flow-inner {
+    flex-direction: row;
+    align-items: center;
     min-width: unset;
     width: max-content;
     justify-content: flex-start;
     padding: 0 16px;
   }
-  .pf-node { width: 72px; gap: 6px; }
+  .pf-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 68px;
+    gap: 6px;
+    padding: 0;
+  }
   .pf-icon {
     width: 40px; height: 40px;
     font-size: 16px;
+    grid-row: unset; grid-column: unset;
+    align-self: unset;
   }
   .pf-icon-pulse { inset: -5px; }
-  .pf-label { font-size: 7px; letter-spacing: 1px; }
+  .pf-label { font-size: 7px; letter-spacing: 1px; text-align: center; }
   .pf-sub   { display: none; }
-  .pf-arrow { width: 22px; }
+  .pf-arrow {
+    width: 20px; height: 2px;
+    margin: 0; display: flex; align-items: center;
+  }
+  .pf-arrow::before {
+    background: linear-gradient(to right, rgba(59,130,246,.25), rgba(59,130,246,.55));
+  }
   .pf-arrow::after {
-    border-width: 4px;
-    border-left-width: 5px;
+    right: -1px; top: 50%; bottom: auto; left: auto;
+    transform: translateY(-50%);
+    border: 4px solid transparent;
+    border-left: 5px solid rgba(59,130,246,.55);
+    border-top: none;
   }
   .pf-arrow-dot { width: 5px; height: 5px; }
   .pf-loop {
+    flex-direction: row;
     min-width: unset;
     width: 100%;
     margin-top: 14px;
@@ -2989,5 +3010,15 @@ hr.ec-rule { position: relative; z-index: 2; }
   transform: translateX(-50%) translateY(0);
 }
 @media (max-width: 640px) {
-  #backToTop { bottom: 20px; padding: 8px 16px; font-size: 8px; letter-spacing: 2px; }
+  #backToTop {
+    bottom: 20px;
+    padding: 10px 12px;
+    font-size: 0;
+    letter-spacing: 0;
+    gap: 0;
+    background: rgba(6,12,28,.35);
+    border-color: rgba(59,130,246,.18);
+    color: rgba(255,255,255,.5);
+  }
+  #backToTop svg { width: 14px; height: 14px; }
 }

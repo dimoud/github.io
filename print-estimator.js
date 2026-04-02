@@ -187,7 +187,7 @@
       container.appendChild(inner);
       thumbScrollTimer = setInterval(() => {
         if (thumbScrollPaused) return;
-        container.scrollLeft += 1;
+        container.scrollLeft += 1.1;
         const inn = container.querySelector('.port-thumb-inner');
         if (inn && container.scrollLeft >= inn.scrollWidth / 2) container.scrollLeft -= inn.scrollWidth / 2;
       }, 16);

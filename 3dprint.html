@@ -327,7 +327,7 @@
   #prThumbNext { display: none; }
   .pr-work .port-thumb-item     { width: 130px; }
   .pr-work .port-thumb-img-wrap { height: 86px; }
-  .pr-work .port-thumb-label    { font-size: 10.5px; white-space: normal; line-height: 1.3; padding: 6px 7px 8px; }
+  .pr-work .port-thumb-label    { font-size: 10.5px; white-space: normal; line-height: 1.3; padding: 6px 7px 8px; text-align: center; }
 }
 
 /* ── ESTIMATOR ───────────────────────────────────────────────── */
@@ -565,6 +565,8 @@
   .pr-hero-tags { gap: 5px; margin-bottom: 26px; }
   .pr-hero-tag { font-size: 8px; padding: 3px 8px; }
   .pr-hero-cta { gap: 10px; }
+  .pr-cta-estimate { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .pr-cta-estimate:hover { background: var(--blue-lt); border-color: var(--blue-lt); color: #fff; }
 
   /* Estimator section */
   .pr-estimator { padding: 44px 0 36px; }
@@ -668,7 +670,7 @@
 
     <div class="pr-hero-cta">
       <a href="contact.html" class="btn-primary" id="pr-cta1">Get a Quote →</a>
-      <a href="#prEstimator" class="btn-outline pr-cta-estimate" id="pr-cta2">Estimate Cost</a>
+      <a href="#prWork" class="btn-outline pr-cta-estimate" id="pr-cta2">View All Projects</a>
     </div>
   </div>
 
@@ -765,7 +767,7 @@
 </section>
 
 <!-- ══ OUR WORK ═══════════════════════════════════════════════ -->
-<section class="wd-work pr-work">
+<section class="wd-work pr-work" id="prWork">
   <div class="wd-work-inner">
 
     <div class="wd-work-header">
