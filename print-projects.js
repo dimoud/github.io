@@ -241,6 +241,177 @@ const PRINT_PROJECTS = [
     rev: true
   },
   {
+    catEn: '3D Print · Jig & Fixture · Steel Rod Clamping',
+    catEl: '3D Printing · Βάση & Εργαλείο · Σύσφιγξη Χαλύβδινων Ράβδων',
+    titleEn: 'Steel Rod Clamp Base & Handle',
+    titleEl: 'Βάση & Χερούλι Σύσφιγξης Χαλύβδινων Ράβδων',
+    descEn: 'Custom clamping system for steel rods — a screw-tightened base that locks rods in place, paired with a matching ergonomic handle. Designed for repeatable positioning in production and workshop use.',
+    descEl: 'Εξατομικευμένο σύστημα σύσφιγξης χαλύβδινων ράβδων — βάση με κοχλία για ακλόνητο κράτημα και ταιριαστό εργονομικό χερούλι. Σχεδιασμένο για επαναλαμβανόμενη τοποθέτηση σε εργαστήριο.',
+    tagEn: 'FDM / PLA,Clamp,Steel Rod,Jig & Fixture,Workshop',
+    tagEl: 'FDM / PLA,Σύσφιγξη,Χαλύβδινη Ράβδος,Βάση Εργαλείου,Εργαστήριο',
+    urlLabel: '3D Print · PLA · Steel Rod Clamping System',
+    images: [
+      'images/3d_prints/BASE_FOR_STEEL_RODS_TIGHT_HOLD_WITH_SCREWS_1.PNG',
+      'images/3d_prints/BASE_FOR_STEEL_RODS_TIGHT_HOLD_WITH_SCREWS_2.PNG',
+      'images/3d_prints/BASE_FOR_STEEL_RODS_TIGHT_HOLD_WITH_SCREWS_3.PNG',
+      'images/3d_prints/HANDLE_FOR_STEEL_RODS_TIGHT_FIX_SCREWS_1.PNG',
+      'images/3d_prints/HANDLE_FOR_STEEL_RODS_TIGHT_FIX_SCREWS_2.PNG',
+      'images/3d_prints/HANDLE_FOR_STEEL_RODS_TIGHT_FIX_SCREWS_3.PNG'
+    ],
+    rev: false
+  },
+  {
+    catEn: '3D Print · Jig & Fixture · Bracket',
+    catEl: '3D Printing · Βάση & Εργαλείο · Στήριγμα',
+    titleEn: 'Tight-Fix Bracket',
+    titleEl: 'Βραχίονας Σφικτής Εφαρμογής',
+    descEn: 'Precision bracket designed to clamp and secure components with tight tolerances — clean geometry, screw-fastened, produced in PLA for workshop and light industrial use.',
+    descEl: 'Ακριβής βραχίονας για σφικτή σύσφιγξη εξαρτημάτων — καθαρή γεωμετρία, βιδωτή στερέωση, εκτυπωμένος σε PLA για εργαστηριακή και ελαφρά βιομηχανική χρήση.',
+    tagEn: 'FDM / PLA,Bracket,Clamp,Tight Tolerance,Custom Part',
+    tagEl: 'FDM / PLA,Στήριγμα,Σύσφιγξη,Στενές Ανοχές,Εξατομικευμένο Εξάρτημα',
+    urlLabel: '3D Print · PLA · Tight-Fix Bracket',
+    images: [
+      'images/3d_prints/BRACKET_TO_FIX_TIGHT_SOMETHING_1.PNG',
+      'images/3d_prints/BRACKET_TO_FIX_TIGHT_SOMETHING_2.PNG'
+    ],
+    rev: true
+  },
+  {
+    catEn: '3D Print · Hand Tool · Magnetic Pointer',
+    catEl: '3D Printing · Χειροκίνητο Εργαλείο · Μαγνητικός Δείκτης',
+    titleEn: 'Magnetic Pointing Hand Tool',
+    titleEl: 'Χειροκίνητο Εργαλείο με Ενσωματωμένους Μαγνήτες',
+    descEn: 'Custom hand tool with embedded magnets for precise pointing and part alignment — ergonomic grip, press-fit magnet pockets, printed in PLA for workshop and assembly-line use.',
+    descEl: 'Εξατομικευμένο χειροκίνητο εργαλείο με ενσωματωμένους μαγνήτες για ακριβή στόχευση και ευθυγράμμιση εξαρτημάτων — εργονομική λαβή, press-fit θήκες μαγνητών.',
+    tagEn: 'FDM / PLA,Hand Tool,Magnets,Alignment,Workshop',
+    tagEl: 'FDM / PLA,Χειροκίνητο Εργαλείο,Μαγνήτες,Ευθυγράμμιση,Εργαστήριο',
+    urlLabel: '3D Print · PLA · Magnetic Hand Tool',
+    images: [
+      'images/3d_prints/HAND_TOOL_WITH_MAGNETS_INSERTED_FOR_POITING_1.PNG',
+      'images/3d_prints/HAND_TOOL_WITH_MAGNETS_INSERTED_FOR_POITING_2.PNG',
+      'images/3d_prints/HAND_TOOL_WITH_MAGNETS_INSERTED_FOR_POITING_3.PNG'
+    ],
+    rev: false
+  },
+  {
+    catEn: '3D Print · Electronics Enclosure · Ventilation',
+    catEl: '3D Printing · Κέλυφος Ηλεκτρονικών · Εξαερισμός',
+    titleEn: 'Smoke Fan Housing',
+    titleEl: 'Κέλυφος Ανεμιστήρα Καπνού',
+    descEn: 'Custom enclosure for a smoke extraction fan — designed around the fan and motor geometry with integrated duct mounts. Printed in heat-resistant PETG for continuous operation near heat sources.',
+    descEl: 'Εξατομικευμένο κέλυφος για ανεμιστήρα εξαγωγής καπνού — σχεδιασμένο γύρω από τη γεωμετρία ανεμιστήρα και κινητήρα με ενσωματωμένες βάσεις αγωγών. Εκτυπωμένο σε PETG.',
+    tagEn: 'FDM / PETG,Fan Housing,Smoke Extraction,Electronics Enclosure',
+    tagEl: 'FDM / PETG,Κέλυφος Ανεμιστήρα,Εξαγωγή Καπνού,Κέλυφος Ηλεκτρονικών',
+    urlLabel: '3D Print · PETG · Smoke Fan Housing',
+    images: [
+      'images/3d_prints/HOUSING_FOR_SMOKE_FAN_1.PNG',
+      'images/3d_prints/HOUSING_FOR_SMOKE_FAN_2.PNG',
+      'images/3d_prints/HOUSING_FOR_SMOKE_FAN_3.PNG'
+    ],
+    rev: true
+  },
+  {
+    catEn: '3D Print · Handle · Modular Base',
+    catEl: '3D Printing · Λαβή · Αρθρωτή Βάση',
+    titleEn: 'Handle Main Base',
+    titleEl: 'Κύρια Βάση Λαβής',
+    descEn: 'Modular handle base system — clean ergonomic profile designed for attachment to various tools or fixtures. Printed in PLA with countersunk mounting points for a flush, professional finish.',
+    descEl: 'Αρθρωτό σύστημα βάσης λαβής — καθαρό εργονομικό προφίλ για σύνδεση σε διάφορα εργαλεία ή βάσεις. Εκτυπωμένο σε PLA με χωνευτά σημεία στερέωσης.',
+    tagEn: 'FDM / PLA,Handle,Modular,Custom Design,Workshop',
+    tagEl: 'FDM / PLA,Λαβή,Αρθρωτό,Εξατομικευμένος Σχεδιασμός,Εργαστήριο',
+    urlLabel: '3D Print · PLA · Modular Handle Base',
+    images: [
+      'images/3d_prints/Handle_main_base_1.PNG',
+      'images/3d_prints/Handle_main_base_2.PNG',
+      'images/3d_prints/Handle_main_base_3.PNG'
+    ],
+    rev: false
+  },
+  {
+    catEn: '3D Print · Electronics Enclosure · Mechatronics',
+    catEl: '3D Printing · Κέλυφος Ηλεκτρονικών · Μηχατρονική',
+    titleEn: 'DC Motor Case with Belt Tensioner',
+    titleEl: 'Κέλυφος DC Κινητήρα με Τεντωτήρα Ιμάντα',
+    descEn: 'Sophisticated enclosure housing a DC motor controller, electronics, and integrated belt tensioner — all in one compact assembly. Designed for mechatronic systems requiring tight spatial integration.',
+    descEl: 'Εξελιγμένο κέλυφος που στεγάζει ελεγκτή DC κινητήρα, ηλεκτρονικά και ενσωματωμένο τεντωτήρα ιμάντα — όλα σε μία συμπαγή συναρμολόγηση για μηχατρονικά συστήματα.',
+    tagEn: 'FDM / PETG,DC Motor,Belt Tensioner,Electronics Housing,Mechatronics',
+    tagEl: 'FDM / PETG,DC Κινητήρας,Τεντωτήρας Ιμάντα,Κέλυφος Ηλεκτρονικών,Μηχατρονική',
+    urlLabel: '3D Print · PETG · DC Motor + Belt Tensioner Enclosure',
+    images: [
+      'images/3d_prints/SOPHISTICATED_MOTOR_DC_CASE_HOUSE_ELENTRONICS_AND_BELT_TENSIONER_1.PNG',
+      'images/3d_prints/SOPHISTICATED_MOTOR_DC_CASE_HOUSE_ELENTRONICS_AND_BELT_TENSIONER_2.PNG',
+      'images/3d_prints/SOPHISTICATED_MOTOR_DC_CASE_HOUSE_ELENTRONICS_AND_BELT_TENSIONER_3.PNG'
+    ],
+    rev: true
+  },
+  {
+    catEn: '3D Print · Custom Accessory · Slingshot',
+    catEl: '3D Printing · Εξατομικευμένο Αξεσουάρ · Σφεντόνα',
+    titleEn: 'Slingshot Rubber Band Holder',
+    titleEl: 'Θήκη Λαστιχιών Σφεντόνας',
+    descEn: 'Sophisticated rubber band holder for a slingshot — optimised geometry for consistent band tension and quick reload. Printed in PLA; available in multiple attachment configurations.',
+    descEl: 'Εξελιγμένη θήκη λαστιχιών σφεντόνας — βελτιστοποιημένη γεωμετρία για σταθερή τάση και γρήγορη επαναφόρτωση. Εκτυπωμένη σε PLA, διαθέσιμη σε πολλές διαμορφώσεις.',
+    tagEn: 'FDM / PLA,Slingshot,Rubber Band,Custom Accessory,Sport',
+    tagEl: 'FDM / PLA,Σφεντόνα,Λαστιχάκι,Εξατομικευμένο Αξεσουάρ,Άθλημα',
+    urlLabel: '3D Print · PLA · Slingshot Rubber Band Holder',
+    images: [
+      'images/3d_prints/SOPHISTICATED_SLIGNSHOT_RUBBER_BANDS_HOLDER_1.PNG',
+      'images/3d_prints/SOPHISTICATED_SLIGNSHOT_RUBBER_BANDS_HOLDER_2.PNG',
+      'images/3d_prints/SOPHISTICATED_SLIGNSHOT_RUBBER_BANDS_HOLDER_3.PNG',
+      'images/3d_prints/SOPHISTICATED_SLIGNSHOT_RUBBER_BANDS_HOLDER_4.PNG'
+    ],
+    rev: false
+  },
+  {
+    catEn: '3D Print · Firearm Accessory · Stock',
+    catEl: '3D Printing · Αξεσουάρ Όπλου · Κοντάκι',
+    titleEn: 'Custom Stock',
+    titleEl: 'Εξατομικευμένο Κοντάκι',
+    descEn: 'Custom-designed stock — ergonomic geometry optimised for balance and cheek weld. Printed in high-strength ABS for durability and dimensional stability under load.',
+    descEl: 'Εξατομικευμένο κοντάκι — εργονομική γεωμετρία βελτιστοποιημένη για ισορροπία. Εκτυπωμένο σε υψηλής αντοχής ABS για ανθεκτικότητα και διαστατική σταθερότητα.',
+    tagEn: 'FDM / ABS,Stock,Custom Design,High Strength',
+    tagEl: 'FDM / ABS,Κοντάκι,Εξατομικευμένος Σχεδιασμός,Υψηλή Αντοχή',
+    urlLabel: '3D Print · ABS · Custom Stock',
+    images: [
+      'images/3d_prints/STOCK_1.PNG',
+      'images/3d_prints/STOCK_2.PNG'
+    ],
+    rev: true
+  },
+  {
+    catEn: '3D Print · Photography · Tripod Base',
+    catEl: '3D Printing · Φωτογραφία · Βάση Τρίποδα',
+    titleEn: 'Tripod Base',
+    titleEl: 'Βάση Τρίποδα',
+    descEn: 'Custom tripod base — stable three-point geometry with standard thread interface. Printed in PETG for rigidity and outdoor use; compatible with camera and sensor mounting systems.',
+    descEl: 'Εξατομικευμένη βάση τρίποδα — σταθερή τριγωνική γεωμετρία με τυπική σπειρωτή σύνδεση. Εκτυπωμένη σε PETG για ακαμψία και εξωτερική χρήση.',
+    tagEn: 'FDM / PETG,Tripod,Photography,Custom Mount',
+    tagEl: 'FDM / PETG,Τρίποδας,Φωτογραφία,Εξατομικευμένη Βάση',
+    urlLabel: '3D Print · PETG · Tripod Base',
+    images: [
+      'images/3d_prints/TRIPOD_BASE_!.PNG',
+      'images/3d_prints/TRIPOD_BASE_2.PNG',
+      'images/3d_prints/TRIPOD_BASE_3.PNG'
+    ],
+    rev: false
+  },
+  {
+    catEn: '3D Print · Firearm Accessory · Bipod',
+    catEl: '3D Printing · Αξεσουάρ Όπλου · Bipod',
+    titleEn: 'Bipod',
+    titleEl: 'Bipod',
+    descEn: 'Custom bipod with folding leg geometry — lightweight, printed in ABS for strength-to-weight ratio. Designed for stable prone shooting position with adjustable leg spread.',
+    descEl: 'Εξατομικευμένο bipod με αναδιπλούμενες πόδες — ελαφρύ, εκτυπωμένο σε ABS για βέλτιστο λόγο αντοχής/βάρους. Σχεδιασμένο για σταθερή θέση βολής.',
+    tagEn: 'FDM / ABS,Bipod,Custom Design,High Strength,Shooting',
+    tagEl: 'FDM / ABS,Bipod,Εξατομικευμένος Σχεδιασμός,Υψηλή Αντοχή,Βολή',
+    urlLabel: '3D Print · ABS · Custom Bipod',
+    images: [
+      'images/3d_prints/bipod_pied.PNG',
+      'images/3d_prints/bipod_pied2.PNG'
+    ],
+    rev: true
+  },
+  {
     catEn: '3D Print · Reverse Engineering · Automotive',
     catEl: '3D Printing · Αντίστροφη Μηχανική · Αυτοκίνητο',
     titleEn: 'Car Window Winder Handle',

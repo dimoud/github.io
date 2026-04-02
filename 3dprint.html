@@ -63,11 +63,18 @@
 .pr-work .wd-work-title { color: var(--blue)    !important; }
 .pr-work .wd-work-sub   { color: var(--blue)    !important; display: block !important; }
 
+/* Projects section — 30% bigger than index */
+.pr-work .wd-work-inner       { max-width: 1560px; }
+.pr-work .portfolio-stage     { min-height: 806px; }
+.pr-work .port-image-wrap     { height: 67.6vh; min-height: 390px; }
+.pr-work .port-thumb-item     { width: 179px; }
+.pr-work .port-thumb-img-wrap { height: 108px; }
+
 /* ── HERO SPLIT ──────────────────────────────────────────────── */
 .pr-hero-wrap {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: 85fr 45fr;
   position: relative;
   overflow: hidden;
   padding-top: 70px;
@@ -78,7 +85,7 @@
 .pr-hero-left {
   position: relative; z-index: 3;
   display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 48px 80px 64px;
+  padding: 80px 48px 80px 200px;
   background: var(--navy);
 }
 .pr-hero-left::before {
@@ -145,9 +152,10 @@
 
 /* RIGHT — image slideshow */
 .pr-hero-right {
-  position: relative; z-index: 2;
+  position: relative; z-index: 5;
   overflow: hidden;
   background: #040810;
+  margin-left: -200px;
 }
 /* Diagonal slash divider on left edge of right panel */
 .pr-hero-right::before {
@@ -571,7 +579,7 @@
       <span class="pr-hero-slash">/ / /</span>
       Laser Cut
       <span class="pr-hero-slash">/ / /</span>
-      &amp;&nbsp;Engrave
+      Laser&nbsp;Engrave
     </h1>
 
     <p class="pr-hero-desc" id="pr-desc">From idea to finished part — custom 3D printing, reverse engineering, and laser cutting &amp; engraving. Functional prototypes, one-off parts, and decorative work produced in-house.</p>

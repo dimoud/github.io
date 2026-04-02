@@ -711,7 +711,7 @@
 
     scene  = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(45, W / H, 0.01, 10000);
-    camera.position.set(0, 0, 3.5);
+    camera.position.set(0, 0, 2.2);
 
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
