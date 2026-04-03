@@ -57,9 +57,8 @@
 [data-reveal].visible{opacity:1;transform:none;}
 [data-reveal-r]{opacity:0;transform:translateX(22px);transition:opacity .65s ease,transform .65s ease;}
 [data-reveal-r].visible{opacity:1;transform:none;}
-/* ── ec-rule sits in body; give credit banner the same navy base ── */
-hr.ec-rule{background:linear-gradient(90deg,transparent,rgba(201,168,108,.25),transparent);}
-.expertease-credit{background:var(--navy);}
+/* ── credit banner: dark base + clear scroll ruler ── */
+.expertease-credit{background:var(--navy,#060d1a);margin-bottom:calc(72px + 28px);} /* extra 28px for fixed scroll ruler */
 /* ── footer social ── */
 .footer-social{display:flex;gap:10px;align-items:center;}
 .footer-social-link{color:rgba(255,255,255,.28);display:flex;align-items:center;transition:color .3s ease;}
@@ -78,6 +77,8 @@ hr.ec-rule{background:linear-gradient(90deg,transparent,rgba(201,168,108,.25),tr
   opacity:0;transform:translateY(10px);
   transition:opacity .4s ease,transform .4s ease;
   pointer-events:none;
+  overflow:hidden;
+  max-width:100vw;
 }
 #scrollRuler.show{opacity:1;transform:none;}
 .sr-bar{display:flex;align-items:center;gap:8px;width:100%;}
@@ -672,15 +673,34 @@ hr.ec-rule{background:linear-gradient(90deg,transparent,rgba(201,168,108,.25),tr
 
 <hr class="ec-rule">
 <div class="expertease-credit">
-  <div class="ec-inner">
+
+  <!-- Layer A: credit -->
+  <div class="ec-layer ec-layer--credit">
     <span class="ec-copy">© 2026 · All Rights Reserved</span>
     <span class="ec-divider"></span>
     <a href="https://expertease.eu/webdesign" target="_blank" rel="noopener" class="ec-brand">
       <span class="ec-label">Designed by</span>
-      <img src="images/logo.png" alt="Design Expertease" class="ec-logo">
-      <span class="ec-name">Design Expertease</span>
+      <img src="images/logo.png" alt="Expertease Designs" class="ec-logo">
+      <span class="ec-name">Expertease Designs</span>
     </a>
   </div>
+
+  <!-- Layer B: ad -->
+  <div class="ec-layer ec-layer--ad">
+    <div class="ec-ad-ring">
+      <div class="ec-ad-logo"><img src="images/logo.png" alt="Expertease Designs"></div>
+    </div>
+    <div class="ec-ad-text">
+      <span class="ec-ad-question">Like this site?</span>
+      <a href="https://expertease.eu/webdesign" target="_blank" rel="noopener" class="ec-ad-cta">
+        Let's build yours
+        <span class="ec-ad-arrow">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6.5" x2="11" y2="6.5"/><polyline points="7,2.5 11,6.5 7,10.5"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
 </div>
 
 <button id="backToTop" aria-label="Back to top">
