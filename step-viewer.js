@@ -317,6 +317,30 @@
 
   window.stepResetCamera = function () { fitCamera(svLastFilename); };
 
+  window.stepSetView = function (view) {
+    if (!svModel) return;
+    const box    = new THREE.Box3().setFromObject(svModel);
+    const center = box.getCenter(new THREE.Vector3());
+    const size   = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z) || 1000;
+    const dist   = maxDim * 1.8;
+
+    svCamera.near = maxDim * 0.001;
+    svCamera.far  = maxDim * 200;
+    svCamera.updateProjectionMatrix();
+
+    const dirs = {
+      front: [0,   0,   dist],
+      top:   [0,   dist, 0.001],
+      right: [dist, 0,   0],
+      iso:   [dist, dist, dist],
+    };
+    const [dx, dy, dz] = dirs[view] || dirs.iso;
+    svCamera.position.set(center.x + dx, center.y + dy, center.z + dz);
+    svCamera.lookAt(center);
+    if (svControls) { svControls.target.copy(center); svControls.update(); }
+  };
+
   window.stepLoadFile = async function (url, filename, listItem) {
     if (!occt) { return; }
     /* Highlight active item */
