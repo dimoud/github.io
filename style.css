@@ -3036,3 +3036,8 @@ hr.ec-rule { position: relative; z-index: 2; }
   }
   #backToTop svg { width: 14px; height: 14px; }
 }
+
+@media (max-width: 640px) {
+  /* Hide → arrows in static HTML buttons/links */
+  .wd-proj-arrow { display: none; }
+}

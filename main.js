@@ -318,11 +318,13 @@ function applyLang(lang) {
   const t = LANG[lang];
   document.documentElement.lang = lang === 'el' ? 'el' : 'en';
   const set = (id, val, html=false) => { const el=document.getElementById(id); if(!el)return; html?el.innerHTML=val:el.textContent=val; };
+  const isMob = window.innerWidth <= 640;
+  const noArrow = v => (typeof v === 'string' && isMob) ? v.replace(/ →$/, '') : v;
   set('nav-about',t.nav_about); set('nav-projects',t.nav_projects);
   set('nav-software',t.nav_software); set('nav-webdesign',t.nav_webdesign); set('nav-3dprint',t.nav_3dprint); set('nav-experience',t.nav_experience); set('nav-contact',t.nav_contact);
   set('hero-tag',t.hero_tag); set('hero-title',t.hero_title);
   set('hero-desc',t.hero_desc,true);
-  set('hero-cta-work',t.hero_cta_work); set('hero-cta-contact',t.hero_cta_contact);
+  set('hero-cta-work',noArrow(t.hero_cta_work)); set('hero-cta-contact',noArrow(t.hero_cta_contact));
   set('stat-years',t.stat_years); set('stat-projects',t.stat_projects); set('stat-degrees',t.stat_degrees);
 
   set('edu-strip-title',t.edu_strip);
@@ -335,7 +337,6 @@ function applyLang(lang) {
   set('about-quote',t.about_quote);
   set('about-p2',t.about_p2,true); set('about-p3',t.about_p3,true);
   set('about-p4',t.about_p4);
-  const isMob = window.innerWidth <= 640;
   set('val-1-title',t.val_1_title); set('val-1-text', isMob && t.val_1_text_mobile ? t.val_1_text_mobile : t.val_1_text);
   set('val-2-title',t.val_2_title); set('val-2-text', isMob && t.val_2_text_mobile ? t.val_2_text_mobile : t.val_2_text);
   set('val-3-title',t.val_3_title); set('val-3-text', isMob && t.val_3_text_mobile ? t.val_3_text_mobile : t.val_3_text);
@@ -355,17 +356,17 @@ function applyLang(lang) {
   set('founder-label',t.founder_label,true); set('founder-bio',t.founder_bio);
   set('fcs-years',t.fcs_years); set('fcs-projects',t.fcs_projects);
   set('fcs-degrees',t.fcs_degrees); set('fcs-scholarships',t.fcs_scholarships);
-  set('founder-profile-btn',t.founder_profile_btn);
+  set('founder-profile-btn',noArrow(t.founder_profile_btn));
   set('projects-heading',t.projects_heading);
   set('sw-heading',t.sw_heading); set('sw-label',t.sw_label);
   set('sw-desc',t.sw_desc);
   for(let i=1;i<=8;i++) set('sw-f'+i,t['sw_f'+i]);
-  set('sw-cta1',t.sw_cta1); set('sw-cta2',t.sw_cta2);
+  set('sw-cta1',noArrow(t.sw_cta1)); set('sw-cta2',noArrow(t.sw_cta2));
   // webdesign.html
   set('wd-codebox-label',t.wd_codebox_label); set('wd-codebox-body',t.wd_codebox_body);
   set('wd-label',t.wd_label); set('wd-desc',t.wd_desc);
   for(let i=1;i<=8;i++) set('wd-f'+i,t['wd_f'+i]);
-  set('wd-cta1',t.wd_cta1); set('wd-cta2',t.wd_cta2);
+  set('wd-cta1',noArrow(t.wd_cta1)); set('wd-cta2',noArrow(t.wd_cta2));
   set('wd-off-label',t.wd_off_label);
   set('wd-off1-name',t.wd_off1_name); set('wd-off1-text',t.wd_off1_text);
   set('wd-off2-name',t.wd_off2_name); set('wd-off2-text',t.wd_off2_text);
@@ -380,12 +381,12 @@ function applyLang(lang) {
   set('wd-proj-3-name',t.wd_proj_3_name); set('wd-proj-3-role',t.wd_proj_3_role,true); set('wd-proj-3-desc',t.wd_proj_3_desc); set('wd-proj-3-link',t.wd_proj_3_link);
   set('wd-cta-label',t.wd_cta_label); set('wd-cta-title',t.wd_cta_title,true);
   set('wd-cta-text',t.wd_cta_text); set('wd-cta-price-from',t.wd_cta_price_from);
-  set('wd-cta-btn1',t.wd_cta_btn1); set('wd-cta-btn2',t.wd_cta_btn2);
+  set('wd-cta-btn1',noArrow(t.wd_cta_btn1)); set('wd-cta-btn2',noArrow(t.wd_cta_btn2));
   set('wd-cta-perk1',t.wd_cta_perk1); set('wd-cta-perk2',t.wd_cta_perk2); set('wd-cta-perk3',t.wd_cta_perk3);
   // 3dprint.html
   set('pr-label',t.pr_label); set('pr-title',t.pr_title,true); set('pr-desc',t.pr_desc,true);
   for(let i=1;i<=8;i++) set('pr-f'+i,t['pr_f'+i]);
-  set('pr-cta1',t.pr_cta1); set('pr-cta2',t.pr_cta2);
+  set('pr-cta1',noArrow(t.pr_cta1)); set('pr-cta2',noArrow(t.pr_cta2));
   set('pr-off-label',t.pr_off_label);
   set('pr-off1-name',t.pr_off1_name); set('pr-off1-text',t.pr_off1_text);
   set('pr-off2-name',t.pr_off2_name); set('pr-off2-text',t.pr_off2_text);
@@ -398,7 +399,7 @@ function applyLang(lang) {
   set('pr-proj-4-name',t.pr_proj_4_name); set('pr-proj-4-role',t.pr_proj_4_role); set('pr-proj-4-desc',t.pr_proj_4_desc); set('pr-proj-4-link',t.pr_proj_4_link);
   set('pr-cta-label',t.pr_cta_label); set('pr-cta-title',t.pr_cta_title,true);
   set('pr-cta-text',t.pr_cta_text); set('pr-cta-price-from',t.pr_cta_price_from);
-  set('pr-cta-btn1',t.pr_cta_btn1);
+  set('pr-cta-btn1',noArrow(t.pr_cta_btn1));
   set('pr-cta-perk1',t.pr_cta_perk1); set('pr-cta-perk2',t.pr_cta_perk2); set('pr-cta-perk3',t.pr_cta_perk3);
   set('contact-label',t.contact_label); set('contact-heading',t.contact_heading,true);
   set('contact-sub',t.contact_sub);
@@ -462,7 +463,7 @@ function renderPortfolioCol(colEl, idx) {
     const desc = colEl.querySelector('.port-desc');
     if (desc) desc.textContent = lang === 'el' ? p.descEl : p.descEn;
     const link = colEl.querySelector('.port-link');
-    if (link) { link.href = p.link; link.textContent = lang === 'el' ? 'Επικοινωνήστε →' : 'Get in Touch →'; }
+    if (link) { link.href = p.link; const mob = window.innerWidth <= 640; link.textContent = lang === 'el' ? (mob ? 'Επικοινωνήστε' : 'Επικοινωνήστε →') : (mob ? 'Get in Touch' : 'Get in Touch →'); }
     colEl.classList.remove('port-fade-out');
     startColImageCycle(colEl, p);
   }, 500);
@@ -940,15 +941,27 @@ function initHeroExplode() {
   const canvas   = document.getElementById('hero3d');
   if (!hero) return;
 
+  let lastSt = 0;
+
   window.addEventListener('scroll', () => {
     const heroH = hero.offsetHeight;
     const st    = window.scrollY;
     const isMob = window.innerWidth <= 960;
 
     if (isMob) {
-      /* Mobile: explosion completes within the hero section scroll zone */
-      const progress = Math.max(0, Math.min(1, st / (heroH * 0.65)));
-      if (typeof setScrollExplode === 'function') setScrollExplode(progress);
+      const scrollingUp = st < lastSt;
+
+      /* When scrolling back up into the hero, release scroll control so
+         the render loop's smooth re-assembly animation plays */
+      if (scrollingUp && st < heroH * 0.65) {
+        if (typeof setScrollExplode === 'function') setScrollExplode(0);
+      } else if (!scrollingUp) {
+        /* Scrolling down — drive the explosion with scroll position */
+        const progress = Math.max(0, Math.min(1, st / (heroH * 0.65)));
+        if (typeof setScrollExplode === 'function') setScrollExplode(progress);
+      }
+
+      lastSt = st;
 
       /* Canvas: full opacity inside hero, subtle outside */
       if (canvas) {

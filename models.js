@@ -1153,7 +1153,10 @@ function animate() {
 
   } else if (!exploding&&explodeT>0) {
 
-    explodeT=Math.max(0,explodeT-dt*.80); applyExplode(explodeT);
+    /* Ease-out assembly: fast approach, then decelerates as parts lock in.
+       Speed = base * easeOut — feels like magnetic snap slowing to seat. */
+    const assembleSpeed = 1.6 * (0.08 + 0.92 * explodeT);
+    explodeT=Math.max(0,explodeT-dt*assembleSpeed); applyExplode(explodeT);
 
   }
 

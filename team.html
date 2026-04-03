@@ -616,6 +616,20 @@
 
   #team { padding: 40px 16px 36px !important; }
   .edu-cards { grid-template-columns: repeat(2,1fr); }
+
+  /* 6 value cards: 3 rows × 2 columns, compact */
+  .values-section .values-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px;
+  }
+  .values-section .value-card {
+    padding: 14px 12px 12px;
+  }
+  .values-section .value-icon { font-size: 9px; letter-spacing: 2px; margin-bottom: 6px; }
+  .values-section .value-bilingual .en,
+  .values-section .value-heading { font-size: 13px; margin-bottom: 6px; }
+  .values-section .value-bilingual .el { font-size: 9px; }
+  .values-section .value-text { font-size: 10.5px; line-height: 1.5; }
 }
 
 @media (max-width: 480px) {
@@ -639,7 +653,7 @@
   .founder-stat-label { font-size: 7px; letter-spacing: 1px; }
 
   .edu-cards { grid-template-columns: 1fr; }
-  .values-grid { grid-template-columns: 1fr; }
+  .values-section .values-grid { grid-template-columns: 1fr 1fr !important; }
 }
 </style>
 </head>
@@ -864,7 +878,7 @@
             <span class="en">Knowledge</span>
             <span class="el">Γνώση</span>
           </div>
-          <p class="value-text" id="proc-exp-text">Nine years of hands-on engineering across robotics, safety equipment, and precision fabrication — backed by five university degrees from three countries. Deep technical knowledge applied to every brief.</p>
+          <p class="value-text" id="proc-exp-text">Nine years across robotics, safety equipment and precision fabrication — five degrees, three countries.</p>
         </div>
         <div class="value-card vc-red">
           <div class="value-icon">02</div>
@@ -872,7 +886,7 @@
             <span class="en">Integrity</span>
             <span class="el">Ακεραιότητα</span>
           </div>
-          <p class="value-text">Honest estimates, transparent communication, and full accountability from first sketch to final delivery. No surprises, no shortcuts — only what was promised, done properly.</p>
+          <p class="value-text">Honest estimates, full accountability from sketch to delivery. No surprises, no shortcuts.</p>
         </div>
         <div class="value-card vc-green">
           <div class="value-icon">03</div>
@@ -880,11 +894,8 @@
             <span class="en">Innovation</span>
             <span class="el">Καινοτομία</span>
           </div>
-          <p class="value-text">A classical engineering foundation meets a genuine drive to find smarter solutions. From DFM-optimised geometry to cross-disciplinary insight, every project is an opportunity to do it better.</p>
+          <p class="value-text">Classical engineering meets a drive for smarter solutions — DFM geometry, cross-disciplinary insight.</p>
         </div>
-
-        <!-- ── Divider ── -->
-        <div class="values-row-divider" style="grid-column:1/-1;"><span>// How We Work</span></div>
 
         <!-- ── Principles (JS-populated) ── -->
         <div class="value-card vc-blue">
