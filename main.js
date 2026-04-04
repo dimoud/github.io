@@ -27,7 +27,7 @@ const LANG = {
     val_2_title:'Πλήρης Κύκλος', val_2_text:'Από σκίτσο ως συναρμολόγηση — σχεδιασμός, BOM, κατασκευή και παράδοση. Παραδίδουμε, δεν μεταβιβάζουμε.', val_2_text_mobile:'Σχεδιασμός, BOM, κατασκευή, παράδοση. Παραδίδουμε — δεν μεταβιβάζουμε.',
     val_3_title:'Διεθνή Πρότυπα', val_3_text:'Σπουδές σε 3 χώρες. Διεθνής μηχανολογική αυστηρότητα εφαρμοσμένη σε κάθε τοπικό έργο.', val_3_text_mobile:'Σπουδές σε 3 χώρες. Διεθνής αυστηρότητα, τοπικά εφαρμοσμένη.',
     val_4_title:'Σχεδιασμός για Κατασκευή', val_4_text:'Σχεδιασμός για κατασκευή από την πρώτη μέρα. Σχέδια βελτιστοποιημένα για γρήγορη παραγωγή, ελάχιστα απόβλητα και πραγματική συναρμολόγηση.', val_4_text_mobile:'DFM από την πρώτη μέρα. Γρήγορη παραγωγή, ελάχιστα απόβλητα.',
-    about_bullets:'<li>7+ χρόνια μηχανολογικός σχεδιασμός, 3D printing & κατασκευή</li><li>Πλήρης κύκλος: CAD → BOM → κατασκευή → ποιοτικός έλεγχος</li><li>FEA & σχεδιασμός για κατασκευή από την πρώτη μέρα</li><li>Αθήνα — δουλεύουμε Ελλάδα & εξωτερικό</li>',
+    about_bullets:'<li>7+ χρόνια μηχανολογικός σχεδιασμός, 3D printing & κατασκευή</li><li>Πλήρης κύκλος: CAD → BOM → κατασκευή → ποιοτικός έλεγχος</li><li>FEA & σχεδιασμός για κατασκευή από την πρώτη μέρα</li>',
     proc_label:'Πώς Δουλεύουμε',
     proc_1_title:'Brief', proc_1_text:'Αφιερώνουμε χρόνο να κατανοήσουμε τις ανάγκες, τους περιορισμούς και τους στόχους σας πριν πάρουμε οποιαδήποτε σχεδιαστική απόφαση — γιατί ένα σωστό brief οδηγεί σε σωστό αποτέλεσμα.',
     proc_2_title:'Σχεδιασμός', proc_2_text:'3D μοντέλο σε SolidWorks, FEA, πλήρες BOM και τεχνικά σχέδια (εξαρτημάτων, συναρμολόγησης, οδηγίες) — όλα έτοιμα για παραγωγή.',
@@ -160,7 +160,7 @@ const LANG = {
     nav_webdesign:'Web Design', nav_3dprint:'3D Print', nav_experience:'Team', nav_contact:'Contact',
     hero_tag:'// Mechanical Design & 3D Printing Studio — Athens, GR',
     hero_title:'Mechanical Design · 3D Printing · Laser Cut & Engrave',
-    hero_desc:'<strong>Expertease Designs</strong> — machine design, sheet metal, rapid prototyping, BOM, and project management. Athens-based, working internationally.',
+    hero_desc:'<strong>Expertease Designs</strong> — machine design, sheet metal, rapid prototyping, BOM, and project management.',
     hero_cta_work:'View Projects →', hero_cta_contact:'Get in Touch',
     stat_years:'Years Experience', stat_projects:'Projects Delivered', stat_degrees:'University Degrees',
     edu_strip:'Founder — Dimitrios Moudiotis · 5 Universities in 3 Countries',
@@ -178,7 +178,7 @@ const LANG = {
     val_2_title:'Full Lifecycle', val_2_text:'From sketch to assembly — design, BOM, fabrication, and handover. We deliver, we don\'t hand off.', val_2_text_mobile:'Design, BOM, fabrication, handover. We deliver — we don\'t hand off.',
     val_3_title:'Global Standards', val_3_text:'Educated across 3 countries. International engineering rigour applied to every local project.', val_3_text_mobile:'Educated across 3 countries. International rigour, applied locally.',
     val_4_title:'Built to Make', val_4_text:'Design for Manufacturability from day one. Designs optimised for fast fabrication, minimal waste, and real-world assembly.', val_4_text_mobile:'DFM from day one. Fast to fabricate, minimal waste, fits first time.',
-    about_bullets:'<li>7+ years mechanical design, 3D printing & fabrication</li><li>Full cycle: CAD → BOM → fabrication → quality control</li><li>FEA simulation & Design for Manufacturability from day one</li><li>Athens-based, working internationally</li>',
+    about_bullets:'<li>7+ years mechanical design, 3D printing & fabrication</li><li>Full cycle: CAD → BOM → fabrication → quality control</li><li>FEA simulation & Design for Manufacturability from day one</li>',
     proc_label:'How We Work',
     proc_1_title:'Brief', proc_1_text:'We take time to understand your requirements, constraints, and goals before committing to any design direction — because the right brief leads to the right outcome.',
     proc_2_title:'Design', proc_2_text:'Full 3D model in SolidWorks, FEA validation, complete BOM, and technical drawings (part, assembly, instructions) — every deliverable ready for production.',
@@ -941,27 +941,16 @@ function initHeroExplode() {
   const canvas   = document.getElementById('hero3d');
   if (!hero) return;
 
-  let lastSt = 0;
-
   window.addEventListener('scroll', () => {
     const heroH = hero.offsetHeight;
     const st    = window.scrollY;
     const isMob = window.innerWidth <= 960;
 
     if (isMob) {
-      const scrollingUp = st < lastSt;
-
-      /* When scrolling back up into the hero, release scroll control so
-         the render loop's smooth re-assembly animation plays */
-      if (scrollingUp && st < heroH * 0.65) {
-        if (typeof setScrollExplode === 'function') setScrollExplode(0);
-      } else if (!scrollingUp) {
-        /* Scrolling down — drive the explosion with scroll position */
-        const progress = Math.max(0, Math.min(1, st / (heroH * 0.65)));
-        if (typeof setScrollExplode === 'function') setScrollExplode(progress);
-      }
-
-      lastSt = st;
+      /* Drive explode/assemble directly from scroll position in both directions —
+         fully assembled only at top (st=0), fully exploded at 65% of hero height */
+      const progress = Math.max(0, Math.min(1, st / (heroH * 0.65)));
+      if (typeof setScrollExplode === 'function') setScrollExplode(progress);
 
       /* Canvas: full opacity inside hero, subtle outside */
       if (canvas) {
@@ -991,6 +980,7 @@ function initMobileNav() {
   const btn=document.getElementById('navHamburger'), drawer=document.getElementById('navMobile');
   if(!btn||!drawer)return;
   btn.addEventListener('click',()=>{btn.classList.toggle('open');drawer.classList.toggle('open');});
+  window.addEventListener('scroll',()=>{ if(drawer.classList.contains('open')) closeMobileNav(); },{passive:true});
 }
 function closeMobileNav() {
   const btn=document.getElementById('navHamburger'),drawer=document.getElementById('navMobile');

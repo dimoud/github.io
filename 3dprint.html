@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="expertease-credit.css">
 <style>
 .expertease-credit{background:var(--navy,#060d1a);}
+@media(max-width:960px){.expertease-credit{margin-bottom:32px;}}
 
 /* ── 3D PRINT PAGE – page-specific overrides ─────────────────── */
 
@@ -368,14 +369,11 @@
 }
 .pr-selfprint-feat-icon { font-size: 16px; }
 .pr-selfprint-cta {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 36px; background: var(--blue); color: #fff;
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: 2px;
-  text-transform: uppercase; text-decoration: none;
-  border-radius: 4px; border: 1px solid transparent;
-  transition: background .2s, border-color .2s;
+  color: var(--blue); font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: underline;
+  transition: color .2s;
 }
-.pr-selfprint-cta:hover { background: var(--blue-lt); }
+.pr-selfprint-cta:hover { color: var(--blue-lt); }
 @media (max-width: 640px) {
   .pr-selfprint { padding: 52px 16px; }
   .pr-selfprint-features { gap: 12px 20px; }
