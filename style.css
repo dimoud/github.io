@@ -1697,7 +1697,7 @@ footer {
 
   /* Contact columns: stack on mobile */
   .contact-cols { grid-template-columns: 1fr; gap: 32px; }
-  .contact-cols-left { text-align: center; }
+  .contact-cols-left { text-align: left; }
   .contact-map iframe { height: 220px; }
 
   /* Form inputs: 16px prevents iOS auto-zoom; 48px touch target */

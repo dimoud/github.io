@@ -281,6 +281,96 @@
     /* ── hidden utility ── */
     .hidden { display: none !important; }
 
+    /* ── download confirm modal ── */
+    .dl-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(6,13,26,.65);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+    .dl-modal {
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(6,13,26,.28);
+    }
+    .dl-modal-accent { height: 3px; background: linear-gradient(90deg,var(--navy),var(--blue),var(--blue-lt),var(--blue),var(--navy)); }
+    .dl-modal-body {
+      padding: 36px 36px 28px;
+      text-align: center;
+    }
+    .dl-modal-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .dl-modal-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .dl-modal-text {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .dl-modal-note {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--faint);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .dl-modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .dl-modal-cancel {
+      flex: 1;
+      padding: 11px;
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .dl-modal-cancel:hover { border-color: var(--blue); color: var(--blue); }
+    .dl-modal-confirm {
+      flex: 2;
+      padding: 11px;
+      background: var(--navy);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .dl-modal-confirm:hover { background: var(--blue); transform: translateY(-1px); }
+
     /* ── verifying spinner ── */
     .dl-spinner {
       width: 36px; height: 36px;
@@ -403,6 +493,26 @@
   </div><!-- /.dl-wrapper -->
 </div><!-- /.dl-page -->
 
+<!-- ── Download confirm modal ── -->
+<div class="dl-modal-backdrop hidden" id="dl-modal-backdrop">
+  <div class="dl-modal">
+    <div class="dl-modal-accent"></div>
+    <div class="dl-modal-body">
+      <div class="dl-modal-icon">⏳</div>
+      <div class="dl-modal-title">File Loading from Server</div>
+      <p class="dl-modal-text">
+        Your file is hosted on a secure server.<br>
+        Please allow <strong>up to one minute</strong> for the download to begin after clicking confirm.
+      </p>
+      <p class="dl-modal-note">Do not close this tab while loading</p>
+      <div class="dl-modal-actions">
+        <button class="dl-modal-cancel" id="dl-modal-cancel">Cancel</button>
+        <button class="dl-modal-confirm" id="dl-modal-confirm">Confirm Download →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   const SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbzSMyPJSQmENEt2z7SwqYIaIW4GFKCFrCtKupHULmxb3t6Gq2rVRtC0YLmwbI6WJ-7r/exec";
   const SECURITY_KEY = "Xp9#mK2$vL8@nQ4!wR7&jT3^hY6*cF1%bN5+zD0-eA";
@@ -489,7 +599,7 @@
           '<div class="dl-file-name">' + file.name + '</div>' +
           '<div class="dl-file-meta">XLSB &mdash; Excel Binary Workbook</div>' +
         '</div>' +
-        '<a class="dl-file-btn" href="' + file.url + '" target="_blank">Download</a>';
+        '<button class="dl-file-btn" onclick="confirmDownload(\'' + file.url + '\')">Download</button>';
       list.appendChild(item);
     });
 
@@ -543,6 +653,34 @@
     el.textContent   = text;
     el.style.display = "block";
   }
+
+  // ── Download confirm modal ──────────────────────────────────────────────────
+  let pendingDownloadUrl = null;
+
+  function confirmDownload(url) {
+    pendingDownloadUrl = url;
+    document.getElementById("dl-modal-backdrop").classList.remove("hidden");
+  }
+
+  document.getElementById("dl-modal-confirm").addEventListener("click", function () {
+    document.getElementById("dl-modal-backdrop").classList.add("hidden");
+    if (pendingDownloadUrl) {
+      window.open(pendingDownloadUrl, "_blank");
+      pendingDownloadUrl = null;
+    }
+  });
+
+  document.getElementById("dl-modal-cancel").addEventListener("click", function () {
+    document.getElementById("dl-modal-backdrop").classList.add("hidden");
+    pendingDownloadUrl = null;
+  });
+
+  document.getElementById("dl-modal-backdrop").addEventListener("click", function (e) {
+    if (e.target === this) {
+      this.classList.add("hidden");
+      pendingDownloadUrl = null;
+    }
+  });
 </script>
 </body>
 </html>
