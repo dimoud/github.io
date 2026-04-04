@@ -353,16 +353,57 @@
   .sw-detail-split { grid-template-columns: 1fr; gap: 36px; }
   .sw-feat-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 560px) {
-  .sw-detail { padding: 40px 16px; }
-  .sw-feat-grid { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  /* Title: smaller so it fits one line, centered */
+  .sw-page-title {
+    font-size: clamp(28px, 8vw, 42px) !important;
+    white-space: nowrap;
+    text-align: center;
+  }
+  /* Desc: padding and full alignment */
+  .sw-page-desc { padding: 0 8px; text-align: justify; }
+  /* Buttons: 25% smaller */
+  .sw-page-cta .btn-primary,
+  .sw-page-cta .btn-outline {
+    font-size: 8px !important;
+    padding: 10px 18px !important;
+    min-height: 36px !important;
+    letter-spacing: 1.2px;
+  }
+  /* Hide the product detail split image */
+  .sw-detail-photo { display: none !important; }
+  .sw-detail-split { grid-template-columns: 1fr; }
+  /* Work smart text: full alignment */
+  .sw-detail-lead { text-align: justify; }
+  /* Capabilities: match page font style, 2 per row */
+  .sw-feat-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .sw-feat-name {
+    font-family: var(--font-body) !important;
+    font-size: 12px !important;
+    letter-spacing: 0.3px !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+  }
+  .sw-feat-list li { font-size: 11px; }
+  .sw-feat-card { padding: 16px 12px; }
+  /* Capabilities section: more compact */
+  .sw-detail { padding: 32px 16px; }
+  .sw-detail-inner { gap: 40px; }
 }
 </style>
 
 <footer>
+  <div class="footer-contact-bar">
+    <span>Athens, Greece</span>
+    <span class="fc-sep"></span>
+    <a href="tel:+302107561836">210 075 6183</a>
+    <span class="fc-sep"></span>
+    <a href="mailto:info@expertease.eu">info@expertease.eu</a>
+  </div>
+  <div class="footer-domain">expertease.eu</div>
   <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Expertease"></a>
-  <div class="footer-text" id="footer-copy">© 2026 Expertease Designs</div>
-  <div class="footer-text" id="footer-loc">Athens, Greece</div>
+  <div id="footer-copy" style="display:none">© 2026 Expertease Designs</div>
+  <div id="footer-loc" style="display:none">Athens, Greece</div>
 </footer>
 
 <hr class="ec-rule">

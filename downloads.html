@@ -428,12 +428,20 @@
     btn.textContent = "Sending…";
 
     try {
-      await fetch(SCRIPT_URL, {
+      const res  = await fetch(SCRIPT_URL, {
         method:  "POST",
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "application/json" },
         body:    JSON.stringify({ _key: SECURITY_KEY, action: "request_access", email })
       });
-      showMessage(msg, "success", "If this email is registered, a secure link has been sent. Please check your inbox and spam folder.");
+      const data = await res.json();
+
+      if (data.result === "not_found") {
+        showMessage(msg, "error", data.message || "This email is not registered. Please contact us if you believe this is an error.");
+      } else if (data.result === "success") {
+        showMessage(msg, "success", "A secure download link has been sent to your inbox. Please check your email and spam folder.");
+      } else {
+        showMessage(msg, "error", data.message || "Something went wrong. Please try again.");
+      }
     } catch (err) {
       showMessage(msg, "error", "Something went wrong. Please try again.");
     }

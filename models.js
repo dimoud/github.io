@@ -969,7 +969,7 @@ function loadModel() {
 
   rotGroup=new THREE.Group();
 
-  rotGroup.rotation.x=0.32; rotGroup.rotation.y=-Math.PI/6; rotGroup.scale.set(0.76,0.76,0.76);
+  rotGroup.rotation.x=0.32; rotGroup.rotation.y=-(25*Math.PI/180); rotGroup.scale.set(0.76,0.76,0.76);
 
   rotGroup.position.x=rightHalfX;
 
@@ -1153,9 +1153,21 @@ function animate() {
 
   } else if (!exploding&&explodeT>0) {
 
-    /* Ease-out assembly: fast approach, then decelerates as parts lock in.
-       Speed = base * easeOut — feels like magnetic snap slowing to seat. */
-    const assembleSpeed = 1.6 * (0.08 + 0.92 * explodeT);
+    /* Graduated assembly: fast when far apart, progressively slower as parts
+       approach their seated position — final 30% is very careful and deliberate.
+       Above 0.4: normal approach speed.
+       0.4 → 0.15: slow (~0.45 base).
+       Below 0.15: very slow final seating (~0.15 base). */
+    let assembleBase;
+    if (explodeT > 0.4) {
+      assembleBase = 1.4;
+    } else if (explodeT > 0.15) {
+      const f = (explodeT - 0.15) / 0.25; // 1→0 as we approach 0.15
+      assembleBase = 0.45 + f * 0.95;
+    } else {
+      assembleBase = 0.15;
+    }
+    const assembleSpeed = assembleBase * (0.10 + 0.90 * explodeT);
     explodeT=Math.max(0,explodeT-dt*assembleSpeed); applyExplode(explodeT);
 
   }
@@ -1222,7 +1234,7 @@ function resetModel() {
 
   exploding=false; currentMode='rotate'; scrollExplodeActive=false; scrollExplodeT=0;
 
-  if(rotGroup) { rotGroup.rotation.set(.32,-Math.PI/6,0); rotGroup.position.set(rightHalfX,0,0); }
+  if(rotGroup) { rotGroup.rotation.set(.32,-(25*Math.PI/180),0); rotGroup.position.set(rightHalfX,0,0); }
 
   document.querySelectorAll('.vctrl').forEach(b=>b.classList.remove('active'));
 

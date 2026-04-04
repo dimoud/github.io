@@ -172,7 +172,7 @@ const LANG = {
     nav_webdesign:'Web Design', nav_3dprint:'3D Print', nav_experience:'Team', nav_contact:'Contact',
     hero_tag:'// Mechanical Design & 3D Printing Studio — Athens, GR',
     hero_title:'Mechanical Design · 3D Printing · Laser Cut & Engrave',
-    hero_desc:'<strong>Expertease Designs</strong> — machine design, sheet metal, rapid prototyping, BOM, and project management.',
+    hero_desc:'<strong>Expertease Designs</strong>: machine design &bull; sheet metal &bull; rapid prototyping &bull; BOM',
     hero_cta_work:'View Projects →', hero_cta_contact:'Get in Touch',
     stat_years:'Years Experience', stat_projects:'Projects Delivered', stat_degrees:'University Degrees',
     edu_strip:'Founder — Dimitrios Moudiotis · 5 Universities in 3 Countries',

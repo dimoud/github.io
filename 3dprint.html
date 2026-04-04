@@ -659,6 +659,28 @@
   /* Viewer */
   .pr-est-viewer-wrap { aspect-ratio: 4/3; min-height: 180px; }
 }
+
+@media (max-width: 640px) {
+  /* What We Do: full alignment for card text */
+  .wd-offer-text { text-align: justify; }
+
+  /* "Want to Print Your Own Parts?" — 25% smaller */
+  .pr-selfprint-title { font-size: calc(clamp(28px, 4vw, 46px) * 0.75) !important; }
+
+  /* Self-print sub text: full alignment */
+  .pr-selfprint-sub { text-align: justify; }
+
+  /* "Got a part in mind?" — one line, 10% smaller */
+  .wd-cta-title {
+    font-size: calc(clamp(28px, 3.5vw, 44px) * 0.90) !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* CTA text after title: full alignment */
+  .wd-cta-text { text-align: justify; }
+}
 </style>
 </head>
 <body>
@@ -880,24 +902,6 @@
     <div class="pr-selfprint-badge">// For Makers &amp; Designers</div>
     <h2 class="pr-selfprint-title">Want to Print Your Own Parts?</h2>
     <p class="pr-selfprint-sub">Have your own 3D printer? Use our free cost calculator below — upload your STL or STEP file and get an instant estimate on material usage, print time, and cost. No account needed.</p>
-    <div class="pr-selfprint-features">
-      <div class="pr-selfprint-feat">
-        <span class="pr-selfprint-feat-icon">📐</span>
-        <span>Parses your geometry automatically</span>
-      </div>
-      <div class="pr-selfprint-feat">
-        <span class="pr-selfprint-feat-icon">⏱</span>
-        <span>Estimates print time &amp; filament use</span>
-      </div>
-      <div class="pr-selfprint-feat">
-        <span class="pr-selfprint-feat-icon">💰</span>
-        <span>Calculates cost by material &amp; infill</span>
-      </div>
-      <div class="pr-selfprint-feat">
-        <span class="pr-selfprint-feat-icon">🔍</span>
-        <span>Live 3D preview of your part</span>
-      </div>
-    </div>
     <a href="#prEstimator" class="pr-selfprint-cta">Try the Calculator</a>
   </div>
 </section>
@@ -1051,9 +1055,17 @@
 </section>
 
 <footer>
+  <div class="footer-contact-bar">
+    <span>Athens, Greece</span>
+    <span class="fc-sep"></span>
+    <a href="tel:+302107561836">210 075 6183</a>
+    <span class="fc-sep"></span>
+    <a href="mailto:info@expertease.eu">info@expertease.eu</a>
+  </div>
+  <div class="footer-domain">expertease.eu</div>
   <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Expertease"></a>
-  <div class="footer-text" id="footer-copy">© 2026 Expertease Designs</div>
-  <div class="footer-text" id="footer-loc">Athens, Greece</div>
+  <div id="footer-copy" style="display:none">© 2026 Expertease Designs</div>
+  <div id="footer-loc" style="display:none">Athens, Greece</div>
 </footer>
 
 <hr class="ec-rule">
