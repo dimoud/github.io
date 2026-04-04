@@ -430,7 +430,7 @@
     try {
       const res  = await fetch(SCRIPT_URL, {
         method:  "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain" },
         body:    JSON.stringify({ _key: SECURITY_KEY, action: "request_access", email })
       });
       const data = await res.json();

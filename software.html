@@ -121,19 +121,22 @@
 <section class="sw-detail">
   <div class="sw-detail-inner">
 
-    <!-- intro -->
-    <div class="sw-detail-intro">
-      <div class="sw-detail-kicker" id="sw-d-kicker1">What it does</div>
-      <h2 class="sw-detail-title" id="sw-d-title">Work smart, not hard.</h2>
-      <p class="sw-detail-lead" id="sw-d-lead">A powerful, user-friendly tool that automates the creation of technical studies for special-use and special-purpose vehicle licensing. It automates every calculation process — generating reliable results and complete documentation in minutes, not days.</p>
+    <!-- intro + me-2 -->
+    <div class="sw-detail-split">
+      <div class="sw-detail-text-block">
+        <div class="sw-detail-kicker" id="sw-d-kicker1">What it does</div>
+        <h2 class="sw-detail-title" id="sw-d-title">Work smart, not hard.</h2>
+        <p class="sw-detail-lead" id="sw-d-lead">A powerful, user-friendly tool that automates the creation of technical studies for special-use and special-purpose vehicle licensing. It automates every calculation process — generating reliable results and complete documentation in minutes, not days.</p>
+      </div>
+      <div class="sw-detail-photo sw-detail-photo--hide-mobile">
+        <img src="images/me-2.png" alt="Mechanical ExpertEase — software in use" class="sw-detail-img">
+      </div>
     </div>
 
-    <!-- photo + workflow -->
-    <div class="sw-detail-split">
-      <div class="sw-detail-photo">
-        <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SRYTox16yChXfCAC_J05rIxl-DL28sd2_stdaDow9Nc6KqEVAWtQ616I8A5v6JTNYiktzKWNv-kYp0JTB9_JicH1ZeB4VeZc4ZGOUp0xw17zXW379OkiOgWSxKgU1sUgb21fO6MK9oh9yhDtG0sPmZnRjSar3uzId7Ak5OvNgs5XVBGR834tVgt5dy1RP5MHMt-RB6Up7Nw=w1280"
-             alt="Mechanical ExpertEase — vehicle technical study software screenshot"
-             class="sw-detail-img">
+    <!-- workflow + me-1 -->
+    <div class="sw-detail-split sw-detail-split--reverse">
+      <div class="sw-detail-photo sw-detail-photo--compact">
+        <img src="images/me-1.png" alt="Mechanical ExpertEase — workflow steps" class="sw-detail-img">
       </div>
       <div class="sw-detail-workflow">
         <div class="sw-detail-kicker" id="sw-d-kicker2">How it works</div>
@@ -251,19 +254,21 @@
   max-width: 760px;
 }
 
-/* split: photo left, workflow right */
+/* split: two-column layout */
 .sw-detail-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
   align-items: center;
 }
+.sw-detail-text-block {
+  display: flex;
+  flex-direction: column;
+}
 .sw-detail-img {
   width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--border2);
-  box-shadow: 0 12px 48px rgba(6,13,26,.10);
   display: block;
+  background: transparent;
 }
 .sw-workflow-list {
   list-style: none;
@@ -276,13 +281,13 @@
   display: flex;
   align-items: baseline;
   gap: 14px;
-  font-size: 14px;
+  font-size: 16.8px;
   color: var(--muted);
   line-height: 1.5;
 }
 .sw-wf-num {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--blue);
   letter-spacing: 1px;
@@ -351,6 +356,7 @@
 @media (max-width: 960px) {
   .sw-detail { padding: 56px 24px; }
   .sw-detail-split { grid-template-columns: 1fr; gap: 36px; }
+  .sw-detail-split--reverse { direction: ltr; }
   .sw-feat-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
@@ -370,8 +376,10 @@
     min-height: 36px !important;
     letter-spacing: 1.2px;
   }
-  /* Hide the product detail split image */
-  .sw-detail-photo { display: none !important; }
+  /* Hide me-2 on mobile, keep me-1 compact */
+  .sw-detail-photo--hide-mobile { display: none !important; }
+  .sw-detail-photo--compact { text-align: center; }
+  .sw-detail-photo--compact .sw-detail-img { width: 60%; max-width: 220px; margin: 0 auto; }
   .sw-detail-split { grid-template-columns: 1fr; }
   /* Work smart text: full alignment */
   .sw-detail-lead { text-align: justify; }
